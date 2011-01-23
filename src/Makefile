@@ -2,18 +2,23 @@ CC			= gcc -g
 CFLAGS	= -O3
 OBJS  	= galois.o jerasure.o reed_sol.o cauchy.o liberation.o
 
-../lib/libJinterface.so: ../lib/libJinterface.so.0
-	ln -sf libJinterface.so.0 ../lib/libJinterface.so
+all: ../lib/libJerasure.so headers
 
-../lib/libJinterface.so.0: ../lib $(OBJS)
-	$(CC) -shared -Wl,-soname,libJinterface.so.0 \
-		-o ../lib/libJinterface.so.0 $(OBJS)
+headers:
+	cp *.h ../include/
+
+../lib/libJerasure.so: ../lib/libJerasure.so.0
+	ln -sf libJerasure.so.0 ../lib/libJerasure.so
+
+../lib/libJerasure.so.0: ../lib $(OBJS)
+	$(CC) -shared -Wl,-soname,libJerasure.so.0 \
+		-o ../lib/libJerasure.so.0 $(OBJS)
 
 ../lib:
 	mkdir -p ../lib
 
 clean:
-	rm -f ../lib/libJinterface.so* $(OBJS)
+	rm -f ../lib/libJerasure.so* $(OBJS) ../include/*
 
 %.o: %.c
 	$(CC) $(CFLAGS) -fPIC -c $<
@@ -24,3 +29,4 @@ reed_sol.o: jerasure.h galois.h reed_sol.h
 cauchy.o: jerasure.h galois.h cauchy.h
 liberation.o: jerasure.h galois.h liberation.h
 
+.PHONY: all headers
