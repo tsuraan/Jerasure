@@ -994,9 +994,6 @@ int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *eras
 
 int ***jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart)
 {
-  int i, tdone;
-  char **ptrs;
-  int **schedule;
   int ***scache;
   int erasures[3];
   int e1, e2;
