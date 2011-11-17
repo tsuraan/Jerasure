@@ -1174,7 +1174,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
                                    char **data_ptrs, char **coding_ptrs, int size, int packetsize)
 {
   char **ptr_copy;
-  int i, j, tdone;
+  int i, tdone;
 
   ptr_copy = talloc(char *, (k+m));
   for (i = 0; i < k; i++) ptr_copy[i] = data_ptrs[i];
