@@ -760,7 +760,6 @@ static int set_up_ids_for_scheduled_decoding(int k, int m, int *erasures, int *r
 {
   int ddf, cdf;
   int *erased;
-  char **ptrs;
   int i, j, x;
 
   ddf = 0;
