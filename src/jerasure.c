@@ -1341,8 +1341,7 @@ int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize)
 {
-  int i, j, x, y, sptr, pstarted, index;
-  char *dptr, *pptr;
+  int i;
 
   if (packetsize%sizeof(long) != 0) {
     fprintf(stderr, "jerasure_bitmatrix_encode - packetsize(%d) \% sizeof(long) != 0\n", packetsize);
