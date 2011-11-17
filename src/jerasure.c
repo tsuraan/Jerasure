@@ -1120,7 +1120,7 @@ int jerasure_invertible_bitmatrix(int *mat, int rows)
   
 int *jerasure_matrix_multiply(int *m1, int *m2, int r1, int c1, int r2, int c2, int w)
 {
-  int *product, i, j, k, l;
+  int *product, i, j, k;
 
   product = (int *) malloc(sizeof(int)*r1*c2);
   for (i = 0; i < r1*c2; i++) product[i] = 0;
