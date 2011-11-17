@@ -305,7 +305,7 @@ void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
   char *dptr, *pptr, *bdptr, *bpptr;
 
   if (size%(w*packetsize) != 0) {
-    fprintf(stderr, "jerasure_bitmatrix_dotprod - size%(w*packetsize)) must = 0\n");
+    fprintf(stderr, "jerasure_bitmatrix_dotprod - size%%(w*packetsize) must = 0\n");
     exit(1);
   }
 
@@ -1344,11 +1344,11 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
   int i;
 
   if (packetsize%sizeof(long) != 0) {
-    fprintf(stderr, "jerasure_bitmatrix_encode - packetsize(%d) \% sizeof(long) != 0\n", packetsize);
+    fprintf(stderr, "jerasure_bitmatrix_encode - packetsize(%d) %% sizeof(long) != 0\n", packetsize);
     exit(1);
   }
   if (size%(packetsize*w) != 0) {
-    fprintf(stderr, "jerasure_bitmatrix_encode - size(%d) % (packetsize(%d)*w(%d))) != 0\n", 
+    fprintf(stderr, "jerasure_bitmatrix_encode - size(%d) %% (packetsize(%d)*w(%d))) != 0\n", 
          size, packetsize, w);
     exit(1);
   }
