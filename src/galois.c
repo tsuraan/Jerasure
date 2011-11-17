@@ -606,8 +606,8 @@ int galois_inverse(int y, int w)
 int galois_shift_inverse(int y, int w)
 {
   int mat2[32];
-  int inv[1024], inv2[32];
-  int ind, i, j, k, prod;
+  int inv2[32];
+  int i;
  
   for (i = 0; i < w; i++) {
     mat2[i] = y;
