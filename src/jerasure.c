@@ -285,8 +285,7 @@ int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix)
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size)
 {
-  int *init;
-  int i, j;
+  int i;
   
   if (w != 8 && w != 16 && w != 32) {
     fprintf(stderr, "ERROR: jerasure_matrix_encode() and w is not 8, 16 or 32\n");
