@@ -153,7 +153,7 @@ int jerasure_make_decoding_bitmatrix(int k, int m, int w, int *matrix, int *eras
 int jerasure_matrix_decode(int k, int m, int w, int *matrix, int row_k_ones, int *erasures,
                           char **data_ptrs, char **coding_ptrs, int size)
 {
-  int i, j, edd, lastdrive;
+  int i, edd, lastdrive;
   int *tmpids;
   int *erased, *decoding_matrix, *dm_ids;
 
