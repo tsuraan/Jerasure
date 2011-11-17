@@ -550,7 +550,7 @@ void galois_w16_region_multiply(char *region,      /* Region to multiply */
 
 void galois_invert_binary_matrix(int *mat, int *inv, int rows)
 {
-  int cols, i, j, k;
+  int cols, i, j;
   int tmp;
  
   cols = rows;
@@ -605,7 +605,7 @@ int galois_inverse(int y, int w)
 
 int galois_shift_inverse(int y, int w)
 {
-  int mat[1024], mat2[32];
+  int mat2[32];
   int inv[1024], inv2[32];
   int ind, i, j, k, prod;
  
