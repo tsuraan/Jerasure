@@ -671,8 +671,7 @@ void galois_w32_region_multiply(char *region,      /* Region to multiply */
                                   char *r2,          /* If r2 != NULL, products go here */
                                   int add)
 {
-  unsigned int *ur1, *ur2, *cp, *ur2top;
-  unsigned long *lp2, *lptop;
+  unsigned int *ur1, *ur2, *ur2top;
   int i, j, a, b, accumulator, i8, j8, k;
   int acache[4];
 
