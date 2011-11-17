@@ -1,4 +1,4 @@
-CC			= gcc -g
+CC	= gcc -g
 CFLAGS	= -O3
 OBJS  	= galois.o jerasure.o reed_sol.o cauchy.o liberation.o
 
