@@ -622,7 +622,7 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
 int jerasure_bitmatrix_decode(int k, int m, int w, int *bitmatrix, int row_k_ones, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize)
 {
-  int i, j;
+  int i;
   int *erased;
   int *decoding_matrix;
   int *dm_ids;
