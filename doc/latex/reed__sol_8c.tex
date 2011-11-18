@@ -1,0 +1,147 @@
+\hypertarget{reed__sol_8c}{
+\section{reed\-\_\-sol.c \-File \-Reference}
+\label{reed__sol_8c}\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include \char`\"{}galois.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}jerasure.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}reed\-\_\-sol.\-h\char`\"{}}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{reed__sol_8c_a952a72cead1356661549e3e8c699d699}{talloc}(type, num)~(type $\ast$) malloc(sizeof(type)$\ast$(num))
+\item 
+\#define \hyperlink{reed__sol_8c_a102198c921d3d50010c13cd6736b017a}{rgw32\-\_\-mask}(v)~((v) \& 0x80000000)
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \hyperlink{reed__sol_8c_a793c04f34272b6ea565dfb6fab26724b}{reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix} (int k, int w)
+\item 
+int $\ast$ \hyperlink{reed__sol_8c_a26d44755ef8666a2c3d4b4a9cb67ea39}{reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix} (int k, int m, int w)
+\item 
+void \hyperlink{reed__sol_8c_ae7d670f54a42b6e4ff759f5778f09f1a}{reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2} (char $\ast$region, int nbytes)
+\item 
+void \hyperlink{reed__sol_8c_a8087014888320e787d6930121becf43f}{reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2} (char $\ast$region, int nbytes)
+\item 
+void \hyperlink{reed__sol_8c_af8ffb0b64590b5ee310e9225c189cf4c}{reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2} (char $\ast$region, int nbytes)
+\item 
+int \hyperlink{reed__sol_8c_a92746dc40bfc521121d442950c36c1e1}{reed\-\_\-sol\-\_\-r6\-\_\-encode} (int k, int w, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+int $\ast$ \hyperlink{reed__sol_8c_ae0c9e0afab171576636c502d6a264378}{reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix} (int rows, int cols, int w)
+\item 
+int $\ast$ \hyperlink{reed__sol_8c_a1e25e5e8e3be6815856c9274314b72c5}{reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix} (int rows, int cols, int w)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{reed__sol_8c_a102198c921d3d50010c13cd6736b017a}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!rgw32\-\_\-mask@{rgw32\-\_\-mask}}
+\index{rgw32\-\_\-mask@{rgw32\-\_\-mask}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{rgw32\-\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}\#define rgw32\-\_\-mask(
+\begin{DoxyParamCaption}
+\item[{}]{v}
+\end{DoxyParamCaption}
+)~((v) \& 0x80000000)}}
+\label{reed__sol_8c_a102198c921d3d50010c13cd6736b017a}
+\hypertarget{reed__sol_8c_a952a72cead1356661549e3e8c699d699}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!talloc@{talloc}}
+\index{talloc@{talloc}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{talloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define talloc(
+\begin{DoxyParamCaption}
+\item[{}]{type, }
+\item[{}]{num}
+\end{DoxyParamCaption}
+)~(type $\ast$) malloc(sizeof(type)$\ast$(num))}}
+\label{reed__sol_8c_a952a72cead1356661549e3e8c699d699}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{reed__sol_8c_a1e25e5e8e3be6815856c9274314b72c5}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix@{reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix}}
+\index{reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix@{reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ reed\-\_\-sol\-\_\-big\-\_\-vandermonde\-\_\-distribution\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_a1e25e5e8e3be6815856c9274314b72c5}
+\hypertarget{reed__sol_8c_ae0c9e0afab171576636c502d6a264378}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix@{reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix}}
+\index{reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix@{reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ reed\-\_\-sol\-\_\-extended\-\_\-vandermonde\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_ae0c9e0afab171576636c502d6a264378}
+\hypertarget{reed__sol_8c_a8087014888320e787d6930121becf43f}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2@{reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2}}
+\index{reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2@{reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}void reed\-\_\-sol\-\_\-galois\-\_\-w08\-\_\-region\-\_\-multby\-\_\-2 (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{region, }
+\item[{int}]{nbytes}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_a8087014888320e787d6930121becf43f}
+\hypertarget{reed__sol_8c_af8ffb0b64590b5ee310e9225c189cf4c}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2@{reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2}}
+\index{reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2@{reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}void reed\-\_\-sol\-\_\-galois\-\_\-w16\-\_\-region\-\_\-multby\-\_\-2 (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{region, }
+\item[{int}]{nbytes}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_af8ffb0b64590b5ee310e9225c189cf4c}
+\hypertarget{reed__sol_8c_ae7d670f54a42b6e4ff759f5778f09f1a}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2@{reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2}}
+\index{reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2@{reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}void reed\-\_\-sol\-\_\-galois\-\_\-w32\-\_\-region\-\_\-multby\-\_\-2 (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{region, }
+\item[{int}]{nbytes}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_ae7d670f54a42b6e4ff759f5778f09f1a}
+\hypertarget{reed__sol_8c_a793c04f34272b6ea565dfb6fab26724b}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix@{reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix}}
+\index{reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix@{reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ reed\-\_\-sol\-\_\-r6\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_a793c04f34272b6ea565dfb6fab26724b}
+\hypertarget{reed__sol_8c_a92746dc40bfc521121d442950c36c1e1}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-r6\-\_\-encode@{reed\-\_\-sol\-\_\-r6\-\_\-encode}}
+\index{reed\-\_\-sol\-\_\-r6\-\_\-encode@{reed\-\_\-sol\-\_\-r6\-\_\-encode}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-r6\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}int reed\-\_\-sol\-\_\-r6\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{w, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_a92746dc40bfc521121d442950c36c1e1}
+\hypertarget{reed__sol_8c_a26d44755ef8666a2c3d4b4a9cb67ea39}{
+\index{reed\-\_\-sol.\-c@{reed\-\_\-sol.\-c}!reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix@{reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix}}
+\index{reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix@{reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix}!reed_sol.c@{reed\-\_\-sol.\-c}}
+\subsubsection[{reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ reed\-\_\-sol\-\_\-vandermonde\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{reed__sol_8c_a26d44755ef8666a2c3d4b4a9cb67ea39}

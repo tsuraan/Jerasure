@@ -110,12 +110,15 @@ plank@cs.utk.edu
                               jerasure_generate_schedule_cache.
  */
 
-/**
+/** turns a m X k matrix in GF(2^w) into a wm X wk bitmatrix (in GF(2)).
+ *  This is explained in the Cauchy Reed-Solomon coding paper.
+ *
  * @param k Number of data devices
  */
 int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
 
-/**
+/**  turns a bitmatrix into a schedule using the straightforward algorithm -- just schedule the dot products defined by each row of the matrix.
+ * 
  * @param k Number of data devices
  */
 int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);

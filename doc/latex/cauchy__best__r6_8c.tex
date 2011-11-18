@@ -1,0 +1,240 @@
+\hypertarget{cauchy__best__r6_8c}{
+\section{cauchy\-\_\-best\-\_\-r6.c \-File \-Reference}
+\label{cauchy__best__r6_8c}\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include \char`\"{}galois.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}jerasure.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}cauchy.\-h\char`\"{}}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cauchy__best__r6_8c_a952a72cead1356661549e3e8c699d699}{talloc}(type, num)~(type $\ast$) malloc(sizeof(type)$\ast$(num))
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{cauchy__best__r6_8c_aa537d9bfeffad82b25aa15377630a615}{cauchy\-\_\-n\-\_\-ones} (int n, int w)
+\item 
+int $\ast$ \hyperlink{cauchy__best__r6_8c_a1e0c1fdadd7b4015f470239dd481e9ef}{cauchy\-\_\-original\-\_\-coding\-\_\-matrix} (int k, int m, int w)
+\item 
+int $\ast$ \hyperlink{cauchy__best__r6_8c_a978ff1db48230df60e2e8022d1421770}{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix} (int k, int m, int w, int $\ast$\-X, int $\ast$\-Y)
+\item 
+void \hyperlink{cauchy__best__r6_8c_a8862557e48ccbf72061233c038ce1820}{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix} (int k, int m, int w, int $\ast$matrix)
+\item 
+int $\ast$ \hyperlink{cauchy__best__r6_8c_a7838894acdb1fecc0930e9416851625a}{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix} (int k, int m, int w)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a798971d3692916d6be992b899f64ebd1}{cbest\-\_\-13} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_abf1d8d5fcbeac3a071067ef0005bf206}{cbest\-\_\-14} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_afb3ffbda01e411549a1d9403d168f923}{cbest\-\_\-15} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a4d289afbaf13971a8d942f23f673435d}{cbest\-\_\-16} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a4726d8520029b9018619c984a8168172}{cbest\-\_\-17} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_ac34bbd470c7ee76699c32c274c0d370e}{cbest\-\_\-18} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_aeedfc977cfb067afc049d58426015bea}{cbest\-\_\-19} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_ac0729385369806ad0fa8d52b8910e9c8}{cbest\-\_\-20} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a5ea632822d52d30d72372d2245db0656}{cbest\-\_\-21} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_aa9a117e027dca367d4d57762b5179e6f}{cbest\-\_\-22} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_ac6eca918546b705a329a1fb8e8a59fef}{cbest\-\_\-23} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a4074c81c96d8cc0191c1222c92f524b5}{cbest\-\_\-24} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a0bd22c0adfd4040ba6efe18d12cc62c3}{cbest\-\_\-25} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a2c5a98817930656d0f58c91af7a1eaf0}{cbest\-\_\-26} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_abe13ab1e4659b804bff262d9f97c3dde}{cbest\-\_\-27} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a915f13885ff6d4c5e18f5ae0164b2e5b}{cbest\-\_\-28} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_a8629acfe0ab7e82c8d7729a2b4201c09}{cbest\-\_\-29} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_afef6bfa78f0df75952d2cbc2f7bb9b81}{cbest\-\_\-30} \mbox{[}1023\mbox{]}
+\item 
+static int \hyperlink{cauchy__best__r6_8c_ab7d83259a0c4ce86446cdefb3126bb4b}{cbest\-\_\-31} \mbox{[}1023\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{cauchy__best__r6_8c_a952a72cead1356661549e3e8c699d699}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!talloc@{talloc}}
+\index{talloc@{talloc}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{talloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define talloc(
+\begin{DoxyParamCaption}
+\item[{}]{type, }
+\item[{}]{num}
+\end{DoxyParamCaption}
+)~(type $\ast$) malloc(sizeof(type)$\ast$(num))}}
+\label{cauchy__best__r6_8c_a952a72cead1356661549e3e8c699d699}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{cauchy__best__r6_8c_a7838894acdb1fecc0930e9416851625a}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix@{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix@{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy__best__r6_8c_a7838894acdb1fecc0930e9416851625a}
+\hypertarget{cauchy__best__r6_8c_a8862557e48ccbf72061233c038ce1820}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cauchy\-\_\-improve\-\_\-coding\-\_\-matrix@{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix@{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void cauchy\-\_\-improve\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy__best__r6_8c_a8862557e48ccbf72061233c038ce1820}
+\hypertarget{cauchy__best__r6_8c_aa537d9bfeffad82b25aa15377630a615}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cauchy\-\_\-n\-\_\-ones@{cauchy\-\_\-n\-\_\-ones}}
+\index{cauchy\-\_\-n\-\_\-ones@{cauchy\-\_\-n\-\_\-ones}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cauchy\-\_\-n\-\_\-ones}]{\setlength{\rightskip}{0pt plus 5cm}int cauchy\-\_\-n\-\_\-ones (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy__best__r6_8c_aa537d9bfeffad82b25aa15377630a615}
+\hypertarget{cauchy__best__r6_8c_a1e0c1fdadd7b4015f470239dd481e9ef}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cauchy\-\_\-original\-\_\-coding\-\_\-matrix@{cauchy\-\_\-original\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-original\-\_\-coding\-\_\-matrix@{cauchy\-\_\-original\-\_\-coding\-\_\-matrix}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cauchy\-\_\-original\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cauchy\-\_\-original\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy__best__r6_8c_a1e0c1fdadd7b4015f470239dd481e9ef}
+\hypertarget{cauchy__best__r6_8c_a978ff1db48230df60e2e8022d1421770}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cauchy\-\_\-xy\-\_\-coding\-\_\-matrix@{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix@{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cauchy\-\_\-xy\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{\-X, }
+\item[{int $\ast$}]{\-Y}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy__best__r6_8c_a978ff1db48230df60e2e8022d1421770}
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{cauchy__best__r6_8c_a798971d3692916d6be992b899f64ebd1}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-13@{cbest\-\_\-13}}
+\index{cbest\-\_\-13@{cbest\-\_\-13}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-13}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a798971d3692916d6be992b899f64ebd1}
+\hypertarget{cauchy__best__r6_8c_abf1d8d5fcbeac3a071067ef0005bf206}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-14@{cbest\-\_\-14}}
+\index{cbest\-\_\-14@{cbest\-\_\-14}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-14}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_abf1d8d5fcbeac3a071067ef0005bf206}
+\hypertarget{cauchy__best__r6_8c_afb3ffbda01e411549a1d9403d168f923}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-15@{cbest\-\_\-15}}
+\index{cbest\-\_\-15@{cbest\-\_\-15}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-15}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_afb3ffbda01e411549a1d9403d168f923}
+\hypertarget{cauchy__best__r6_8c_a4d289afbaf13971a8d942f23f673435d}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-16@{cbest\-\_\-16}}
+\index{cbest\-\_\-16@{cbest\-\_\-16}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-16}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a4d289afbaf13971a8d942f23f673435d}
+\hypertarget{cauchy__best__r6_8c_a4726d8520029b9018619c984a8168172}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-17@{cbest\-\_\-17}}
+\index{cbest\-\_\-17@{cbest\-\_\-17}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-17}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a4726d8520029b9018619c984a8168172}
+\hypertarget{cauchy__best__r6_8c_ac34bbd470c7ee76699c32c274c0d370e}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-18@{cbest\-\_\-18}}
+\index{cbest\-\_\-18@{cbest\-\_\-18}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-18}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_ac34bbd470c7ee76699c32c274c0d370e}
+\hypertarget{cauchy__best__r6_8c_aeedfc977cfb067afc049d58426015bea}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-19@{cbest\-\_\-19}}
+\index{cbest\-\_\-19@{cbest\-\_\-19}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-19}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_aeedfc977cfb067afc049d58426015bea}
+\hypertarget{cauchy__best__r6_8c_ac0729385369806ad0fa8d52b8910e9c8}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-20@{cbest\-\_\-20}}
+\index{cbest\-\_\-20@{cbest\-\_\-20}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-20}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_ac0729385369806ad0fa8d52b8910e9c8}
+\hypertarget{cauchy__best__r6_8c_a5ea632822d52d30d72372d2245db0656}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-21@{cbest\-\_\-21}}
+\index{cbest\-\_\-21@{cbest\-\_\-21}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-21}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a5ea632822d52d30d72372d2245db0656}
+\hypertarget{cauchy__best__r6_8c_aa9a117e027dca367d4d57762b5179e6f}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-22@{cbest\-\_\-22}}
+\index{cbest\-\_\-22@{cbest\-\_\-22}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-22}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_aa9a117e027dca367d4d57762b5179e6f}
+\hypertarget{cauchy__best__r6_8c_ac6eca918546b705a329a1fb8e8a59fef}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-23@{cbest\-\_\-23}}
+\index{cbest\-\_\-23@{cbest\-\_\-23}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-23}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_ac6eca918546b705a329a1fb8e8a59fef}
+\hypertarget{cauchy__best__r6_8c_a4074c81c96d8cc0191c1222c92f524b5}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-24@{cbest\-\_\-24}}
+\index{cbest\-\_\-24@{cbest\-\_\-24}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-24}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a4074c81c96d8cc0191c1222c92f524b5}
+\hypertarget{cauchy__best__r6_8c_a0bd22c0adfd4040ba6efe18d12cc62c3}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-25@{cbest\-\_\-25}}
+\index{cbest\-\_\-25@{cbest\-\_\-25}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-25}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a0bd22c0adfd4040ba6efe18d12cc62c3}
+\hypertarget{cauchy__best__r6_8c_a2c5a98817930656d0f58c91af7a1eaf0}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-26@{cbest\-\_\-26}}
+\index{cbest\-\_\-26@{cbest\-\_\-26}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-26}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a2c5a98817930656d0f58c91af7a1eaf0}
+\hypertarget{cauchy__best__r6_8c_abe13ab1e4659b804bff262d9f97c3dde}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-27@{cbest\-\_\-27}}
+\index{cbest\-\_\-27@{cbest\-\_\-27}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-27}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_abe13ab1e4659b804bff262d9f97c3dde}
+\hypertarget{cauchy__best__r6_8c_a915f13885ff6d4c5e18f5ae0164b2e5b}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-28@{cbest\-\_\-28}}
+\index{cbest\-\_\-28@{cbest\-\_\-28}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-28}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a915f13885ff6d4c5e18f5ae0164b2e5b}
+\hypertarget{cauchy__best__r6_8c_a8629acfe0ab7e82c8d7729a2b4201c09}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-29@{cbest\-\_\-29}}
+\index{cbest\-\_\-29@{cbest\-\_\-29}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-29}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_a8629acfe0ab7e82c8d7729a2b4201c09}
+\hypertarget{cauchy__best__r6_8c_afef6bfa78f0df75952d2cbc2f7bb9b81}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-30@{cbest\-\_\-30}}
+\index{cbest\-\_\-30@{cbest\-\_\-30}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-30}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_afef6bfa78f0df75952d2cbc2f7bb9b81}
+\hypertarget{cauchy__best__r6_8c_ab7d83259a0c4ce86446cdefb3126bb4b}{
+\index{cauchy\-\_\-best\-\_\-r6.\-c@{cauchy\-\_\-best\-\_\-r6.\-c}!cbest\-\_\-31@{cbest\-\_\-31}}
+\index{cbest\-\_\-31@{cbest\-\_\-31}!cauchy_best_r6.c@{cauchy\-\_\-best\-\_\-r6.\-c}}
+\subsubsection[{cbest\-\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cbest\-\_\-31}\mbox{[}1023\mbox{]}}}
+\label{cauchy__best__r6_8c_ab7d83259a0c4ce86446cdefb3126bb4b}

@@ -1,0 +1,247 @@
+\hypertarget{cauchy_8c}{
+\section{cauchy.c \-File \-Reference}
+\label{cauchy_8c}\index{cauchy.\-c@{cauchy.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include \char`\"{}galois.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}jerasure.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}cauchy.\-h\char`\"{}}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cauchy_8c_a952a72cead1356661549e3e8c699d699}{talloc}(type, num)~(type $\ast$) malloc(sizeof(type)$\ast$(num))
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{cauchy_8c_aa537d9bfeffad82b25aa15377630a615}{cauchy\-\_\-n\-\_\-ones} (int n, int w)
+\item 
+int $\ast$ \hyperlink{cauchy_8c_a1e0c1fdadd7b4015f470239dd481e9ef}{cauchy\-\_\-original\-\_\-coding\-\_\-matrix} (int k, int m, int w)
+\item 
+int $\ast$ \hyperlink{cauchy_8c_a978ff1db48230df60e2e8022d1421770}{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix} (int k, int m, int w, int $\ast$\-X, int $\ast$\-Y)
+\item 
+void \hyperlink{cauchy_8c_a8862557e48ccbf72061233c038ce1820}{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix} (int k, int m, int w, int $\ast$matrix)
+\item 
+int $\ast$ \hyperlink{cauchy_8c_a7838894acdb1fecc0930e9416851625a}{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix} (int k, int m, int w)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a3679729f9f176df6cf67a349bdc788d0}{cbest\-\_\-13}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_aca8a66c8cd95f0ad0a45c71ec35a3390}{cbest\-\_\-14}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a09af27f995b0e91110a78af85371f542}{cbest\-\_\-15}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a40d9e940cbd9a16f7bfc62427e50b8c8}{cbest\-\_\-16}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a0dfc3114f0426007153f371d35a2d9cb}{cbest\-\_\-17}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a225922052e254e0ae7044afd5cda28dd}{cbest\-\_\-18}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a5d8c64e81b0af5fa627ebf0efb3a1b91}{cbest\-\_\-19}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a379bb0e4271001d0eec42ca4b4ec2f5d}{cbest\-\_\-20}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a457eb204af8be20482905399953aba98}{cbest\-\_\-21}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a26cd5cf57643f99b41559a12cc38e3e1}{cbest\-\_\-22}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a41262540d9e02edc208285530deeb44c}{cbest\-\_\-23}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a0dd5e4022320d345307bac2745200d83}{cbest\-\_\-24}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a92f8698fde81de2b5ba0e77f69898d65}{cbest\-\_\-25}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a0ede4f7be77976ca23aa85f115c4128c}{cbest\-\_\-26}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a3d3f3dec3e4f71fafccc6bbfee8f0e62}{cbest\-\_\-27}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_a9c74db62db88ebfd5e870d49963b0219}{cbest\-\_\-28}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_abaf7611d4d413f2882a13e0db485f863}{cbest\-\_\-29}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_abe82a517ebe7618a5b30707a396935ff}{cbest\-\_\-30}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_ad7f78aa4d8971e87ef12b83276443ec3}{cbest\-\_\-31}
+\item 
+static int $\ast$ \hyperlink{cauchy_8c_ae030a6397fc4afd8b1c3c08961a7d72d}{cbest\-\_\-32}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{cauchy_8c_a952a72cead1356661549e3e8c699d699}{
+\index{cauchy.\-c@{cauchy.\-c}!talloc@{talloc}}
+\index{talloc@{talloc}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{talloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define talloc(
+\begin{DoxyParamCaption}
+\item[{}]{type, }
+\item[{}]{num}
+\end{DoxyParamCaption}
+)~(type $\ast$) malloc(sizeof(type)$\ast$(num))}}
+\label{cauchy_8c_a952a72cead1356661549e3e8c699d699}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{cauchy_8c_a7838894acdb1fecc0930e9416851625a}{
+\index{cauchy.\-c@{cauchy.\-c}!cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix@{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix@{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cauchy\-\_\-good\-\_\-general\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy_8c_a7838894acdb1fecc0930e9416851625a}
+\hypertarget{cauchy_8c_a8862557e48ccbf72061233c038ce1820}{
+\index{cauchy.\-c@{cauchy.\-c}!cauchy\-\_\-improve\-\_\-coding\-\_\-matrix@{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix@{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cauchy\-\_\-improve\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void cauchy\-\_\-improve\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy_8c_a8862557e48ccbf72061233c038ce1820}
+\hypertarget{cauchy_8c_aa537d9bfeffad82b25aa15377630a615}{
+\index{cauchy.\-c@{cauchy.\-c}!cauchy\-\_\-n\-\_\-ones@{cauchy\-\_\-n\-\_\-ones}}
+\index{cauchy\-\_\-n\-\_\-ones@{cauchy\-\_\-n\-\_\-ones}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cauchy\-\_\-n\-\_\-ones}]{\setlength{\rightskip}{0pt plus 5cm}int cauchy\-\_\-n\-\_\-ones (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy_8c_aa537d9bfeffad82b25aa15377630a615}
+\hypertarget{cauchy_8c_a1e0c1fdadd7b4015f470239dd481e9ef}{
+\index{cauchy.\-c@{cauchy.\-c}!cauchy\-\_\-original\-\_\-coding\-\_\-matrix@{cauchy\-\_\-original\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-original\-\_\-coding\-\_\-matrix@{cauchy\-\_\-original\-\_\-coding\-\_\-matrix}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cauchy\-\_\-original\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cauchy\-\_\-original\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy_8c_a1e0c1fdadd7b4015f470239dd481e9ef}
+\hypertarget{cauchy_8c_a978ff1db48230df60e2e8022d1421770}{
+\index{cauchy.\-c@{cauchy.\-c}!cauchy\-\_\-xy\-\_\-coding\-\_\-matrix@{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix}}
+\index{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix@{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cauchy\-\_\-xy\-\_\-coding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cauchy\-\_\-xy\-\_\-coding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{\-X, }
+\item[{int $\ast$}]{\-Y}
+\end{DoxyParamCaption}
+)}}
+\label{cauchy_8c_a978ff1db48230df60e2e8022d1421770}
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{cauchy_8c_a3679729f9f176df6cf67a349bdc788d0}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-13@{cbest\-\_\-13}}
+\index{cbest\-\_\-13@{cbest\-\_\-13}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-13}}}
+\label{cauchy_8c_a3679729f9f176df6cf67a349bdc788d0}
+\hypertarget{cauchy_8c_aca8a66c8cd95f0ad0a45c71ec35a3390}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-14@{cbest\-\_\-14}}
+\index{cbest\-\_\-14@{cbest\-\_\-14}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-14}}}
+\label{cauchy_8c_aca8a66c8cd95f0ad0a45c71ec35a3390}
+\hypertarget{cauchy_8c_a09af27f995b0e91110a78af85371f542}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-15@{cbest\-\_\-15}}
+\index{cbest\-\_\-15@{cbest\-\_\-15}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-15}}}
+\label{cauchy_8c_a09af27f995b0e91110a78af85371f542}
+\hypertarget{cauchy_8c_a40d9e940cbd9a16f7bfc62427e50b8c8}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-16@{cbest\-\_\-16}}
+\index{cbest\-\_\-16@{cbest\-\_\-16}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-16}}}
+\label{cauchy_8c_a40d9e940cbd9a16f7bfc62427e50b8c8}
+\hypertarget{cauchy_8c_a0dfc3114f0426007153f371d35a2d9cb}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-17@{cbest\-\_\-17}}
+\index{cbest\-\_\-17@{cbest\-\_\-17}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-17}}}
+\label{cauchy_8c_a0dfc3114f0426007153f371d35a2d9cb}
+\hypertarget{cauchy_8c_a225922052e254e0ae7044afd5cda28dd}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-18@{cbest\-\_\-18}}
+\index{cbest\-\_\-18@{cbest\-\_\-18}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-18}}}
+\label{cauchy_8c_a225922052e254e0ae7044afd5cda28dd}
+\hypertarget{cauchy_8c_a5d8c64e81b0af5fa627ebf0efb3a1b91}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-19@{cbest\-\_\-19}}
+\index{cbest\-\_\-19@{cbest\-\_\-19}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-19}}}
+\label{cauchy_8c_a5d8c64e81b0af5fa627ebf0efb3a1b91}
+\hypertarget{cauchy_8c_a379bb0e4271001d0eec42ca4b4ec2f5d}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-20@{cbest\-\_\-20}}
+\index{cbest\-\_\-20@{cbest\-\_\-20}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-20}}}
+\label{cauchy_8c_a379bb0e4271001d0eec42ca4b4ec2f5d}
+\hypertarget{cauchy_8c_a457eb204af8be20482905399953aba98}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-21@{cbest\-\_\-21}}
+\index{cbest\-\_\-21@{cbest\-\_\-21}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-21}}}
+\label{cauchy_8c_a457eb204af8be20482905399953aba98}
+\hypertarget{cauchy_8c_a26cd5cf57643f99b41559a12cc38e3e1}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-22@{cbest\-\_\-22}}
+\index{cbest\-\_\-22@{cbest\-\_\-22}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-22}}}
+\label{cauchy_8c_a26cd5cf57643f99b41559a12cc38e3e1}
+\hypertarget{cauchy_8c_a41262540d9e02edc208285530deeb44c}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-23@{cbest\-\_\-23}}
+\index{cbest\-\_\-23@{cbest\-\_\-23}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-23}}}
+\label{cauchy_8c_a41262540d9e02edc208285530deeb44c}
+\hypertarget{cauchy_8c_a0dd5e4022320d345307bac2745200d83}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-24@{cbest\-\_\-24}}
+\index{cbest\-\_\-24@{cbest\-\_\-24}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-24}}}
+\label{cauchy_8c_a0dd5e4022320d345307bac2745200d83}
+\hypertarget{cauchy_8c_a92f8698fde81de2b5ba0e77f69898d65}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-25@{cbest\-\_\-25}}
+\index{cbest\-\_\-25@{cbest\-\_\-25}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-25}}}
+\label{cauchy_8c_a92f8698fde81de2b5ba0e77f69898d65}
+\hypertarget{cauchy_8c_a0ede4f7be77976ca23aa85f115c4128c}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-26@{cbest\-\_\-26}}
+\index{cbest\-\_\-26@{cbest\-\_\-26}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-26}}}
+\label{cauchy_8c_a0ede4f7be77976ca23aa85f115c4128c}
+\hypertarget{cauchy_8c_a3d3f3dec3e4f71fafccc6bbfee8f0e62}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-27@{cbest\-\_\-27}}
+\index{cbest\-\_\-27@{cbest\-\_\-27}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-27}}}
+\label{cauchy_8c_a3d3f3dec3e4f71fafccc6bbfee8f0e62}
+\hypertarget{cauchy_8c_a9c74db62db88ebfd5e870d49963b0219}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-28@{cbest\-\_\-28}}
+\index{cbest\-\_\-28@{cbest\-\_\-28}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-28}}}
+\label{cauchy_8c_a9c74db62db88ebfd5e870d49963b0219}
+\hypertarget{cauchy_8c_abaf7611d4d413f2882a13e0db485f863}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-29@{cbest\-\_\-29}}
+\index{cbest\-\_\-29@{cbest\-\_\-29}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-29}}}
+\label{cauchy_8c_abaf7611d4d413f2882a13e0db485f863}
+\hypertarget{cauchy_8c_abe82a517ebe7618a5b30707a396935ff}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-30@{cbest\-\_\-30}}
+\index{cbest\-\_\-30@{cbest\-\_\-30}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-30}}}
+\label{cauchy_8c_abe82a517ebe7618a5b30707a396935ff}
+\hypertarget{cauchy_8c_ad7f78aa4d8971e87ef12b83276443ec3}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-31@{cbest\-\_\-31}}
+\index{cbest\-\_\-31@{cbest\-\_\-31}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}static int {\bf cbest\-\_\-31}}}
+\label{cauchy_8c_ad7f78aa4d8971e87ef12b83276443ec3}
+\hypertarget{cauchy_8c_ae030a6397fc4afd8b1c3c08961a7d72d}{
+\index{cauchy.\-c@{cauchy.\-c}!cbest\-\_\-32@{cbest\-\_\-32}}
+\index{cbest\-\_\-32@{cbest\-\_\-32}!cauchy.c@{cauchy.\-c}}
+\subsubsection[{cbest\-\_\-32}]{\setlength{\rightskip}{0pt plus 5cm}static unsigned int {\bf cbest\-\_\-32}}}
+\label{cauchy_8c_ae030a6397fc4afd8b1c3c08961a7d72d}

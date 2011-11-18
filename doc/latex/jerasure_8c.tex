@@ -1,0 +1,558 @@
+\hypertarget{jerasure_8c}{
+\section{jerasure.c \-File \-Reference}
+\label{jerasure_8c}\index{jerasure.\-c@{jerasure.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include \char`\"{}galois.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}jerasure.\-h\char`\"{}}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{jerasure_8c_a952a72cead1356661549e3e8c699d699}{talloc}(type, num)~(type $\ast$) malloc(sizeof(type)$\ast$(num))
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{jerasure_8c_a82af32a83686762b8d3333707cfad155}{jerasure\-\_\-print\-\_\-matrix} (int $\ast$m, int rows, int cols, int w)
+\item 
+void \hyperlink{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}{jerasure\-\_\-print\-\_\-bitmatrix} (int $\ast$m, int rows, int cols, int w)
+\item 
+int \hyperlink{jerasure_8c_aa4166dae3d47c8734473aaa41b1ab9c4}{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix} (int k, int m, int w, int $\ast$matrix, int $\ast$erased, int $\ast$decoding\-\_\-matrix, int $\ast$dm\-\_\-ids)
+\item 
+int \hyperlink{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix} (int k, int m, int w, int $\ast$matrix, int $\ast$erased, int $\ast$decoding\-\_\-matrix, int $\ast$dm\-\_\-ids)
+\item 
+int \hyperlink{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}{jerasure\-\_\-matrix\-\_\-decode} (int k, int m, int w, int $\ast$matrix, int row\-\_\-k\-\_\-ones, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+int $\ast$ \hyperlink{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix} (int k, int m, int w, int $\ast$matrix)
+\item 
+void \hyperlink{jerasure_8c_a754e34d11221cab5e66841576583cd8f}{jerasure\-\_\-matrix\-\_\-encode} (int k, int m, int w, int $\ast$matrix, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+void \hyperlink{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}{jerasure\-\_\-bitmatrix\-\_\-dotprod} (int k, int w, int $\ast$bitmatrix\-\_\-row, int $\ast$src\-\_\-ids, int dest\-\_\-id, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+void \hyperlink{jerasure_8c_aaa052851dd4e60941d8ca83159803a4f}{jerasure\-\_\-do\-\_\-parity} (int k, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$parity\-\_\-ptr, int size)
+\item 
+int \hyperlink{jerasure_8c_aa134c10efabbe8620ba8de7ebe37c0f5}{jerasure\-\_\-invert\-\_\-matrix} (int $\ast$mat, int $\ast$inv, int rows, int w)
+\item 
+int \hyperlink{jerasure_8c_ac2ca8b6489e85f209a040a9038347189}{jerasure\-\_\-invertible\-\_\-matrix} (int $\ast$mat, int rows, int w)
+\item 
+int $\ast$ \hyperlink{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}{jerasure\-\_\-erasures\-\_\-to\-\_\-erased} (int k, int m, int $\ast$erasures)
+\item 
+void \hyperlink{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}{jerasure\-\_\-free\-\_\-schedule} (int $\ast$$\ast$schedule)
+\item 
+void \hyperlink{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}{jerasure\-\_\-free\-\_\-schedule\-\_\-cache} (int k, int m, int $\ast$$\ast$$\ast$cache)
+\item 
+void \hyperlink{jerasure_8c_ae64314475c098664deb5eb2b9f1d41aa}{jerasure\-\_\-matrix\-\_\-dotprod} (int k, int w, int $\ast$matrix\-\_\-row, int $\ast$src\-\_\-ids, int dest\-\_\-id, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+int \hyperlink{jerasure_8c_a1436fa741650a7cb75ecbd6e2cd6225b}{jerasure\-\_\-bitmatrix\-\_\-decode} (int k, int m, int w, int $\ast$bitmatrix, int row\-\_\-k\-\_\-ones, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+int \hyperlink{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy} (int k, int m, int w, int $\ast$bitmatrix, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize, int smart)
+\item 
+int \hyperlink{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache} (int k, int m, int w, int $\ast$$\ast$$\ast$scache, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+int $\ast$$\ast$$\ast$ \hyperlink{jerasure_8c_ac4c2ec8a0b51756f7ebb58edff76db0d}{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache} (int k, int m, int w, int $\ast$bitmatrix, int smart)
+\item 
+int \hyperlink{jerasure_8c_a846d044f23cb83c703bfa71569d3b172}{jerasure\-\_\-invert\-\_\-bitmatrix} (int $\ast$mat, int $\ast$inv, int rows)
+\item 
+int \hyperlink{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}{jerasure\-\_\-invertible\-\_\-bitmatrix} (int $\ast$mat, int rows)
+\item 
+int $\ast$ \hyperlink{jerasure_8c_a2f092437db38d3078058679634dcd27b}{jerasure\-\_\-matrix\-\_\-multiply} (int $\ast$m1, int $\ast$m2, int r1, int c1, int r2, int c2, int w)
+\item 
+void \hyperlink{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}{jerasure\-\_\-get\-\_\-stats} (double $\ast$fill\-\_\-in)
+\item 
+void \hyperlink{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations} (char $\ast$$\ast$ptrs, int $\ast$$\ast$operations, int packetsize)
+\item 
+void \hyperlink{jerasure_8c_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}{jerasure\-\_\-schedule\-\_\-encode} (int k, int m, int w, int $\ast$$\ast$schedule, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+int $\ast$$\ast$ \hyperlink{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule} (int k, int m, int w, int $\ast$bitmatrix)
+\item 
+int $\ast$$\ast$ \hyperlink{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule} (int k, int m, int w, int $\ast$bitmatrix)
+\item 
+void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bitmatrix\-\_\-encode} (int k, int m, int w, int $\ast$bitmatrix, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{jerasure_8c_a952a72cead1356661549e3e8c699d699}{
+\index{jerasure.\-c@{jerasure.\-c}!talloc@{talloc}}
+\index{talloc@{talloc}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{talloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define talloc(
+\begin{DoxyParamCaption}
+\item[{}]{type, }
+\item[{}]{num}
+\end{DoxyParamCaption}
+)~(type $\ast$) malloc(sizeof(type)$\ast$(num))}}
+\label{jerasure_8c_a952a72cead1356661549e3e8c699d699}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{jerasure_8c_a1436fa741650a7cb75ecbd6e2cd6225b}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-decode@{jerasure\-\_\-bitmatrix\-\_\-decode}}
+\index{jerasure\-\_\-bitmatrix\-\_\-decode@{jerasure\-\_\-bitmatrix\-\_\-decode}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-bitmatrix\-\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-bitmatrix\-\_\-decode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{int}]{row\-\_\-k\-\_\-ones, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a1436fa741650a7cb75ecbd6e2cd6225b}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}}
+\index{jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-bitmatrix\-\_\-dotprod}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-bitmatrix\-\_\-dotprod (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix\-\_\-row, }
+\item[{int $\ast$}]{src\-\_\-ids, }
+\item[{int}]{dest\-\_\-id, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a99834efc875053378999f3a44b29defb}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}}
+\index{jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-bitmatrix\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-bitmatrix\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a99834efc875053378999f3a44b29defb}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_aaa052851dd4e60941d8ca83159803a4f}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-do\-\_\-parity@{jerasure\-\_\-do\-\_\-parity}}
+\index{jerasure\-\_\-do\-\_\-parity@{jerasure\-\_\-do\-\_\-parity}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-do\-\_\-parity}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-do\-\_\-parity (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$}]{parity\-\_\-ptr, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_aaa052851dd4e60941d8ca83159803a4f}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}}
+\index{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-do\-\_\-scheduled\-\_\-operations (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{ptrs, }
+\item[{int $\ast$$\ast$}]{operations, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}
+\hypertarget{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
+\index{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}
+turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ just schedule the dot products defined by each row of the matrix.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-erasures\-\_\-to\-\_\-erased@{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}}
+\index{jerasure\-\_\-erasures\-\_\-to\-\_\-erased@{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ jerasure\-\_\-erasures\-\_\-to\-\_\-erased (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int $\ast$}]{erasures}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-free\-\_\-schedule@{jerasure\-\_\-free\-\_\-schedule}}
+\index{jerasure\-\_\-free\-\_\-schedule@{jerasure\-\_\-free\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-free\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-free\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{schedule}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}
+\hypertarget{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}}
+\index{jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-free\-\_\-schedule\-\_\-cache (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int $\ast$$\ast$$\ast$}]{cache}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_ac4c2ec8a0b51756f7ebb58edff76db0d}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-generate\-\_\-schedule\-\_\-cache@{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}}
+\index{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache@{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$$\ast$ jerasure\-\_\-generate\-\_\-schedule\-\_\-cache (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{int}]{smart}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ac4c2ec8a0b51756f7ebb58edff76db0d}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-get\-\_\-stats@{jerasure\-\_\-get\-\_\-stats}}
+\index{jerasure\-\_\-get\-\_\-stats@{jerasure\-\_\-get\-\_\-stats}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-get\-\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-get\-\_\-stats (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{fill\-\_\-in}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}
+\hypertarget{jerasure_8c_a846d044f23cb83c703bfa71569d3b172}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invert\-\_\-bitmatrix@{jerasure\-\_\-invert\-\_\-bitmatrix}}
+\index{jerasure\-\_\-invert\-\_\-bitmatrix@{jerasure\-\_\-invert\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-invert\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invert\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int $\ast$}]{inv, }
+\item[{int}]{rows}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a846d044f23cb83c703bfa71569d3b172}
+\hypertarget{jerasure_8c_aa134c10efabbe8620ba8de7ebe37c0f5}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invert\-\_\-matrix@{jerasure\-\_\-invert\-\_\-matrix}}
+\index{jerasure\-\_\-invert\-\_\-matrix@{jerasure\-\_\-invert\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-invert\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invert\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int $\ast$}]{inv, }
+\item[{int}]{rows, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_aa134c10efabbe8620ba8de7ebe37c0f5}
+\hypertarget{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}}
+\index{jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-invertible\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invertible\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int}]{rows}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}
+\hypertarget{jerasure_8c_ac2ca8b6489e85f209a040a9038347189}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invertible\-\_\-matrix@{jerasure\-\_\-invertible\-\_\-matrix}}
+\index{jerasure\-\_\-invertible\-\_\-matrix@{jerasure\-\_\-invertible\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-invertible\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invertible\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int}]{rows, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ac2ca8b6489e85f209a040a9038347189}
+\hypertarget{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}}
+\index{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{int $\ast$}]{erased, }
+\item[{int $\ast$}]{decoding\-\_\-matrix, }
+\item[{int $\ast$}]{dm\-\_\-ids}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_aa4166dae3d47c8734473aaa41b1ab9c4}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-make\-\_\-decoding\-\_\-matrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}}
+\index{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-make\-\_\-decoding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{int $\ast$}]{erased, }
+\item[{int $\ast$}]{decoding\-\_\-matrix, }
+\item[{int $\ast$}]{dm\-\_\-ids}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_aa4166dae3d47c8734473aaa41b1ab9c4}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-decode@{jerasure\-\_\-matrix\-\_\-decode}}
+\index{jerasure\-\_\-matrix\-\_\-decode@{jerasure\-\_\-matrix\-\_\-decode}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-matrix\-\_\-decode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{int}]{row\-\_\-k\-\_\-ones, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_ae64314475c098664deb5eb2b9f1d41aa}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-dotprod@{jerasure\-\_\-matrix\-\_\-dotprod}}
+\index{jerasure\-\_\-matrix\-\_\-dotprod@{jerasure\-\_\-matrix\-\_\-dotprod}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-dotprod}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-matrix\-\_\-dotprod (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix\-\_\-row, }
+\item[{int $\ast$}]{src\-\_\-ids, }
+\item[{int}]{dest\-\_\-id, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ae64314475c098664deb5eb2b9f1d41aa}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a754e34d11221cab5e66841576583cd8f}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}}
+\index{jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-matrix\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a754e34d11221cab5e66841576583cd8f}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a2f092437db38d3078058679634dcd27b}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}}
+\index{jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-multiply}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ jerasure\-\_\-matrix\-\_\-multiply (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m1, }
+\item[{int $\ast$}]{m2, }
+\item[{int}]{r1, }
+\item[{int}]{c1, }
+\item[{int}]{r2, }
+\item[{int}]{c2, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a2f092437db38d3078058679634dcd27b}
+\hypertarget{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}}
+\index{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}
+turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G\-F(2)). \-This is explained in the \-Cauchy \-Reed-\/\-Solomon coding paper.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}}
+\index{jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-print\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-print\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m, }
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}
+\hypertarget{jerasure_8c_a82af32a83686762b8d3333707cfad155}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}}
+\index{jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-print\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-print\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m, }
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a82af32a83686762b8d3333707cfad155}
+\hypertarget{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}}
+\index{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-schedule\-\_\-decode\-\_\-cache (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$$\ast$$\ast$}]{scache, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}}
+\index{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize, }
+\item[{int}]{smart}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-encode@{jerasure\-\_\-schedule\-\_\-encode}}
+\index{jerasure\-\_\-schedule\-\_\-encode@{jerasure\-\_\-schedule\-\_\-encode}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-schedule\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-schedule\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$$\ast$}]{schedule, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}{
+\index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
+\index{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
+\subsubsection[{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+\end{DoxyParams}

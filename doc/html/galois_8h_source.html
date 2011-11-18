@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 <div class="header">
@@ -75,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">galois.h</div>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* Galois.h</span>
+<a href="galois_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* Galois.h</span>
 <a name="l00002"></a>00002 <span class="comment"> * James S. Plank</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">Galois.tar - Fast Galois Field Arithmetic Library in C/C++</span>
@@ -115,34 +116,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00038"></a>00038 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
 <a name="l00039"></a>00039 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_single_multiply(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b, <span class="keywordtype">int</span> w);
-<a name="l00042"></a>00042 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_single_divide(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b, <span class="keywordtype">int</span> w);
-<a name="l00043"></a>00043 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_log(<span class="keywordtype">int</span> value, <span class="keywordtype">int</span> w);
-<a name="l00044"></a>00044 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_ilog(<span class="keywordtype">int</span> value, <span class="keywordtype">int</span> w);
+<a name="l00041"></a>00041 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#ae9dcde01baf26c4fe4859fb0dbdfca95">galois_single_multiply</a>(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b, <span class="keywordtype">int</span> w);
+<a name="l00042"></a>00042 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a9ccbbf5999f106f9b37e21f821405b87">galois_single_divide</a>(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b, <span class="keywordtype">int</span> w);
+<a name="l00043"></a>00043 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#aabe574c47be1de16435f9f88065f2820">galois_log</a>(<span class="keywordtype">int</span> value, <span class="keywordtype">int</span> w);
+<a name="l00044"></a>00044 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a32c15697aea2856f419cad7aec9382e6">galois_ilog</a>(<span class="keywordtype">int</span> value, <span class="keywordtype">int</span> w);
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_create_log_tables(<span class="keywordtype">int</span> w);   <span class="comment">/* Returns 0 on success, -1 on failure */</span>
-<a name="l00047"></a>00047 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_logtable_multiply(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
-<a name="l00048"></a>00048 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_logtable_divide(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00046"></a>00046 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#aa71b61c7f61ad6e7d0b0a468ea0406d7">galois_create_log_tables</a>(<span class="keywordtype">int</span> w);   <span class="comment">/* Returns 0 on success, -1 on failure */</span>
+<a name="l00047"></a>00047 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#ab938d0ddd07f5d5016ee88af3cb7e283">galois_logtable_multiply</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00048"></a>00048 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a8bae6b9c54ddd375bde4b8f466b262ee">galois_logtable_divide</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_create_mult_tables(<span class="keywordtype">int</span> w);   <span class="comment">/* Returns 0 on success, -1 on failure */</span>
-<a name="l00051"></a>00051 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_multtable_multiply(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
-<a name="l00052"></a>00052 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_multtable_divide(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00050"></a>00050 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a9e9051a1b5b9556adb0cec98752c953b">galois_create_mult_tables</a>(<span class="keywordtype">int</span> w);   <span class="comment">/* Returns 0 on success, -1 on failure */</span>
+<a name="l00051"></a>00051 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#ae4bccc0e8c3c4f2ff3d6207e02534202">galois_multtable_multiply</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00052"></a>00052 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a4374e81741bcad09c23d152bbe97d147">galois_multtable_divide</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_shift_multiply(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
-<a name="l00055"></a>00055 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_shift_divide(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00054"></a>00054 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a80f45181015d3aeee7b26a6e1781ca72">galois_shift_multiply</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00055"></a>00055 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a37a4e9b41ead6ea710f661b808f64c7f">galois_shift_divide</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_create_split_w8_tables();
-<a name="l00058"></a>00058 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_split_w8_multiply(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);
+<a name="l00057"></a>00057 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#acb113be9c4fa4525592a42d980f07066">galois_create_split_w8_tables</a>();
+<a name="l00058"></a>00058 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#a148ef566e662c54660109a639e9d4a7e">galois_split_w8_multiply</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);
 <a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_inverse(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> w);
-<a name="l00061"></a>00061 <span class="keyword">extern</span> <span class="keywordtype">int</span> galois_shift_inverse(<span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
+<a name="l00060"></a>00060 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#ac6aff6d7a1e0b42b3e4bc880be52489c">galois_inverse</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> w);
+<a name="l00061"></a>00061 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="galois_8c.html#ab224f1040a4d4ad954b753411e14e2bf">galois_shift_inverse</a>(<span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w);
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="keyword">extern</span> <span class="keywordtype">int</span> *galois_get_mult_table(<span class="keywordtype">int</span> w);
-<a name="l00064"></a>00064 <span class="keyword">extern</span> <span class="keywordtype">int</span> *galois_get_div_table(<span class="keywordtype">int</span> w);
-<a name="l00065"></a>00065 <span class="keyword">extern</span> <span class="keywordtype">int</span> *galois_get_log_table(<span class="keywordtype">int</span> w);
-<a name="l00066"></a>00066 <span class="keyword">extern</span> <span class="keywordtype">int</span> *galois_get_ilog_table(<span class="keywordtype">int</span> w);
+<a name="l00063"></a>00063 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="galois_8c.html#a69283cce20e324582fa6bf8d5b2298e9">galois_get_mult_table</a>(<span class="keywordtype">int</span> w);
+<a name="l00064"></a>00064 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="galois_8c.html#a39ecd371a4cbec52d11d1d77425399c7">galois_get_div_table</a>(<span class="keywordtype">int</span> w);
+<a name="l00065"></a>00065 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="galois_8c.html#a9faaa2d889ad4d2fcb16afba4c548d98">galois_get_log_table</a>(<span class="keywordtype">int</span> w);
+<a name="l00066"></a>00066 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="galois_8c.html#a214c33bb4c1e8b0999e51420df803694">galois_get_ilog_table</a>(<span class="keywordtype">int</span> w);
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="keywordtype">void</span> galois_region_xor(           <span class="keywordtype">char</span> *r1,         <span class="comment">/* Region 1 */</span>
+<a name="l00068"></a>00068 <span class="keywordtype">void</span> <a class="code" href="galois_8c.html#a0227afc578ca49a616fca5b345ec9eca">galois_region_xor</a>(           <span class="keywordtype">char</span> *r1,         <span class="comment">/* Region 1 */</span>
 <a name="l00069"></a>00069                                   <span class="keywordtype">char</span> *r2,         <span class="comment">/* Region 2 */</span>
 <a name="l00070"></a>00070                                   <span class="keywordtype">char</span> *r3,         <span class="comment">/* Sum region (r3 = r1 ^ r2) -- can be r1 or r2 */</span>
 <a name="l00071"></a>00071                                   <span class="keywordtype">int</span> nbytes);      <span class="comment">/* Number of bytes in region */</span>
@@ -150,21 +151,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00073"></a>00073 <span class="comment">/* These multiply regions in w=8, w=16 and w=32.  They are much faster</span>
 <a name="l00074"></a>00074 <span class="comment">   than calling galois_single_multiply.  The regions must be long word aligned. */</span>
 <a name="l00075"></a>00075 
-<a name="l00076"></a>00076 <span class="keywordtype">void</span> galois_w08_region_multiply(<span class="keywordtype">char</span> *region,       <span class="comment">/* Region to multiply */</span>
+<a name="l00076"></a>00076 <span class="keywordtype">void</span> <a class="code" href="galois_8c.html#a1325adfdd6ff4c10fe72d271b2ab2d71">galois_w08_region_multiply</a>(<span class="keywordtype">char</span> *region,       <span class="comment">/* Region to multiply */</span>
 <a name="l00077"></a>00077                                   <span class="keywordtype">int</span> multby,       <span class="comment">/* Number to multiply by */</span>
 <a name="l00078"></a>00078                                   <span class="keywordtype">int</span> nbytes,       <span class="comment">/* Number of bytes in region */</span>
 <a name="l00079"></a>00079                                   <span class="keywordtype">char</span> *r2,         <span class="comment">/* If r2 != NULL, products go here.  </span>
 <a name="l00080"></a>00080 <span class="comment">                                                       Otherwise region is overwritten */</span>
 <a name="l00081"></a>00081                                   <span class="keywordtype">int</span> add);         <span class="comment">/* If (r2 != NULL &amp;&amp; add) the produce is XOR&#39;d with r2 */</span>
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="keywordtype">void</span> galois_w16_region_multiply(<span class="keywordtype">char</span> *region,       <span class="comment">/* Region to multiply */</span>
+<a name="l00083"></a>00083 <span class="keywordtype">void</span> <a class="code" href="galois_8c.html#a6d319cb970af33cd6aa7820630bc4b3d">galois_w16_region_multiply</a>(<span class="keywordtype">char</span> *region,       <span class="comment">/* Region to multiply */</span>
 <a name="l00084"></a>00084                                   <span class="keywordtype">int</span> multby,       <span class="comment">/* Number to multiply by */</span>
 <a name="l00085"></a>00085                                   <span class="keywordtype">int</span> nbytes,       <span class="comment">/* Number of bytes in region */</span>
 <a name="l00086"></a>00086                                   <span class="keywordtype">char</span> *r2,         <span class="comment">/* If r2 != NULL, products go here.  </span>
 <a name="l00087"></a>00087 <span class="comment">                                                       Otherwise region is overwritten */</span>
 <a name="l00088"></a>00088                                   <span class="keywordtype">int</span> add);         <span class="comment">/* If (r2 != NULL &amp;&amp; add) the produce is XOR&#39;d with r2 */</span>
 <a name="l00089"></a>00089 
-<a name="l00090"></a>00090 <span class="keywordtype">void</span> galois_w32_region_multiply(<span class="keywordtype">char</span> *region,       <span class="comment">/* Region to multiply */</span>
+<a name="l00090"></a>00090 <span class="keywordtype">void</span> <a class="code" href="galois_8c.html#a000ca1ddead60ede26b34891128d9573">galois_w32_region_multiply</a>(<span class="keywordtype">char</span> *region,       <span class="comment">/* Region to multiply */</span>
 <a name="l00091"></a>00091                                   <span class="keywordtype">int</span> multby,       <span class="comment">/* Number to multiply by */</span>
 <a name="l00092"></a>00092                                   <span class="keywordtype">int</span> nbytes,       <span class="comment">/* Number of bytes in region */</span>
 <a name="l00093"></a>00093                                   <span class="keywordtype">char</span> *r2,         <span class="comment">/* If r2 != NULL, products go here.  </span>
@@ -179,7 +180,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-</div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -191,7 +192,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 18 2011 00:32:42 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 18 2011 18:06:12 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 <div class="header">
@@ -75,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">cauchy.h</div>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* cauchy.h</span>
+<a href="cauchy_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* cauchy.h</span>
 <a name="l00002"></a>00002 <span class="comment"> * James S. Plank</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure Coding Techniques</span>
@@ -107,11 +108,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00030"></a>00030 <span class="comment"> * $Date: 2008/08/19 17:40:58 $</span>
 <a name="l00031"></a>00031 <span class="comment"> */</span>
 <a name="l00032"></a>00032 
-<a name="l00033"></a>00033 <span class="keyword">extern</span> <span class="keywordtype">int</span> *cauchy_original_coding_matrix(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w);
-<a name="l00034"></a>00034 <span class="keyword">extern</span> <span class="keywordtype">int</span> *cauchy_xy_coding_matrix(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y);
-<a name="l00035"></a>00035 <span class="keyword">extern</span> <span class="keywordtype">void</span> cauchy_improve_coding_matrix(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix);
-<a name="l00036"></a>00036 <span class="keyword">extern</span> <span class="keywordtype">int</span> *cauchy_good_general_coding_matrix(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w);
-<a name="l00037"></a>00037 <span class="keyword">extern</span> <span class="keywordtype">int</span> cauchy_n_ones(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> w);
+<a name="l00033"></a>00033 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="cauchy_8c.html#a1e0c1fdadd7b4015f470239dd481e9ef">cauchy_original_coding_matrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w);
+<a name="l00034"></a>00034 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="cauchy_8c.html#a978ff1db48230df60e2e8022d1421770">cauchy_xy_coding_matrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y);
+<a name="l00035"></a>00035 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="cauchy_8c.html#a8862557e48ccbf72061233c038ce1820">cauchy_improve_coding_matrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix);
+<a name="l00036"></a>00036 <span class="keyword">extern</span> <span class="keywordtype">int</span> *<a class="code" href="cauchy_8c.html#a7838894acdb1fecc0930e9416851625a">cauchy_good_general_coding_matrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w);
+<a name="l00037"></a>00037 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="cauchy_8c.html#aa537d9bfeffad82b25aa15377630a615">cauchy_n_ones</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> w);
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -119,7 +120,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-</div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -131,7 +132,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 18 2011 00:32:42 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 18 2011 18:06:12 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
