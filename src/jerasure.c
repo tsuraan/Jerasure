@@ -81,6 +81,13 @@ void jerasure_print_bitmatrix(int *m, int rows, int cols, int w)
   }
 }
 
+/**
+ * create the decoding matrix
+ * @param k number of data devices
+ * @param m number of coding devices
+ * @param w wordsize of the code
+ * @param *matrix pointer to the coding matrix
+ */
 int jerasure_make_decoding_matrix(int k, int m, int w, int *matrix, int *erased, int *decoding_matrix, int *dm_ids)
 {
   int i, j, *tmpmat;
