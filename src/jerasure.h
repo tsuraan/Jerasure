@@ -129,6 +129,7 @@ void jerasure_free_schedule_cache(int k, int m, int ***cache);
 
 /**
  * @param k Number of data devices
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  */
 void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
 
@@ -136,6 +137,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
@@ -144,6 +146,7 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
@@ -153,6 +156,7 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_schedule_encode(int k, int m, int w, int **schedule,
@@ -198,6 +202,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 int jerasure_matrix_decode(int k, int m, int w, 
@@ -208,6 +213,7 @@ int jerasure_matrix_decode(int k, int m, int w,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 int jerasure_bitmatrix_decode(int k, int m, int w, 
@@ -218,6 +224,7 @@ int jerasure_bitmatrix_decode(int k, int m, int w,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *erasures,
@@ -227,6 +234,7 @@ int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *eras
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param w Word size
  */
 int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *erasures,
@@ -272,6 +280,7 @@ int *jerasure_erasures_to_erased(int k, int m, int *erasures);
 /**
  * @param k Number of data devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
@@ -281,6 +290,7 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
 /**
  * @param k Number of data devices
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
