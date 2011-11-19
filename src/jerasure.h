@@ -40,10 +40,6 @@ plank@cs.utk.edu
 /* ------------------------------------------------------------ */
 /* In all of the routines below:
 
-   packetsize = The size of a coding block with bitmatrix coding. 
-                When you code with a bitmatrix, you will use w packets
-                of size packetsize.
-
    matrix = an array of k*m integers.  
             It represents an m by k matrix.
             Element i,j is in matrix[i*k+j];
@@ -81,6 +77,7 @@ plank@cs.utk.edu
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  */
 int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
 
@@ -89,6 +86,7 @@ int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * \todo fix
  */
 int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
@@ -96,6 +94,7 @@ int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * \todo fix
  */
 int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
@@ -103,16 +102,19 @@ int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * \todo fix
  */
 int ***jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart);
 
 /** frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule.
-*/
+ * \todo fix
+ */
 void jerasure_free_schedule(int **schedule);
 
 /** rees a schedule cache that was created with jerasure_generate_schedule_cache.
  * @param k Number of data devices
  * @param m Number of coding devices
+ * \todo fix
  */
 void jerasure_free_schedule_cache(int k, int m, int ***cache);
 
@@ -124,6 +126,7 @@ void jerasure_free_schedule_cache(int k, int m, int ***cache);
 /**
  * @param k Number of data devices
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
+ * \todo fix
  */
 void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
 
@@ -131,8 +134,10 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
+ * \todo fix
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
@@ -143,6 +148,8 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
+ * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
+ * \todo fix
  */
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -153,6 +160,9 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
+ * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
+ * \todo fix
  */
 void jerasure_schedule_encode(int k, int m, int w, int **schedule,
                                   char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -190,6 +200,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
@@ -203,6 +214,7 @@ int jerasure_matrix_decode(int k, int m, int w,
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
+ * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
  */
 int jerasure_bitmatrix_decode(int k, int m, int w, 
                             int *bitmatrix, int row_k_ones, int *erasures,
@@ -224,6 +236,7 @@ int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *eras
  * @param m Number of coding devices
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
+ * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
  */
 int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -240,6 +253,7 @@ int jerasure_make_decoding_matrix(int k, int m, int w, int *matrix, int *erased,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  */
 int jerasure_make_decoding_bitmatrix(int k, int m, int w, int *matrix, int *erased, 
                                   int *decoding_matrix, int *dm_ids);
@@ -278,12 +292,14 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
+ * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
  */
 void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
                              int *src_ids, int dest_id,
                              char **data_ptrs, char **coding_ptrs, int size, int packetsize);
 
 /** executes the schedule on w*packetsize worth of bytes from each device.  ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
+ * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
 */
 void jerasure_do_scheduled_operations(char **ptrs, int **schedule, int packetsize);
 
@@ -336,10 +352,13 @@ int jerasure_invertible_bitmatrix(int *mat, int rows);
 */
 
 /**
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  * @param w Word size
  */
 void jerasure_print_matrix(int *matrix, int rows, int cols, int w);
+
 /**
+ * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  * @param w Word size
  */
 void jerasure_print_bitmatrix(int *matrix, int rows, int cols, int w);
