@@ -228,14 +228,16 @@ Functions</h2></td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
     <tr><td class="paramname">bitmatrix</td><td>Array of k*m*w*w integers. It represents an mw by kw matrix. Element i,j is in matrix[i*k*w+j] </td></tr>
+    <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd><p class="startdd">formula </p>
-<p class="enddd">fix </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd><p class="startdd">formula </p>
+<p>fix </p>
+<p class="enddd">example code </p>
 </dd></dl>
 
 </div>
@@ -316,7 +318,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -392,8 +396,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd><p class="startdd">formulas </p>
-<p class="enddd">fix </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd><p class="startdd">formulas </p>
+<p>fix </p>
+<p class="enddd">example code </p>
 </dd></dl>
 
 </div>
@@ -441,7 +446,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -483,7 +490,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -533,7 +542,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>formula </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><p class="startdd">formula </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -572,10 +583,11 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>usage example </dd></dl>
 
 </div>
 </div>
@@ -600,6 +612,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>example code </dd></dl>
 
 </div>
 </div>
@@ -633,7 +646,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>rees a schedule cache that was created with jerasure_generate_schedule_cache. </p>
+<p>reads a schedule cache that was created with jerasure_generate_schedule_cache. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -641,7 +654,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -697,8 +712,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><p class="startdd">formula </p>
-<p class="enddd">fix </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
 </dd></dl>
 
 </div>
@@ -803,7 +818,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -870,7 +887,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -928,6 +945,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>make the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers. These will be filled in appropriately. dm_ids[i] is the id of element i of the survivors vector. I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -937,7 +955,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -995,6 +1015,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>make the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers. These will be filled in appropriately. dm_ids[i] is the id of element i of the survivors vector. I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1003,7 +1024,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1080,11 +1103,15 @@ Functions</h2></td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
     <tr><td class="paramname">matrix</td><td>Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j] </td></tr>
+    <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1158,7 +1185,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">sample code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1227,7 +1256,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1291,7 +1320,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1331,7 +1360,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>turns a m X k matrix in GF(2^w) into a wm X wk bitmatrix (in GF(2)). This is explained in the Cauchy Reed-Solomon coding paper.</p>
+<p>turns a m X k matrix in <img class="formulaInl" alt="$GF(2^w)$" src="form_0.png"/> into a wm X wk bitmatrix (in <img class="formulaInl" alt="$GF(2)$" src="form_1.png"/>). This is explained in the Cauchy Reed-Solomon coding paper.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1341,6 +1370,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>example code </dd></dl>
 
 </div>
 </div>
@@ -1387,7 +1417,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1434,7 +1464,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1509,12 +1539,15 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1597,13 +1630,15 @@ Functions</h2></td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
     <tr><td class="paramname">bitmatrix</td><td>Array of k*m*w*w integers. It represents an mw by kw matrix. Element i,j is in matrix[i*k*w+j] </td></tr>
+    <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><p class="startdd">formula </p>
-<p class="enddd">fix </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd><p class="startdd">formula </p>
+<p>fix </p>
+<p class="enddd">example code </p>
 </dd></dl>
 
 </div>
@@ -1680,7 +1715,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1730,7 +1767,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>formula </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><p class="startdd">formula </p>
+<p class="enddd">example code </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1752,7 +1791,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 17:06:27 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 18:07:34 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

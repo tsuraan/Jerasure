@@ -119,196 +119,185 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00040"></a>00040 <span class="comment">/* ------------------------------------------------------------ */</span>
 <a name="l00041"></a>00041 <span class="comment">/* In all of the routines below:</span>
 <a name="l00042"></a>00042 <span class="comment"></span>
-<a name="l00043"></a>00043 <span class="comment">   erasures = an array of id&#39;s of erased devices. </span>
-<a name="l00044"></a>00044 <span class="comment">              Id&#39;s are integers between 0 and k+m-1.</span>
-<a name="l00045"></a>00045 <span class="comment">              Id&#39;s 0 to k-1 are id&#39;s of data devices.</span>
-<a name="l00046"></a>00046 <span class="comment">              Id&#39;s k to k+m-1 are id&#39;s of coding devices: </span>
-<a name="l00047"></a>00047 <span class="comment">                  Coding device id = id-k.</span>
-<a name="l00048"></a>00048 <span class="comment">              If there are e erasures, erasures[e] = -1.</span>
-<a name="l00049"></a>00049 <span class="comment"></span>
-<a name="l00050"></a>00050 <span class="comment">   schedule = an array of schedule operations.  </span>
-<a name="l00051"></a>00051 <span class="comment"></span>
-<a name="l00052"></a>00052 <span class="comment">              If there are m operations, then schedule[m][0] = -1.</span>
-<a name="l00053"></a>00053 <span class="comment"></span>
-<a name="l00054"></a>00054 <span class="comment">   operation = an array of 5 integers:</span>
-<a name="l00055"></a>00055 <span class="comment"></span>
-<a name="l00056"></a>00056 <span class="comment">          0 = operation: 0 for copy, 1 for xor (-1 for end)</span>
-<a name="l00057"></a>00057 <span class="comment">          1 = source device (0 - k+m-1)</span>
-<a name="l00058"></a>00058 <span class="comment">          2 = source packet (0 - w-1)</span>
-<a name="l00059"></a>00059 <span class="comment">          3 = destination device (0 - k+m-1)</span>
-<a name="l00060"></a>00060 <span class="comment">          4 = destination packet (0 - w-1)</span>
-<a name="l00061"></a>00061 <span class="comment"> */</span>
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="comment">/* ---------------------------------------------------------------  */</span>
-<a name="l00064"></a>00064 <span class="comment">/* Bitmatrices / schedules ---------------------------------------- */</span>
+<a name="l00043"></a>00043 <span class="comment">   operation = an array of 5 integers:</span>
+<a name="l00044"></a>00044 <span class="comment"></span>
+<a name="l00045"></a>00045 <span class="comment">          0 = operation: 0 for copy, 1 for xor (-1 for end)</span>
+<a name="l00046"></a>00046 <span class="comment">          1 = source device (0 - k+m-1)</span>
+<a name="l00047"></a>00047 <span class="comment">          2 = source packet (0 - w-1)</span>
+<a name="l00048"></a>00048 <span class="comment">          3 = destination device (0 - k+m-1)</span>
+<a name="l00049"></a>00049 <span class="comment">          4 = destination packet (0 - w-1)</span>
+<a name="l00050"></a>00050 <span class="comment"> */</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="comment">/* ---------------------------------------------------------------  */</span>
+<a name="l00053"></a>00053 <span class="comment">/* Bitmatrices / schedules ---------------------------------------- */</span>
+<a name="l00054"></a>00054 
+<a name="l00064"></a>00064 <span class="keywordtype">int</span> *<a class="code" href="jerasure_8c.html#a45bbbfa1c3681a7be4bb2082984edbdd">jerasure_matrix_to_bitmatrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix);
 <a name="l00065"></a>00065 
-<a name="l00074"></a>00074 <span class="keywordtype">int</span> *<a class="code" href="jerasure_8c.html#a45bbbfa1c3681a7be4bb2082984edbdd">jerasure_matrix_to_bitmatrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix);
-<a name="l00075"></a>00075 
-<a name="l00084"></a>00084 <span class="keywordtype">int</span> **<a class="code" href="jerasure_8c.html#a3a5d41811a6385a6d20230cb6d76b553">jerasure_dumb_bitmatrix_to_schedule</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix);
-<a name="l00085"></a>00085 
-<a name="l00093"></a>00093 <span class="keywordtype">int</span> **<a class="code" href="jerasure_8c.html#a419871f932d9c6ada171eab27ef220d6">jerasure_smart_bitmatrix_to_schedule</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix);
-<a name="l00094"></a>00094 
-<a name="l00103"></a>00103 <span class="keywordtype">int</span> ***<a class="code" href="jerasure_8c.html#ac4c2ec8a0b51756f7ebb58edff76db0d">jerasure_generate_schedule_cache</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix, <span class="keywordtype">int</span> smart);
-<a name="l00104"></a>00104 
-<a name="l00108"></a>00108 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a124c9f3182a9f9117776a6b86da63201">jerasure_free_schedule</a>(<span class="keywordtype">int</span> **schedule);
-<a name="l00109"></a>00109 
-<a name="l00115"></a>00115 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#adfc3cbe91ca6a418329eee7810887c57">jerasure_free_schedule_cache</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> ***cache);
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="comment">/* ------------------------------------------------------------ */</span>
-<a name="l00119"></a>00119 <span class="comment">/* Encoding - these are all straightforward.  jerasure_matrix_encode only </span>
-<a name="l00120"></a>00120 <span class="comment">   works with w = 8|16|32.  */</span>
-<a name="l00121"></a>00121 
-<a name="l00127"></a>00127 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#aaa052851dd4e60941d8ca83159803a4f">jerasure_do_parity</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> *parity_ptr, <span class="keywordtype">int</span> size);
-<a name="l00128"></a>00128 
-<a name="l00138"></a>00138 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a754e34d11221cab5e66841576583cd8f">jerasure_matrix_encode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix,
-<a name="l00139"></a>00139                           <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size);
-<a name="l00140"></a>00140 
-<a name="l00152"></a>00152 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a99834efc875053378999f3a44b29defb">jerasure_bitmatrix_encode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix,
-<a name="l00153"></a>00153                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
-<a name="l00154"></a>00154 
-<a name="l00165"></a>00165 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a5b4bbb1fe3a6ca30468d8d021ee7dc8d">jerasure_schedule_encode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> **schedule,
-<a name="l00166"></a>00166                                   <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
+<a name="l00075"></a>00075 <span class="keywordtype">int</span> **<a class="code" href="jerasure_8c.html#a3a5d41811a6385a6d20230cb6d76b553">jerasure_dumb_bitmatrix_to_schedule</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix);
+<a name="l00076"></a>00076 
+<a name="l00085"></a>00085 <span class="keywordtype">int</span> **<a class="code" href="jerasure_8c.html#a419871f932d9c6ada171eab27ef220d6">jerasure_smart_bitmatrix_to_schedule</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix);
+<a name="l00086"></a>00086 
+<a name="l00095"></a>00095 <span class="keywordtype">int</span> ***<a class="code" href="jerasure_8c.html#ac4c2ec8a0b51756f7ebb58edff76db0d">jerasure_generate_schedule_cache</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix, <span class="keywordtype">int</span> smart);
+<a name="l00096"></a>00096 
+<a name="l00101"></a>00101 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a124c9f3182a9f9117776a6b86da63201">jerasure_free_schedule</a>(<span class="keywordtype">int</span> **schedule);
+<a name="l00102"></a>00102 
+<a name="l00109"></a>00109 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#adfc3cbe91ca6a418329eee7810887c57">jerasure_free_schedule_cache</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> ***cache);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="comment">/* ------------------------------------------------------------ */</span>
+<a name="l00113"></a>00113 <span class="comment">/* Encoding - these are all straightforward.  jerasure_matrix_encode only </span>
+<a name="l00114"></a>00114 <span class="comment">   works with w = 8|16|32.  */</span>
+<a name="l00115"></a>00115 
+<a name="l00122"></a>00122 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#aaa052851dd4e60941d8ca83159803a4f">jerasure_do_parity</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> *parity_ptr, <span class="keywordtype">int</span> size);
+<a name="l00123"></a>00123 
+<a name="l00133"></a>00133 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a754e34d11221cab5e66841576583cd8f">jerasure_matrix_encode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix,
+<a name="l00134"></a>00134                           <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size);
+<a name="l00135"></a>00135 
+<a name="l00148"></a>00148 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a99834efc875053378999f3a44b29defb">jerasure_bitmatrix_encode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix,
+<a name="l00149"></a>00149                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
+<a name="l00150"></a>00150 
+<a name="l00162"></a>00162 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a5b4bbb1fe3a6ca30468d8d021ee7dc8d">jerasure_schedule_encode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> **schedule,
+<a name="l00163"></a>00163                                   <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
+<a name="l00164"></a>00164 
+<a name="l00165"></a>00165 <span class="comment">/* ------------------------------------------------------------ */</span>
+<a name="l00166"></a>00166 <span class="comment">/* Decoding. -------------------------------------------------- */</span>
 <a name="l00167"></a>00167 
-<a name="l00168"></a>00168 <span class="comment">/* ------------------------------------------------------------ */</span>
-<a name="l00169"></a>00169 <span class="comment">/* Decoding. -------------------------------------------------- */</span>
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171 <span class="comment">/* These return integers, because the matrix may not be invertible. </span>
-<a name="l00172"></a>00172 <span class="comment">   </span>
-<a name="l00173"></a>00173 <span class="comment">   The parameter row_k_ones should be set to 1 if row k of the matrix</span>
-<a name="l00174"></a>00174 <span class="comment">   (or rows kw to (k+1)w+1) of th distribution matrix are all ones</span>
-<a name="l00175"></a>00175 <span class="comment">   (or all identity matrices).  Then you can improve the performance</span>
-<a name="l00176"></a>00176 <span class="comment">   of decoding when there is more than one failure, and the parity</span>
-<a name="l00177"></a>00177 <span class="comment">   device didn&#39;t fail.  You do it by decoding all but one of the data</span>
-<a name="l00178"></a>00178 <span class="comment">   devices, and then decoding the last data device from the data devices</span>
-<a name="l00179"></a>00179 <span class="comment">   and the parity device.</span>
-<a name="l00180"></a>00180 <span class="comment"></span>
-<a name="l00181"></a>00181 <span class="comment">   jerasure_make_decoding_matrix/bitmatrix make the k*k decoding matrix</span>
-<a name="l00182"></a>00182 <span class="comment">         (or wk*wk bitmatrix) by taking the rows corresponding to k</span>
-<a name="l00183"></a>00183 <span class="comment">         non-erased devices of the distribution matrix, and then</span>
-<a name="l00184"></a>00184 <span class="comment">         inverting that matrix.</span>
-<a name="l00185"></a>00185 <span class="comment"></span>
-<a name="l00186"></a>00186 <span class="comment">         You should already have allocated the decoding matrix and</span>
-<a name="l00187"></a>00187 <span class="comment">         dm_ids, which is a vector of k integers.  These will be</span>
-<a name="l00188"></a>00188 <span class="comment">         filled in appropriately.  dm_ids[i] is the id of element</span>
-<a name="l00189"></a>00189 <span class="comment">         i of the survivors vector.  I.e. row i of the decoding matrix</span>
-<a name="l00190"></a>00190 <span class="comment">         times dm_ids equals data drive i.</span>
-<a name="l00191"></a>00191 <span class="comment"></span>
-<a name="l00192"></a>00192 <span class="comment">         Both of these routines take &quot;erased&quot; instead of &quot;erasures&quot;.</span>
-<a name="l00193"></a>00193 <span class="comment">         Erased is a vector with k+m elements, which has 0 or 1 for </span>
-<a name="l00194"></a>00194 <span class="comment">         each device&#39;s id, according to whether the device is erased.</span>
-<a name="l00195"></a>00195 <span class="comment"> */</span>
-<a name="l00196"></a>00196 
+<a name="l00168"></a>00168 <span class="comment">/* These return integers, because the matrix may not be invertible. </span>
+<a name="l00169"></a>00169 <span class="comment">   </span>
+<a name="l00170"></a>00170 <span class="comment">   The parameter row_k_ones should be set to 1 if row k of the matrix</span>
+<a name="l00171"></a>00171 <span class="comment">   (or rows kw to (k+1)w+1) of th distribution matrix are all ones</span>
+<a name="l00172"></a>00172 <span class="comment">   (or all identity matrices).  Then you can improve the performance</span>
+<a name="l00173"></a>00173 <span class="comment">   of decoding when there is more than one failure, and the parity</span>
+<a name="l00174"></a>00174 <span class="comment">   device didn&#39;t fail.  You do it by decoding all but one of the data</span>
+<a name="l00175"></a>00175 <span class="comment">   devices, and then decoding the last data device from the data devices</span>
+<a name="l00176"></a>00176 <span class="comment">   and the parity device.</span>
+<a name="l00177"></a>00177 <span class="comment"></span>
+<a name="l00178"></a>00178 <span class="comment">   jerasure_make_decoding_matrix/bitmatrix make the k*k decoding matrix</span>
+<a name="l00179"></a>00179 <span class="comment">         (or wk*wk bitmatrix) by taking the rows corresponding to k</span>
+<a name="l00180"></a>00180 <span class="comment">         non-erased devices of the distribution matrix, and then</span>
+<a name="l00181"></a>00181 <span class="comment">         inverting that matrix.</span>
+<a name="l00182"></a>00182 <span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment">         You should already have allocated the decoding matrix and</span>
+<a name="l00184"></a>00184 <span class="comment">         dm_ids, which is a vector of k integers.  These will be</span>
+<a name="l00185"></a>00185 <span class="comment">         filled in appropriately.  dm_ids[i] is the id of element</span>
+<a name="l00186"></a>00186 <span class="comment">         i of the survivors vector.  I.e. row i of the decoding matrix</span>
+<a name="l00187"></a>00187 <span class="comment">         times dm_ids equals data drive i.</span>
+<a name="l00188"></a>00188 <span class="comment"></span>
+<a name="l00189"></a>00189 <span class="comment">         Both of these routines take &quot;erased&quot; instead of &quot;erasures&quot;.</span>
+<a name="l00190"></a>00190 <span class="comment">         Erased is a vector with k+m elements, which has 0 or 1 for </span>
+<a name="l00191"></a>00191 <span class="comment">         each device&#39;s id, according to whether the device is erased.</span>
+<a name="l00192"></a>00192 <span class="comment"> */</span>
+<a name="l00193"></a>00193 
 <a name="l00205"></a>00205 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#a0d1a29afe55b6f1d8b09a1df6994f4dc">jerasure_matrix_decode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, 
 <a name="l00206"></a>00206                           <span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> row_k_ones, <span class="keywordtype">int</span> *erasures,
 <a name="l00207"></a>00207                           <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size);
 <a name="l00208"></a>00208 
-<a name="l00220"></a>00220 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#a1436fa741650a7cb75ecbd6e2cd6225b">jerasure_bitmatrix_decode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, 
-<a name="l00221"></a>00221                             <span class="keywordtype">int</span> *bitmatrix, <span class="keywordtype">int</span> row_k_ones, <span class="keywordtype">int</span> *erasures,
-<a name="l00222"></a>00222                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
-<a name="l00223"></a>00223 
-<a name="l00234"></a>00234 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#aa2a3886ab7cb52edfa22739843d0548e">jerasure_schedule_decode_lazy</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix, <span class="keywordtype">int</span> *erasures,
-<a name="l00235"></a>00235                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize,
-<a name="l00236"></a>00236                             <span class="keywordtype">int</span> smart);
-<a name="l00237"></a>00237 
-<a name="l00246"></a>00246 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ad645cd0b56d0ffcd0ffc2d17b17cdec0">jerasure_schedule_decode_cache</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> ***scache, <span class="keywordtype">int</span> *erasures,
-<a name="l00247"></a>00247                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
-<a name="l00248"></a>00248 
-<a name="l00255"></a>00255 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#aa4166dae3d47c8734473aaa41b1ab9c4">jerasure_make_decoding_matrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> *erased, 
-<a name="l00256"></a>00256                                   <span class="keywordtype">int</span> *decoding_matrix, <span class="keywordtype">int</span> *dm_ids);
-<a name="l00257"></a>00257 
-<a name="l00265"></a>00265 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ad1bb5971c4fdee7c4c50fb46d6ef9c2f">jerasure_make_decoding_bitmatrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> *erased, 
-<a name="l00266"></a>00266                                   <span class="keywordtype">int</span> *decoding_matrix, <span class="keywordtype">int</span> *dm_ids);
-<a name="l00267"></a>00267 
-<a name="l00273"></a>00273 <span class="keywordtype">int</span> *<a class="code" href="jerasure_8c.html#a5ed25b377aa00ab5abe44c6ba58935a5">jerasure_erasures_to_erased</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> *erasures);
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275 <span class="comment">/* ------------------------------------------------------------ */</span>
-<a name="l00276"></a>00276 <span class="comment">/* These perform dot products and schedules. -------------------*/</span>
-<a name="l00277"></a>00277 <span class="comment">/*</span>
-<a name="l00278"></a>00278 <span class="comment">   src_ids is a matrix of k id&#39;s (0 - k-1 for data devices, k - k+m-1</span>
-<a name="l00279"></a>00279 <span class="comment">   for coding devices) that identify the source devices.  Dest_id is</span>
-<a name="l00280"></a>00280 <span class="comment">   the id of the destination device.</span>
-<a name="l00281"></a>00281 <span class="comment"></span>
-<a name="l00282"></a>00282 <span class="comment">   jerasure_do_scheduled_operations executes the schedule on w*packetsize worth of</span>
-<a name="l00283"></a>00283 <span class="comment">   bytes from each device.  ptrs is an array of pointers which should have as many</span>
-<a name="l00284"></a>00284 <span class="comment">   elements as the highest referenced device in the schedule.</span>
-<a name="l00285"></a>00285 <span class="comment"></span>
-<a name="l00286"></a>00286 <span class="comment"> */</span>
-<a name="l00287"></a>00287  
-<a name="l00295"></a>00295 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#ae64314475c098664deb5eb2b9f1d41aa">jerasure_matrix_dotprod</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix_row,
-<a name="l00296"></a>00296                           <span class="keywordtype">int</span> *src_ids, <span class="keywordtype">int</span> dest_id,
-<a name="l00297"></a>00297                           <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size);
-<a name="l00298"></a>00298 
-<a name="l00307"></a>00307 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a45f9cda66c9b596b8ec2be5545b55b1a">jerasure_bitmatrix_dotprod</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix_row,
-<a name="l00308"></a>00308                              <span class="keywordtype">int</span> *src_ids, <span class="keywordtype">int</span> dest_id,
-<a name="l00309"></a>00309                              <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
-<a name="l00310"></a>00310 
-<a name="l00316"></a>00316 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a5430f322b65d032a0fc6ff766b4b0c95">jerasure_do_scheduled_operations</a>(<span class="keywordtype">char</span> **ptrs, <span class="keywordtype">int</span> **schedule, <span class="keywordtype">int</span> packetsize);
-<a name="l00317"></a>00317 
-<a name="l00318"></a>00318 <span class="comment">/* ------------------------------------------------------------ */</span>
-<a name="l00319"></a>00319 <span class="comment">/* Matrix Inversion ------------------------------------------- */</span>
-<a name="l00320"></a>00320 <span class="comment">/*</span>
-<a name="l00321"></a>00321 <span class="comment">   The two matrix inversion functions work on rows*rows matrices of</span>
-<a name="l00322"></a>00322 <span class="comment">   ints.  If a bitmatrix, then each int will just be zero or one.</span>
-<a name="l00323"></a>00323 <span class="comment">   Otherwise, they will be elements of gf(2^w).  Obviously, you can</span>
-<a name="l00324"></a>00324 <span class="comment">   do bit matrices with crs_invert_matrix() and set w = 1, but</span>
-<a name="l00325"></a>00325 <span class="comment">   crs_invert_bitmatrix will be more efficient.</span>
-<a name="l00326"></a>00326 <span class="comment"></span>
-<a name="l00327"></a>00327 <span class="comment">   The two invertible functions return whether a matrix is invertible.</span>
-<a name="l00328"></a>00328 <span class="comment">   They are more efficient than the inverstion functions.</span>
-<a name="l00329"></a>00329 <span class="comment"></span>
-<a name="l00330"></a>00330 <span class="comment">   Mat will be destroyed when the matrix inversion or invertible</span>
-<a name="l00331"></a>00331 <span class="comment">   testing is done.  Sorry.</span>
-<a name="l00332"></a>00332 <span class="comment"></span>
-<a name="l00333"></a>00333 <span class="comment">   Inv must be allocated by the caller.</span>
-<a name="l00334"></a>00334 <span class="comment"></span>
-<a name="l00335"></a>00335 <span class="comment">   The two invert_matrix functions return 0 on success, and -1 if the</span>
-<a name="l00336"></a>00336 <span class="comment">   matrix is uninvertible.</span>
-<a name="l00337"></a>00337 <span class="comment"></span>
-<a name="l00338"></a>00338 <span class="comment">   The two invertible function simply return whether the matrix is</span>
-<a name="l00339"></a>00339 <span class="comment">   invertible.  (0 or 1). Mat will be destroyed.</span>
-<a name="l00340"></a>00340 <span class="comment"> */</span>
-<a name="l00341"></a>00341 
-<a name="l00346"></a>00346 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#aa134c10efabbe8620ba8de7ebe37c0f5">jerasure_invert_matrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> *inv, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> w);
-<a name="l00347"></a>00347 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#a846d044f23cb83c703bfa71569d3b172">jerasure_invert_bitmatrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> *inv, <span class="keywordtype">int</span> rows);
-<a name="l00352"></a>00352 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ac2ca8b6489e85f209a040a9038347189">jerasure_invertible_matrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> w);
-<a name="l00353"></a>00353 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ae5140c0bccef55376dbd9aaed589a8ea">jerasure_invertible_bitmatrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> rows);
-<a name="l00354"></a>00354 
-<a name="l00355"></a>00355 <span class="comment">/* ------------------------------------------------------------ */</span>
-<a name="l00356"></a>00356 <span class="comment">/* Basic matrix operations -------------------------------------*/</span>
-<a name="l00357"></a>00357 <span class="comment">/*</span>
-<a name="l00358"></a>00358 <span class="comment">   Each of the print_matrix routines require a w.  In jerasure_print_matrix,</span>
-<a name="l00359"></a>00359 <span class="comment">   this is to calculate the field width.  In jerasure_print_bitmatrix, it is</span>
-<a name="l00360"></a>00360 <span class="comment">   to put spaces between the bits.</span>
-<a name="l00361"></a>00361 <span class="comment"></span>
-<a name="l00362"></a>00362 <span class="comment">   jerasure_matrix_multiply is a simple matrix multiplier in GF(2^w).  It returns a r1*c2</span>
-<a name="l00363"></a>00363 <span class="comment">   matrix, which is the product of the two input matrices.  It allocates</span>
-<a name="l00364"></a>00364 <span class="comment">   the product.  Obviously, c1 should equal r2.  However, this is not</span>
-<a name="l00365"></a>00365 <span class="comment">   validated by the procedure.  </span>
-<a name="l00366"></a>00366 <span class="comment">*/</span>
+<a name="l00222"></a>00222 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#a1436fa741650a7cb75ecbd6e2cd6225b">jerasure_bitmatrix_decode</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, 
+<a name="l00223"></a>00223                             <span class="keywordtype">int</span> *bitmatrix, <span class="keywordtype">int</span> row_k_ones, <span class="keywordtype">int</span> *erasures,
+<a name="l00224"></a>00224                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
+<a name="l00225"></a>00225 
+<a name="l00238"></a>00238 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#aa2a3886ab7cb52edfa22739843d0548e">jerasure_schedule_decode_lazy</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix, <span class="keywordtype">int</span> *erasures,
+<a name="l00239"></a>00239                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize,
+<a name="l00240"></a>00240                             <span class="keywordtype">int</span> smart);
+<a name="l00241"></a>00241 
+<a name="l00252"></a>00252 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ad645cd0b56d0ffcd0ffc2d17b17cdec0">jerasure_schedule_decode_cache</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> ***scache, <span class="keywordtype">int</span> *erasures,
+<a name="l00253"></a>00253                             <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
+<a name="l00254"></a>00254 
+<a name="l00262"></a>00262 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#aa4166dae3d47c8734473aaa41b1ab9c4">jerasure_make_decoding_matrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> *erased, 
+<a name="l00263"></a>00263                                   <span class="keywordtype">int</span> *decoding_matrix, <span class="keywordtype">int</span> *dm_ids);
+<a name="l00264"></a>00264 
+<a name="l00273"></a>00273 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ad1bb5971c4fdee7c4c50fb46d6ef9c2f">jerasure_make_decoding_bitmatrix</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> *erased, 
+<a name="l00274"></a>00274                                   <span class="keywordtype">int</span> *decoding_matrix, <span class="keywordtype">int</span> *dm_ids);
+<a name="l00275"></a>00275 
+<a name="l00282"></a>00282 <span class="keywordtype">int</span> *<a class="code" href="jerasure_8c.html#a5ed25b377aa00ab5abe44c6ba58935a5">jerasure_erasures_to_erased</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> *erasures);
+<a name="l00283"></a>00283 
+<a name="l00284"></a>00284 <span class="comment">/* ------------------------------------------------------------ */</span>
+<a name="l00285"></a>00285 <span class="comment">/* These perform dot products and schedules. -------------------*/</span>
+<a name="l00286"></a>00286 <span class="comment">/*</span>
+<a name="l00287"></a>00287 <span class="comment">   src_ids is a matrix of k id&#39;s (0 - k-1 for data devices, k - k+m-1</span>
+<a name="l00288"></a>00288 <span class="comment">   for coding devices) that identify the source devices.  Dest_id is</span>
+<a name="l00289"></a>00289 <span class="comment">   the id of the destination device.</span>
+<a name="l00290"></a>00290 <span class="comment"></span>
+<a name="l00291"></a>00291 <span class="comment">   jerasure_do_scheduled_operations executes the schedule on w*packetsize worth of</span>
+<a name="l00292"></a>00292 <span class="comment">   bytes from each device.  ptrs is an array of pointers which should have as many</span>
+<a name="l00293"></a>00293 <span class="comment">   elements as the highest referenced device in the schedule.</span>
+<a name="l00294"></a>00294 <span class="comment"></span>
+<a name="l00295"></a>00295 <span class="comment"> */</span>
+<a name="l00296"></a>00296  
+<a name="l00305"></a>00305 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#ae64314475c098664deb5eb2b9f1d41aa">jerasure_matrix_dotprod</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *matrix_row,
+<a name="l00306"></a>00306                           <span class="keywordtype">int</span> *src_ids, <span class="keywordtype">int</span> dest_id,
+<a name="l00307"></a>00307                           <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size);
+<a name="l00308"></a>00308 
+<a name="l00318"></a>00318 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a45f9cda66c9b596b8ec2be5545b55b1a">jerasure_bitmatrix_dotprod</a>(<span class="keywordtype">int</span> k, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> *bitmatrix_row,
+<a name="l00319"></a>00319                              <span class="keywordtype">int</span> *src_ids, <span class="keywordtype">int</span> dest_id,
+<a name="l00320"></a>00320                              <span class="keywordtype">char</span> **data_ptrs, <span class="keywordtype">char</span> **coding_ptrs, <span class="keywordtype">int</span> size, <span class="keywordtype">int</span> packetsize);
+<a name="l00321"></a>00321 
+<a name="l00328"></a>00328 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a5430f322b65d032a0fc6ff766b4b0c95">jerasure_do_scheduled_operations</a>(<span class="keywordtype">char</span> **ptrs, <span class="keywordtype">int</span> **schedule, <span class="keywordtype">int</span> packetsize);
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330 <span class="comment">/* ------------------------------------------------------------ */</span>
+<a name="l00331"></a>00331 <span class="comment">/* Matrix Inversion ------------------------------------------- */</span>
+<a name="l00332"></a>00332 <span class="comment">/*</span>
+<a name="l00333"></a>00333 <span class="comment">   The two matrix inversion functions work on rows*rows matrices of</span>
+<a name="l00334"></a>00334 <span class="comment">   ints.  If a bitmatrix, then each int will just be zero or one.</span>
+<a name="l00335"></a>00335 <span class="comment">   Otherwise, they will be elements of gf(2^w).  Obviously, you can</span>
+<a name="l00336"></a>00336 <span class="comment">   do bit matrices with crs_invert_matrix() and set w = 1, but</span>
+<a name="l00337"></a>00337 <span class="comment">   crs_invert_bitmatrix will be more efficient.</span>
+<a name="l00338"></a>00338 <span class="comment"></span>
+<a name="l00339"></a>00339 <span class="comment">   The two invertible functions return whether a matrix is invertible.</span>
+<a name="l00340"></a>00340 <span class="comment">   They are more efficient than the inverstion functions.</span>
+<a name="l00341"></a>00341 <span class="comment"></span>
+<a name="l00342"></a>00342 <span class="comment">   Mat will be destroyed when the matrix inversion or invertible</span>
+<a name="l00343"></a>00343 <span class="comment">   testing is done.  Sorry.</span>
+<a name="l00344"></a>00344 <span class="comment"></span>
+<a name="l00345"></a>00345 <span class="comment">   Inv must be allocated by the caller.</span>
+<a name="l00346"></a>00346 <span class="comment"></span>
+<a name="l00347"></a>00347 <span class="comment">   The two invert_matrix functions return 0 on success, and -1 if the</span>
+<a name="l00348"></a>00348 <span class="comment">   matrix is uninvertible.</span>
+<a name="l00349"></a>00349 <span class="comment"></span>
+<a name="l00350"></a>00350 <span class="comment">   The two invertible function simply return whether the matrix is</span>
+<a name="l00351"></a>00351 <span class="comment">   invertible.  (0 or 1). Mat will be destroyed.</span>
+<a name="l00352"></a>00352 <span class="comment"> */</span>
+<a name="l00353"></a>00353 
+<a name="l00359"></a>00359 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#aa134c10efabbe8620ba8de7ebe37c0f5">jerasure_invert_matrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> *inv, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> w);
+<a name="l00360"></a>00360 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#a846d044f23cb83c703bfa71569d3b172">jerasure_invert_bitmatrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> *inv, <span class="keywordtype">int</span> rows);
+<a name="l00365"></a>00365 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ac2ca8b6489e85f209a040a9038347189">jerasure_invertible_matrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> w);
+<a name="l00366"></a>00366 <span class="keywordtype">int</span> <a class="code" href="jerasure_8c.html#ae5140c0bccef55376dbd9aaed589a8ea">jerasure_invertible_bitmatrix</a>(<span class="keywordtype">int</span> *mat, <span class="keywordtype">int</span> rows);
 <a name="l00367"></a>00367 
-<a name="l00373"></a>00373 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a82af32a83686762b8d3333707cfad155">jerasure_print_matrix</a>(<span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols, <span class="keywordtype">int</span> w);
-<a name="l00374"></a>00374 
-<a name="l00380"></a>00380 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a9438133760db4ebba402978f59e5a5e5">jerasure_print_bitmatrix</a>(<span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols, <span class="keywordtype">int</span> w);
-<a name="l00381"></a>00381 
-<a name="l00386"></a>00386 <span class="keywordtype">int</span> *<a class="code" href="jerasure_8c.html#a2f092437db38d3078058679634dcd27b">jerasure_matrix_multiply</a>(<span class="keywordtype">int</span> *m1, <span class="keywordtype">int</span> *m2, <span class="keywordtype">int</span> r1, <span class="keywordtype">int</span> c1, <span class="keywordtype">int</span> r2, <span class="keywordtype">int</span> c2, <span class="keywordtype">int</span> w);
+<a name="l00368"></a>00368 <span class="comment">/* ------------------------------------------------------------ */</span>
+<a name="l00369"></a>00369 <span class="comment">/* Basic matrix operations -------------------------------------*/</span>
+<a name="l00370"></a>00370 <span class="comment">/*</span>
+<a name="l00371"></a>00371 <span class="comment">   Each of the print_matrix routines require a w.  In jerasure_print_matrix,</span>
+<a name="l00372"></a>00372 <span class="comment">   this is to calculate the field width.  In jerasure_print_bitmatrix, it is</span>
+<a name="l00373"></a>00373 <span class="comment">   to put spaces between the bits.</span>
+<a name="l00374"></a>00374 <span class="comment"></span>
+<a name="l00375"></a>00375 <span class="comment">   jerasure_matrix_multiply is a simple matrix multiplier in GF(2^w).  It returns a r1*c2</span>
+<a name="l00376"></a>00376 <span class="comment">   matrix, which is the product of the two input matrices.  It allocates</span>
+<a name="l00377"></a>00377 <span class="comment">   the product.  Obviously, c1 should equal r2.  However, this is not</span>
+<a name="l00378"></a>00378 <span class="comment">   validated by the procedure.  </span>
+<a name="l00379"></a>00379 <span class="comment">*/</span>
+<a name="l00380"></a>00380 
+<a name="l00386"></a>00386 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a82af32a83686762b8d3333707cfad155">jerasure_print_matrix</a>(<span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols, <span class="keywordtype">int</span> w);
 <a name="l00387"></a>00387 
-<a name="l00388"></a>00388 <span class="comment">/* ------------------------------------------------------------ */</span>
-<a name="l00389"></a>00389 <span class="comment">/* Stats ------------------------------------------------------ */</span>
-<a name="l00390"></a>00390 <span class="comment">/*</span>
-<a name="l00391"></a>00391 <span class="comment">  jerasure_get_stats fills in a vector of three doubles:</span>
-<a name="l00392"></a>00392 <span class="comment"></span>
-<a name="l00393"></a>00393 <span class="comment">      fill_in[0] is the number of bytes that have been XOR&#39;d</span>
-<a name="l00394"></a>00394 <span class="comment">      fill_in[1] is the number of bytes that have been copied</span>
-<a name="l00395"></a>00395 <span class="comment">      fill_in[2] is the number of bytes that have been multiplied</span>
-<a name="l00396"></a>00396 <span class="comment">                 by a constant in GF(2^w)</span>
-<a name="l00397"></a>00397 <span class="comment"></span>
-<a name="l00398"></a>00398 <span class="comment">  When jerasure_get_stats() is called, it resets its values.</span>
-<a name="l00399"></a>00399 <span class="comment"> */</span>
+<a name="l00393"></a>00393 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#a9438133760db4ebba402978f59e5a5e5">jerasure_print_bitmatrix</a>(<span class="keywordtype">int</span> *matrix, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols, <span class="keywordtype">int</span> w);
+<a name="l00394"></a>00394 
+<a name="l00399"></a>00399 <span class="keywordtype">int</span> *<a class="code" href="jerasure_8c.html#a2f092437db38d3078058679634dcd27b">jerasure_matrix_multiply</a>(<span class="keywordtype">int</span> *m1, <span class="keywordtype">int</span> *m2, <span class="keywordtype">int</span> r1, <span class="keywordtype">int</span> c1, <span class="keywordtype">int</span> r2, <span class="keywordtype">int</span> c2, <span class="keywordtype">int</span> w);
 <a name="l00400"></a>00400 
-<a name="l00407"></a>00407 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#ab579e73d367c8db28bf75ee75c1cf17f">jerasure_get_stats</a>(<span class="keywordtype">double</span> *fill_in);
-<a name="l00408"></a>00408 
-<a name="l00409"></a>00409 <span class="preprocessor">#endif</span>
+<a name="l00401"></a>00401 <span class="comment">/* ------------------------------------------------------------ */</span>
+<a name="l00402"></a>00402 <span class="comment">/* Stats ------------------------------------------------------ */</span>
+<a name="l00403"></a>00403 <span class="comment">/*</span>
+<a name="l00404"></a>00404 <span class="comment">  jerasure_get_stats fills in a vector of three doubles:</span>
+<a name="l00405"></a>00405 <span class="comment"></span>
+<a name="l00406"></a>00406 <span class="comment">      fill_in[0] is the number of bytes that have been XOR&#39;d</span>
+<a name="l00407"></a>00407 <span class="comment">      fill_in[1] is the number of bytes that have been copied</span>
+<a name="l00408"></a>00408 <span class="comment">      fill_in[2] is the number of bytes that have been multiplied</span>
+<a name="l00409"></a>00409 <span class="comment">                 by a constant in GF(2^w)</span>
+<a name="l00410"></a>00410 <span class="comment"></span>
+<a name="l00411"></a>00411 <span class="comment">  When jerasure_get_stats() is called, it resets its values.</span>
+<a name="l00412"></a>00412 <span class="comment"> */</span>
+<a name="l00413"></a>00413 
+<a name="l00420"></a>00420 <span class="keywordtype">void</span> <a class="code" href="jerasure_8c.html#ab579e73d367c8db28bf75ee75c1cf17f">jerasure_get_stats</a>(<span class="keywordtype">double</span> *fill_in);
+<a name="l00421"></a>00421 
+<a name="l00422"></a>00422 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -328,7 +317,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 17:06:26 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 18:07:33 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
