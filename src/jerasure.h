@@ -82,22 +82,6 @@ plank@cs.utk.edu
 
 /* ---------------------------------------------------------------  */
 /* Bitmatrices / schedules ---------------------------------------- */
-/*
-
- - jerasure_smart_bitmatrix_to_schedule turns a bitmatrix into a schedule,
-                              but tries to use previous dot products to
-                              calculate new ones.  This is the optimization
-                              explained in the original Liberation code paper.
-
- - jerasure_generate_schedule_cache precalcalculate all the schedule for the
-                              given distribution bitmatrix.  M must equal 2.
- 
- - jerasure_free_schedule frees a schedule that was allocated with 
-                              jerasure_XXX_bitmatrix_to_schedule.
- 
- - jerasure_free_schedule_cache frees a schedule cache that was created with 
-                              jerasure_generate_schedule_cache.
- */
 
 /** turns a m X k matrix in GF(2^w) into a wm X wk bitmatrix (in GF(2)).
  *  This is explained in the Cauchy Reed-Solomon coding paper.
@@ -107,28 +91,30 @@ plank@cs.utk.edu
  */
 int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
 
-/**  turns a bitmatrix into a schedule using the straightforward algorithm -- just schedule the dot products defined by each row of the matrix.
+/** turns a bitmatrix into a schedule using the straightforward algorithm -- just schedule the dot products defined by each row of the matrix.
  * 
  * @param k Number of data devices
  * @param m Number of coding devices
  */
 int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
-/**
+/** turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. This is the optimization explained in the original Liberation code paper.
  * @param k Number of data devices
  * @param m Number of coding devices
  */
 int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
-/**
+/** precalcalculate all the schedule for the given distribution bitmatrix.  M must equal 2.
  * @param k Number of data devices
  * @param m Number of coding devices
  */
 int ***jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart);
 
+/** frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule.
+*/
 void jerasure_free_schedule(int **schedule);
 
-/**
+/** rees a schedule cache that was created with jerasure_generate_schedule_cache.
  * @param k Number of data devices
  * @param m Number of coding devices
  */
