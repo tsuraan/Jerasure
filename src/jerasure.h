@@ -40,13 +40,6 @@ plank@cs.utk.edu
 /* ------------------------------------------------------------ */
 /* In all of the routines below:
 
-   erasures = an array of id's of erased devices. 
-              Id's are integers between 0 and k+m-1.
-              Id's 0 to k-1 are id's of data devices.
-              Id's k to k+m-1 are id's of coding devices: 
-                  Coding device id = id-k.
-              If there are e erasures, erasures[e] = -1.
-
    operation = an array of 5 integers:
 
           0 = operation: 0 for copy, 1 for xor (-1 for end)
@@ -135,7 +128,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
  * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
- * \todo fix
+ * @todo fix
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
@@ -259,7 +252,7 @@ int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *eras
 int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
 
-/**
+/** make the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers.  These will be filled in appropriately.  dm_ids[i] is the id of element i of the survivors vector.  I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -269,7 +262,7 @@ int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *eras
 int jerasure_make_decoding_matrix(int k, int m, int w, int *matrix, int *erased, 
                                   int *decoding_matrix, int *dm_ids);
 
-/**
+/** make the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers.  These will be filled in appropriately.  dm_ids[i] is the id of element i of the survivors vector.  I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
