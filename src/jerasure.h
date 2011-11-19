@@ -156,11 +156,12 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param schedule Array of schedule operations. If there are m operations, then schedule[m][0] = -1.
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  * @param size Size of memory allocated by data_ptrs in bytes.
  * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
- * @todo fix
+ * @todo add description
  * @todo example code
  */
 void jerasure_schedule_encode(int k, int m, int w, int **schedule,
