@@ -83,15 +83,6 @@ plank@cs.utk.edu
 /* ---------------------------------------------------------------  */
 /* Bitmatrices / schedules ---------------------------------------- */
 /*
- - jerasure_matrix_to_bitmatrix turns a m X k matrix in GF(2^w) into a
-                              wm X wk bitmatrix (in GF(2)).  This is
-                              explained in the Cauchy Reed-Solomon coding
-                              paper.
-
- - jerasure_dumb_bitmatrix_to_schedule turns a bitmatrix into a schedule 
-                              using the straightforward algorithm -- just
-                              schedule the dot products defined by each
-                              row of the matrix.
 
  - jerasure_smart_bitmatrix_to_schedule turns a bitmatrix into a schedule,
                               but tries to use previous dot products to
