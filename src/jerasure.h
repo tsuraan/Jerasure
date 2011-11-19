@@ -88,6 +88,7 @@ plank@cs.utk.edu
  *
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
 
@@ -95,18 +96,21 @@ int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
  * 
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
 /** turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. This is the optimization explained in the original Liberation code paper.
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
 /** precalcalculate all the schedule for the given distribution bitmatrix.  M must equal 2.
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int ***jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart);
 
@@ -133,6 +137,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
@@ -140,6 +145,7 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -147,6 +153,7 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 void jerasure_schedule_encode(int k, int m, int w, int **schedule,
                                   char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -190,6 +197,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int jerasure_matrix_decode(int k, int m, int w, 
                           int *matrix, int row_k_ones, int *erasures,
@@ -198,6 +206,7 @@ int jerasure_matrix_decode(int k, int m, int w,
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int jerasure_bitmatrix_decode(int k, int m, int w, 
                             int *bitmatrix, int row_k_ones, int *erasures,
@@ -206,6 +215,7 @@ int jerasure_bitmatrix_decode(int k, int m, int w,
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize,
@@ -214,6 +224,7 @@ int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *eras
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -221,6 +232,7 @@ int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *eras
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int jerasure_make_decoding_matrix(int k, int m, int w, int *matrix, int *erased, 
                                   int *decoding_matrix, int *dm_ids);
@@ -228,6 +240,7 @@ int jerasure_make_decoding_matrix(int k, int m, int w, int *matrix, int *erased,
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
+ * @param w Word size
  */
 int jerasure_make_decoding_bitmatrix(int k, int m, int w, int *matrix, int *erased, 
                                   int *decoding_matrix, int *dm_ids);
@@ -255,6 +268,7 @@ int *jerasure_erasures_to_erased(int k, int m, int *erasures);
  
 /**
  * @param k Number of data devices
+ * @param w Word size
  */
 void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
                           int *src_ids, int dest_id,
@@ -262,6 +276,7 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
 
 /**
  * @param k Number of data devices
+ * @param w Word size
  */
 void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
                              int *src_ids, int dest_id,
@@ -293,8 +308,14 @@ void jerasure_do_scheduled_operations(char **ptrs, int **schedule, int packetsiz
    invertible.  (0 or 1). Mat will be destroyed.
  */
 
+/**
+ * @param w Word size
+ */
 int jerasure_invert_matrix(int *mat, int *inv, int rows, int w);
 int jerasure_invert_bitmatrix(int *mat, int *inv, int rows);
+/**
+ * @param w Word size
+ */
 int jerasure_invertible_matrix(int *mat, int rows, int w);
 int jerasure_invertible_bitmatrix(int *mat, int rows);
 
@@ -311,10 +332,18 @@ int jerasure_invertible_bitmatrix(int *mat, int rows);
    validated by the procedure.  
 */
 
+/**
+ * @param w Word size
+ */
 void jerasure_print_matrix(int *matrix, int rows, int cols, int w);
+/**
+ * @param w Word size
+ */
 void jerasure_print_bitmatrix(int *matrix, int rows, int cols, int w);
 
-
+/**
+ * @param w Word size
+ */
 int *jerasure_matrix_multiply(int *m1, int *m2, int r1, int c1, int r2, int c2, int w);
 
 /* ------------------------------------------------------------ */
