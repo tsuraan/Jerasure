@@ -99,6 +99,8 @@ void \hyperlink{jerasure_8h_ab579e73d367c8db28bf75ee75c1cf17f}{jerasure\-\_\-get
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
 {\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
 \hline
 \end{DoxyParams}
@@ -134,6 +136,8 @@ example code \end{DoxyRefDesc}
 {\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
 \hline
 {\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
 \hline
@@ -172,13 +176,13 @@ example code \end{DoxyRefDesc}
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs in bytes. \\
+\hline
 {\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000009}{\-Todo}]formulas 
-
-fix 
+\item[\hyperlink{todo__todo000009}{\-Todo}]fix 
 
 example code \end{DoxyRefDesc}
 \hypertarget{jerasure_8h_aaa052851dd4e60941d8ca83159803a4f}{
@@ -198,6 +202,8 @@ example code \end{DoxyRefDesc}
 {\em k} & \-Number of data devices \\
 \hline
 {\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs in bytes. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
@@ -311,6 +317,9 @@ reads a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedul
 {\em m} & \-Number of coding devices \\
 \hline
 \end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_ac4c2ec8a0b51756f7ebb58edff76db0d}{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache(int k, int m, int w, int $\ast$bitmatrix, int smart)} 
+\end{DoxySeeAlso}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000006}{\-Todo}]fix 
 
@@ -339,6 +348,9 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 {\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
 \hline
 \end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}{jerasure\-\_\-free\-\_\-schedule\-\_\-cache(int k, int m, int $\ast$$\ast$$\ast$cache)} 
+\end{DoxySeeAlso}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000004}{\-Todo}]fix 
 
@@ -512,7 +524,12 @@ only works when w = 8$|$16$|$32.
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs/coding\-\_\-ptrs in bytes. \\
+\hline
 \end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 if it worked, -\/1 if it failed 
+\end{DoxyReturn}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000011}{\-Todo}]fix 
 
@@ -576,6 +593,8 @@ sample code \end{DoxyRefDesc}
 {\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs in bytes. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
@@ -700,6 +719,10 @@ turns a m \-X k matrix in $GF(2^w)$ into a wm \-X wk bitmatrix (in $GF(2)$). \-T
 \hline
 {\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
 {\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
 \hline
 \end{DoxyParams}
@@ -741,6 +764,10 @@ generates the schedule on the fly.
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000013}{\-Todo}]formula 
@@ -772,17 +799,19 @@ example code \end{DoxyRefDesc}
 \hline
 {\em w} & \-Word size \\
 \hline
+{\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
+\hline
 {\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
-{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs in bytes. \\
 \hline
-{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000010}{\-Todo}]fix 
+\item[\hyperlink{todo__todo000010}{\-Todo}]add description 
 
 example code \end{DoxyRefDesc}
 \hypertarget{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}{

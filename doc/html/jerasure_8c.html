@@ -231,6 +231,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by coding_ptrs/data_ptrs in bytes. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
@@ -314,6 +315,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by coding_ptrs/data_ptrs in bytes. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
@@ -392,12 +394,12 @@ Functions</h2></td></tr>
     <tr><td class="paramname">bitmatrix</td><td>Array of k*m*w*w integers. It represents an mw by kw matrix. Element i,j is in matrix[i*k*w+j] </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by data_ptrs in bytes. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd><p class="startdd">formulas </p>
-<p>fix </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd><p class="startdd">fix </p>
 <p class="enddd">example code </p>
 </dd></dl>
 
@@ -443,6 +445,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by data_ptrs in bytes. </td></tr>
   </table>
   </dd>
 </dl>
@@ -654,6 +657,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#ac4c2ec8a0b51756f7ebb58edff76db0d">jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart)</a> </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><p class="startdd">fix </p>
 <p class="enddd">example code </p>
 </dd></dl>
@@ -712,6 +716,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#adfc3cbe91ca6a418329eee7810887c57">jerasure_free_schedule_cache(int k, int m, int ***cache)</a> </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd><p class="startdd">fix </p>
 <p class="enddd">example code </p>
 </dd></dl>
@@ -1106,9 +1111,11 @@ Functions</h2></td></tr>
     <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by data_ptrs/coding_ptrs in bytes. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>0 if it worked, -1 if it failed </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><p class="startdd">fix </p>
 <p class="enddd">example code </p>
 </dd></dl>
@@ -1253,6 +1260,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">matrix</td><td>Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j] </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by coding_ptrs in bytes. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1541,6 +1549,8 @@ Functions</h2></td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
     <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by coding_ptrs/data_ptrs in bytes. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
@@ -1633,6 +1643,8 @@ Functions</h2></td></tr>
     <tr><td class="paramname">erasures</td><td>Array of id's of erased devices. Id's are integers between 0 and k+m-1. Id's 0 to k-1 are id's of data devices. Id's k to k+m-1 are id's of coding devices: Coding device id = id-k. If there are e erasures, erasures[e] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by coding_ptrs/data_ptrs in bytes. </td></tr>
+    <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1708,14 +1720,15 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">schedule</td><td>Array of schedule operations. If there are m operations, then schedule[m][0] = -1. </td></tr>
     <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
+    <tr><td class="paramname">size</td><td>Size of memory allocated by data_ptrs in bytes. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
-    <tr><td class="paramname">matrix</td><td>Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j] </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><p class="startdd">add description </p>
 <p class="enddd">example code </p>
 </dd></dl>
 
@@ -1791,7 +1804,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 18:07:34 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 19:28:35 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
