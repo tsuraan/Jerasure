@@ -103,7 +103,7 @@ int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 int ***jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart);
 
 /** frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule.
- * \todo fix
+ * @param schedule Array of schedule operations. If there are m operations, then schedule[m][0] = -1. 
  */
 void jerasure_free_schedule(int **schedule);
 
@@ -308,7 +308,8 @@ void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
                              int *src_ids, int dest_id,
                              char **data_ptrs, char **coding_ptrs, int size, int packetsize);
 
-/** executes the schedule on w*packetsize worth of bytes from each device.  ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
+/** executes the schedule on w*packetsize worth of bytes from each device.  ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule.
+ * @param schedule Array of schedule operations. If there are m operations, then schedule[m][0] = -1.
  * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
  * \todo fix
 */
