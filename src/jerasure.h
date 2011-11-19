@@ -39,8 +39,6 @@ plank@cs.utk.edu
 
 /* ------------------------------------------------------------ */
 /* In all of the routines below:
-    
-   coding_ptrs = An array of m pointers to coding data which is size bytes.
 
    packetsize = The size of a coding block with bitmatrix coding. 
                 When you code with a bitmatrix, you will use w packets
@@ -172,10 +170,6 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
    devices, and then decoding the last data device from the data devices
    and the parity device.
 
-   jerasure_schedule_decode_lazy generates the schedule on the fly.
-
-   jerasure_matrix_decode only works when w = 8|16|32.
-
    jerasure_make_decoding_matrix/bitmatrix make the k*k decoding matrix
          (or wk*wk bitmatrix) by taking the rows corresponding to k
          non-erased devices of the distribution matrix, and then
@@ -190,12 +184,9 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
          Both of these routines take "erased" instead of "erasures".
          Erased is a vector with k+m elements, which has 0 or 1 for 
          each device's id, according to whether the device is erased.
- 
-   jerasure_erasures_to_erased allocates and returns erased from erasures.
-    
  */
 
-/**
+/** only works when w = 8|16|32.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -217,7 +208,7 @@ int jerasure_bitmatrix_decode(int k, int m, int w,
                             int *bitmatrix, int row_k_ones, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
 
-/**
+/** generates the schedule on the fly.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -231,8 +222,8 @@ int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *eras
 /**
  * @param k Number of data devices
  * @param m Number of coding devices
- * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param w Word size
+ * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  */
 int jerasure_schedule_decode_cache(int k, int m, int w, int ***scache, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -253,7 +244,7 @@ int jerasure_make_decoding_matrix(int k, int m, int w, int *matrix, int *erased,
 int jerasure_make_decoding_bitmatrix(int k, int m, int w, int *matrix, int *erased, 
                                   int *decoding_matrix, int *dm_ids);
 
-/**
+/** allocates and returns erased from erasures.
  * @param k Number of data devices
  * @param m Number of coding devices
  */
@@ -266,15 +257,13 @@ int *jerasure_erasures_to_erased(int k, int m, int *erasures);
    for coding devices) that identify the source devices.  Dest_id is
    the id of the destination device.
 
-   jerasure_matrix_dotprod only works when w = 8|16|32.
-
    jerasure_do_scheduled_operations executes the schedule on w*packetsize worth of
    bytes from each device.  ptrs is an array of pointers which should have as many
    elements as the highest referenced device in the schedule.
 
  */
  
-/**
+/** only works when w = 8|16|32.
  * @param k Number of data devices
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
@@ -294,6 +283,8 @@ void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
                              int *src_ids, int dest_id,
                              char **data_ptrs, char **coding_ptrs, int size, int packetsize);
 
+/** executes the schedule on w*packetsize worth of bytes from each device.  ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
+*/
 void jerasure_do_scheduled_operations(char **ptrs, int **schedule, int packetsize);
 
 /* ------------------------------------------------------------ */
