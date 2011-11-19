@@ -233,7 +233,7 @@ turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ jus
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}
-\hypertarget{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}{
+frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\-\_\-to\-\_\-schedule. \hypertarget{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}}
 \index{jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}!jerasure.c@{jerasure.\-c}}
 \subsubsection[{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-free\-\_\-schedule\-\_\-cache (
@@ -244,7 +244,7 @@ turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ jus
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}
-
+rees a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedule\-\_\-cache. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -264,7 +264,7 @@ turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ jus
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ac4c2ec8a0b51756f7ebb58edff76db0d}
-
+precalcalculate all the schedule for the given distribution bitmatrix. \-M must equal 2. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -579,7 +579,7 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}
-
+turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. \-This is the optimization explained in the original \-Liberation code paper. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
