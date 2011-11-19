@@ -398,8 +398,14 @@ int *jerasure_matrix_multiply(int *m1, int *m2, int r1, int c1, int r2, int c2, 
   When jerasure_get_stats() is called, it resets its values.
  */
 
-/**
- * \todo fix
+/**  fills in a vector of three doubles:
+ *      fill_in[0] is the number of bytes that have been XOR'd
+ *      fill_in[1] is the number of bytes that have been copied
+ *      fill_in[2] is the number of bytes that have been multiplied by a constant in GF(2^w)
+ * @param fill_in vector of three doubles to be filled
+ * @code
+ * jerasure_get_stats(); // reset all values
+ * @endcode
  */
 void jerasure_get_stats(double *fill_in);
 
