@@ -200,7 +200,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><p class="startdd">formula </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd><p class="startdd">formula </p>
 <p class="enddd">fix </p>
 </dd></dl>
 
@@ -282,7 +282,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -358,7 +358,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd><p class="startdd">formulas </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd><p class="startdd">formulas </p>
 <p class="enddd">fix </p>
 </dd></dl>
 
@@ -407,7 +407,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -444,11 +444,12 @@ Functions</h2></td></tr>
 <p>executes the schedule on w*packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramname">schedule</td><td>Array of schedule operations. If there are m operations, then schedule[m][0] = -1. </td></tr>
     <tr><td class="paramname">packetsize</td><td>The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -540,7 +541,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -559,7 +560,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">schedule</td><td>Array of schedule operations. If there are m operations, then schedule[m][0] = -1. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -601,7 +607,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -677,7 +683,14 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>fix </dd></dl>
+<p>fills in a vector of three doubles: fill_in[0] is the number of bytes that have been XOR'd, fill_in[1] is the number of bytes that have been copied, fill_in[2] is the number of bytes that have been multiplied by a constant in <img class="formulaInl" alt="$GF(2^w)$" src="form_0.png"/> </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fill_in</td><td>vector of three doubles to be filled <div class="fragment"><pre class="fragment"> <a class="code" href="jerasure_8c.html#ab579e73d367c8db28bf75ee75c1cf17f">jerasure_get_stats</a>(); <span class="comment">// reset all values</span>
+</pre></div> </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -756,7 +769,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -823,7 +836,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -890,7 +903,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -956,7 +969,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1111,7 +1124,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1180,7 +1193,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1244,7 +1257,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1340,7 +1353,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1387,7 +1400,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1467,7 +1480,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1555,7 +1568,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><p class="startdd">formula </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><p class="startdd">formula </p>
 <p class="enddd">fix </p>
 </dd></dl>
 
@@ -1633,7 +1646,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>fix </dd></dl>
 
 </div>
 </div>
@@ -1705,7 +1718,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 16:18:22 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 17:06:27 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

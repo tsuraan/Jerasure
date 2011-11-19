@@ -123,7 +123,7 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000010}{\-Todo}]formula 
+\item[\hyperlink{todo__todo000009}{\-Todo}]formula 
 
 fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}{
@@ -157,7 +157,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000017}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000016}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a99834efc875053378999f3a44b29defb}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}}
 \index{jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}!jerasure.c@{jerasure.\-c}}
@@ -192,7 +192,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000008}{\-Todo}]formulas 
+\item[\hyperlink{todo__todo000007}{\-Todo}]formulas 
 
 fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_aaa052851dd4e60941d8ca83159803a4f}{
@@ -215,7 +215,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000006}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000005}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}}
 \index{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}!jerasure.c@{jerasure.\-c}}
@@ -229,11 +229,13 @@ fix \end{DoxyRefDesc}
 \label{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}
 executes the schedule on w$\ast$packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
 \begin{DoxyParams}{\-Parameters}
+{\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
+\hline
 {\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000018}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000017}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
 \index{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
@@ -280,7 +282,7 @@ allocates and returns erased from erasures.
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000015}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000014}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-free\-\_\-schedule@{jerasure\-\_\-free\-\_\-schedule}}
 \index{jerasure\-\_\-free\-\_\-schedule@{jerasure\-\_\-free\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
@@ -290,8 +292,11 @@ allocates and returns erased from erasures.
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}
-frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\-\_\-to\-\_\-schedule. \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000004}{\-Todo}]fix \end{DoxyRefDesc}
+frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\-\_\-to\-\_\-schedule. 
+\begin{DoxyParams}{\-Parameters}
+{\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}}
 \index{jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}!jerasure.c@{jerasure.\-c}}
@@ -311,7 +316,7 @@ rees a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedule
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000005}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000004}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ac4c2ec8a0b51756f7ebb58edff76db0d}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-generate\-\_\-schedule\-\_\-cache@{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}}
 \index{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache@{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}!jerasure.c@{jerasure.\-c}}
@@ -349,8 +354,15 @@ fix \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}
-\begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000024}{\-Todo}]fix \end{DoxyRefDesc}
+fills in a vector of three doubles\-: fill\-\_\-in\mbox{[}0\mbox{]} is the number of bytes that have been \-X\-O\-R'd, fill\-\_\-in\mbox{[}1\mbox{]} is the number of bytes that have been copied, fill\-\_\-in\mbox{[}2\mbox{]} is the number of bytes that have been multiplied by a constant in $GF(2^w)$ 
+\begin{DoxyParams}{\-Parameters}
+{\em fill\-\_\-in} & vector of three doubles to be filled 
+\begin{DoxyCode}
+ jerasure_get_stats(); // reset all values
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_a846d044f23cb83c703bfa71569d3b172}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invert\-\_\-bitmatrix@{jerasure\-\_\-invert\-\_\-bitmatrix}}
 \index{jerasure\-\_\-invert\-\_\-bitmatrix@{jerasure\-\_\-invert\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -380,7 +392,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000019}{\-Todo}]\end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000018}{\-Todo}]\end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}}
 \index{jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -408,7 +420,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000020}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000019}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}}
 \index{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -436,7 +448,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000014}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000013}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_aa4166dae3d47c8734473aaa41b1ab9c4}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-make\-\_\-decoding\-\_\-matrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}}
 \index{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
@@ -462,7 +474,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000013}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000012}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-decode@{jerasure\-\_\-matrix\-\_\-decode}}
 \index{jerasure\-\_\-matrix\-\_\-decode@{jerasure\-\_\-matrix\-\_\-decode}!jerasure.c@{jerasure.\-c}}
@@ -523,7 +535,7 @@ only works when w = 8$|$16$|$32.
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000016}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000015}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a754e34d11221cab5e66841576583cd8f}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}}
 \index{jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}!jerasure.c@{jerasure.\-c}}
@@ -555,7 +567,7 @@ only works when w = 8$|$16$|$32.
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000007}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000006}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a2f092437db38d3078058679634dcd27b}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}}
 \index{jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}!jerasure.c@{jerasure.\-c}}
@@ -577,7 +589,7 @@ only works when w = 8$|$16$|$32.
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000023}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000022}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}}
 \index{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -623,7 +635,7 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000022}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000021}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a82af32a83686762b8d3333707cfad155}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}}
 \index{jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
@@ -644,7 +656,7 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000021}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000020}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}}
 \index{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}!jerasure.c@{jerasure.\-c}}
@@ -676,7 +688,7 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000012}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000011}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}}
 \index{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}!jerasure.c@{jerasure.\-c}}
@@ -711,7 +723,7 @@ generates the schedule on the fly.
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000011}{\-Todo}]formula 
+\item[\hyperlink{todo__todo000010}{\-Todo}]formula 
 
 fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}{
@@ -748,7 +760,7 @@ fix \end{DoxyRefDesc}
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000009}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000008}{\-Todo}]fix \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
 \index{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
