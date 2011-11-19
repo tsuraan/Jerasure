@@ -40,8 +40,6 @@ plank@cs.utk.edu
 /* ------------------------------------------------------------ */
 /* In all of the routines below:
 
-   w = Word size
-
    data_ptrs = An array of k pointers to data which is size bytes.  
                Size must be a multiple of sizeof(long).
                Pointers must also be longword aligned.
@@ -146,6 +144,7 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -154,6 +153,7 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_schedule_encode(int k, int m, int w, int **schedule,
                                   char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -198,6 +198,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 int jerasure_matrix_decode(int k, int m, int w, 
                           int *matrix, int row_k_ones, int *erasures,
@@ -207,6 +208,7 @@ int jerasure_matrix_decode(int k, int m, int w,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 int jerasure_bitmatrix_decode(int k, int m, int w, 
                             int *bitmatrix, int row_k_ones, int *erasures,
@@ -216,6 +218,7 @@ int jerasure_bitmatrix_decode(int k, int m, int w,
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 int jerasure_schedule_decode_lazy(int k, int m, int w, int *bitmatrix, int *erasures,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize,
@@ -269,6 +272,7 @@ int *jerasure_erasures_to_erased(int k, int m, int *erasures);
 /**
  * @param k Number of data devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
                           int *src_ids, int dest_id,
@@ -277,6 +281,7 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
 /**
  * @param k Number of data devices
  * @param w Word size
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
                              int *src_ids, int dest_id,
