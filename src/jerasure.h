@@ -39,11 +39,7 @@ plank@cs.utk.edu
 
 /* ------------------------------------------------------------ */
 /* In all of the routines below:
-
-   data_ptrs = An array of k pointers to data which is size bytes.  
-               Size must be a multiple of sizeof(long).
-               Pointers must also be longword aligned.
- 
+    
    coding_ptrs = An array of m pointers to coding data which is size bytes.
 
    packetsize = The size of a coding block with bitmatrix coding. 
@@ -138,6 +134,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
  * @param m Number of coding devices
  * @param w Word size
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
+ * @param coding_ptrs Array of m pointers to coding data which is size bytes
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
