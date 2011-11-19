@@ -113,6 +113,8 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \hline
 {\em w} & \-Word size \\
 \hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
 \end{DoxyParams}
@@ -138,6 +140,8 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 {\em k} & \-Number of data devices \\
 \hline
 {\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
@@ -166,6 +170,8 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \hline
 {\em w} & \-Word size \\
 \hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
 \end{DoxyParams}
@@ -185,6 +191,8 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}}
@@ -192,12 +200,12 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \subsubsection[{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-do\-\_\-scheduled\-\_\-operations (
 \begin{DoxyParamCaption}
 \item[{char $\ast$$\ast$}]{ptrs, }
-\item[{int $\ast$$\ast$}]{operations, }
+\item[{int $\ast$$\ast$}]{schedule, }
 \item[{int}]{packetsize}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}
-\hypertarget{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}{
+executes the schedule on w$\ast$packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. \hypertarget{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
 \index{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.c@{jerasure.\-c}}
 \subsubsection[{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule (
@@ -231,7 +239,7 @@ turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ jus
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}
-
+allocates and returns erased from erasures. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -415,13 +423,15 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}
-
+only works when w = 8$|$16$|$32. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
 {\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
@@ -442,11 +452,13 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ae64314475c098664deb5eb2b9f1d41aa}
-
+only works when w = 8$|$16$|$32. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
 {\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
@@ -473,6 +485,10 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 {\em m} & \-Number of coding devices \\
 \hline
 {\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a2f092437db38d3078058679634dcd27b}{
@@ -577,6 +593,8 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 {\em w} & \-Word size \\
 \hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}}
@@ -596,13 +614,15 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}
-
+generates the schedule on the fly. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
 {\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
@@ -630,6 +650,8 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 {\em m} & \-Number of coding devices \\
 \hline
 {\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
 \hline
 {\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline

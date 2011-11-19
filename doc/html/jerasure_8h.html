@@ -192,6 +192,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -269,6 +270,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -341,6 +343,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -387,6 +390,7 @@ Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
   </table>
   </dd>
 </dl>
@@ -423,6 +427,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>executes the schedule on w*packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. </p>
 
 </div>
 </div>
@@ -504,6 +509,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>allocates and returns erased from erasures. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -984,11 +990,13 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>only works when w = 8|16|32. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -1056,10 +1064,12 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>only works when w = 8|16|32. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -1126,6 +1136,8 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -1404,6 +1416,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1482,11 +1495,13 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>generates the schedule on the fly. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -1559,6 +1574,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
     <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">data_ptrs</td><td>Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned. </td></tr>
     <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
@@ -1632,7 +1648,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:18:01 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 15:33:05 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
