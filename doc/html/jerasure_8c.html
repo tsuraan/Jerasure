@@ -225,6 +225,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -300,6 +302,8 @@ Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -370,6 +374,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -495,6 +501,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -647,6 +654,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -739,6 +747,12 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -799,6 +813,12 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -860,6 +880,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -924,6 +945,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -1000,6 +1022,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -1069,6 +1093,8 @@ Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -1133,6 +1159,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -1193,6 +1220,12 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1237,6 +1270,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -1251,7 +1285,7 @@ Functions</h2></td></tr>
           <td class="memname">void jerasure_print_bitmatrix </td>
           <td>(</td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
+          <td class="paramname"><em>matrix</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1279,6 +1313,12 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1290,7 +1330,7 @@ Functions</h2></td></tr>
           <td class="memname">void jerasure_print_matrix </td>
           <td>(</td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
+          <td class="paramname"><em>matrix</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1318,6 +1358,12 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1391,6 +1437,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -1473,6 +1520,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -1543,6 +1592,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
+    <tr><td class="paramname">coding_ptrs</td><td>Array of m pointers to coding data which is size bytes </td></tr>
   </table>
   </dd>
 </dl>
@@ -1590,6 +1641,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
     <tr><td class="paramname">m</td><td>Number of coding devices </td></tr>
+    <tr><td class="paramname">w</td><td>Word size </td></tr>
   </table>
   </dd>
 </dl>
@@ -1614,7 +1666,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 14:51:29 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 15:18:01 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

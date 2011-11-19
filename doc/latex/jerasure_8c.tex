@@ -111,6 +111,10 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}}
@@ -132,6 +136,10 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a99834efc875053378999f3a44b29defb}{
@@ -155,6 +163,10 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_aaa052851dd4e60941d8ca83159803a4f}{
@@ -204,6 +216,8 @@ turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ jus
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}{
@@ -270,6 +284,8 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-get\-\_\-stats@{jerasure\-\_\-get\-\_\-stats}}
@@ -303,6 +319,11 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_aa134c10efabbe8620ba8de7ebe37c0f5}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}}
 \index{jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -324,6 +345,11 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ac2ca8b6489e85f209a040a9038347189}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}}
 \index{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -344,6 +370,8 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_aa4166dae3d47c8734473aaa41b1ab9c4}{
@@ -366,6 +394,8 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}{
@@ -391,6 +421,10 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_ae64314475c098664deb5eb2b9f1d41aa}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-dotprod@{jerasure\-\_\-matrix\-\_\-dotprod}}
@@ -411,6 +445,10 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a754e34d11221cab5e66841576583cd8f}{
@@ -434,6 +472,8 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a2f092437db38d3078058679634dcd27b}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}}
@@ -450,6 +490,11 @@ precalcalculate all the schedule for the given distribution bitmatrix. \-M must 
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a2f092437db38d3078058679634dcd27b}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}}
 \index{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -470,31 +515,43 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}}
 \index{jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
 \subsubsection[{jerasure\-\_\-print\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-print\-\_\-bitmatrix (
 \begin{DoxyParamCaption}
-\item[{int $\ast$}]{m, }
+\item[{int $\ast$}]{matrix, }
 \item[{int}]{rows, }
 \item[{int}]{cols, }
 \item[{int}]{w}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_a82af32a83686762b8d3333707cfad155}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}}
 \index{jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
 \subsubsection[{jerasure\-\_\-print\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-print\-\_\-matrix (
 \begin{DoxyParamCaption}
-\item[{int $\ast$}]{m, }
+\item[{int $\ast$}]{matrix, }
 \item[{int}]{rows, }
 \item[{int}]{cols, }
 \item[{int}]{w}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a82af32a83686762b8d3333707cfad155}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
 \hypertarget{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}}
 \index{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}!jerasure.c@{jerasure.\-c}}
@@ -517,6 +574,8 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
 \hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}{
@@ -543,6 +602,10 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-encode@{jerasure\-\_\-schedule\-\_\-encode}}
@@ -566,6 +629,10 @@ turns a m \-X k matrix in \-G\-F(2$^\wedge$w) into a wm \-X wk bitmatrix (in \-G
 \hline
 {\em m} & \-Number of coding devices \\
 \hline
+{\em w} & \-Word size \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
 \end{DoxyParams}
 \hypertarget{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
@@ -584,5 +651,7 @@ turns a bitmatrix into a schedule, but tries to use previous dot products to cal
 {\em k} & \-Number of data devices \\
 \hline
 {\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
 \hline
 \end{DoxyParams}
