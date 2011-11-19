@@ -74,7 +74,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><dl class="reflist">
 <dt><a class="anchor" id="_todo000012"></a>Global <a class="el" href="jerasure_8h.html#a1436fa741650a7cb75ecbd6e2cd6225b">jerasure_bitmatrix_decode</a>  (int k, int m, int w, int *bitmatrix, int row_k_ones, int *erasures, char **data_ptrs, char **coding_ptrs, int size, int packetsize)</dt>
-<dd><p class="startdd">formula </p>
+<dd><p class="startdd">return data </p>
+<p>formula </p>
 <p>fix </p>
 <p class="enddd">example code  </p>
 </dd>
@@ -99,11 +100,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000002"></a>Global <a class="el" href="jerasure_8h.html#a3a5d41811a6385a6d20230cb6d76b553">jerasure_dumb_bitmatrix_to_schedule</a>  (int k, int m, int w, int *bitmatrix)</dt>
-<dd><p class="startdd">formula </p>
+<dd><p class="startdd">return data </p>
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000017"></a>Global <a class="el" href="jerasure_8h.html#a5ed25b377aa00ab5abe44c6ba58935a5">jerasure_erasures_to_erased</a>  (int k, int m, int *erasures)</dt>
-<dd>usage example  </dd>
+<dd><p class="startdd">return data </p>
+<p class="enddd">usage example  </p>
+</dd>
 <dt><a class="anchor" id="_todo000005"></a>Global <a class="el" href="jerasure_8h.html#a124c9f3182a9f9117776a6b86da63201">jerasure_free_schedule</a>  (int **schedule)</dt>
 <dd>example code  </dd>
 <dt><a class="anchor" id="_todo000006"></a>Global <a class="el" href="jerasure_8h.html#adfc3cbe91ca6a418329eee7810887c57">jerasure_free_schedule_cache</a>  (int k, int m, int ***cache)</dt>
@@ -111,21 +114,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000004"></a>Global <a class="el" href="jerasure_8h.html#ac4c2ec8a0b51756f7ebb58edff76db0d">jerasure_generate_schedule_cache</a>  (int k, int m, int w, int *bitmatrix, int smart)</dt>
-<dd><p class="startdd">fix </p>
+<dd><p class="startdd">return data </p>
+<p>fix </p>
 <p class="enddd">example code  </p>
+</dd>
+<dt><a class="anchor" id="_todo000022"></a>Global <a class="el" href="jerasure_8h.html#a846d044f23cb83c703bfa71569d3b172">jerasure_invert_bitmatrix</a>  (int *mat, int *inv, int rows)</dt>
+<dd><p class="startdd">fix </p>
+<p class="enddd">return data  </p>
 </dd>
 <dt><a class="anchor" id="_todo000021"></a>Global <a class="el" href="jerasure_8h.html#aa134c10efabbe8620ba8de7ebe37c0f5">jerasure_invert_matrix</a>  (int *mat, int *inv, int rows, int w)</dt>
 <dd><p class="startdd">fix </p>
+<p>return data </p>
 <p class="enddd">example code  </p>
 </dd>
-<dt><a class="anchor" id="_todo000022"></a>Global <a class="el" href="jerasure_8h.html#ac2ca8b6489e85f209a040a9038347189">jerasure_invertible_matrix</a>  (int *mat, int rows, int w)</dt>
-<dd>fix  </dd>
+<dt><a class="anchor" id="_todo000024"></a>Global <a class="el" href="jerasure_8h.html#ae5140c0bccef55376dbd9aaed589a8ea">jerasure_invertible_bitmatrix</a>  (int *mat, int rows)</dt>
+<dd><p class="startdd">return data </p>
+<p class="enddd">fix  </p>
+</dd>
+<dt><a class="anchor" id="_todo000023"></a>Global <a class="el" href="jerasure_8h.html#ac2ca8b6489e85f209a040a9038347189">jerasure_invertible_matrix</a>  (int *mat, int rows, int w)</dt>
+<dd><p class="startdd">fix </p>
+<p class="enddd">return data  </p>
+</dd>
 <dt><a class="anchor" id="_todo000016"></a>Global <a class="el" href="jerasure_8h.html#ad1bb5971c4fdee7c4c50fb46d6ef9c2f">jerasure_make_decoding_bitmatrix</a>  (int k, int m, int w, int *matrix, int *erased, int *decoding_matrix, int *dm_ids)</dt>
 <dd><p class="startdd">fix </p>
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000015"></a>Global <a class="el" href="jerasure_8h.html#aa4166dae3d47c8734473aaa41b1ab9c4">jerasure_make_decoding_matrix</a>  (int k, int m, int w, int *matrix, int *erased, int *decoding_matrix, int *dm_ids)</dt>
 <dd><p class="startdd">fix </p>
+<p>return data </p>
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000011"></a>Global <a class="el" href="jerasure_8h.html#a0d1a29afe55b6f1d8b09a1df6994f4dc">jerasure_matrix_decode</a>  (int k, int m, int w, int *matrix, int row_k_ones, int *erasures, char **data_ptrs, char **coding_ptrs, int size)</dt>
@@ -138,24 +154,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </dd>
 <dt><a class="anchor" id="_todo000008"></a>Global <a class="el" href="jerasure_8h.html#a754e34d11221cab5e66841576583cd8f">jerasure_matrix_encode</a>  (int k, int m, int w, int *matrix, char **data_ptrs, char **coding_ptrs, int size)</dt>
 <dd>fix  </dd>
-<dt><a class="anchor" id="_todo000025"></a>Global <a class="el" href="jerasure_8h.html#a2f092437db38d3078058679634dcd27b">jerasure_matrix_multiply</a>  (int *m1, int *m2, int r1, int c1, int r2, int c2, int w)</dt>
-<dd>fix  </dd>
+<dt><a class="anchor" id="_todo000027"></a>Global <a class="el" href="jerasure_8h.html#a2f092437db38d3078058679634dcd27b">jerasure_matrix_multiply</a>  (int *m1, int *m2, int r1, int c1, int r2, int c2, int w)</dt>
+<dd><p class="startdd">fix </p>
+<p class="enddd">return data  </p>
+</dd>
 <dt><a class="anchor" id="_todo000001"></a>Global <a class="el" href="jerasure_8h.html#a45bbbfa1c3681a7be4bb2082984edbdd">jerasure_matrix_to_bitmatrix</a>  (int k, int m, int w, int *matrix)</dt>
-<dd>example code  </dd>
-<dt><a class="anchor" id="_todo000024"></a>Global <a class="el" href="jerasure_8h.html#afbee542c76e1cbad8195d4049fb774b4">jerasure_print_bitmatrix</a>  (int *matrix, int rows, int cols, int w)</dt>
+<dd><p class="startdd">return data </p>
+<p class="enddd">example code  </p>
+</dd>
+<dt><a class="anchor" id="_todo000026"></a>Global <a class="el" href="jerasure_8h.html#afbee542c76e1cbad8195d4049fb774b4">jerasure_print_bitmatrix</a>  (int *matrix, int rows, int cols, int w)</dt>
 <dd>fix  </dd>
-<dt><a class="anchor" id="_todo000024"></a>Global <a class="el" href="jerasure_8h.html#afbee542c76e1cbad8195d4049fb774b4">jerasure_print_bitmatrix</a>  (int *matrix, int rows, int cols, int w)</dt>
+<dt><a class="anchor" id="_todo000026"></a>Global <a class="el" href="jerasure_8h.html#afbee542c76e1cbad8195d4049fb774b4">jerasure_print_bitmatrix</a>  (int *matrix, int rows, int cols, int w)</dt>
 <dd>fix  </dd>
-<dt><a class="anchor" id="_todo000023"></a>Global <a class="el" href="jerasure_8h.html#ac5eecf02eef457cfb4870f990ed2a5fe">jerasure_print_matrix</a>  (int *matrix, int rows, int cols, int w)</dt>
+<dt><a class="anchor" id="_todo000025"></a>Global <a class="el" href="jerasure_8h.html#ac5eecf02eef457cfb4870f990ed2a5fe">jerasure_print_matrix</a>  (int *matrix, int rows, int cols, int w)</dt>
 <dd>fix  </dd>
-<dt><a class="anchor" id="_todo000023"></a>Global <a class="el" href="jerasure_8h.html#ac5eecf02eef457cfb4870f990ed2a5fe">jerasure_print_matrix</a>  (int *matrix, int rows, int cols, int w)</dt>
+<dt><a class="anchor" id="_todo000025"></a>Global <a class="el" href="jerasure_8h.html#ac5eecf02eef457cfb4870f990ed2a5fe">jerasure_print_matrix</a>  (int *matrix, int rows, int cols, int w)</dt>
 <dd>fix  </dd>
 <dt><a class="anchor" id="_todo000014"></a>Global <a class="el" href="jerasure_8h.html#ad645cd0b56d0ffcd0ffc2d17b17cdec0">jerasure_schedule_decode_cache</a>  (int k, int m, int w, int ***scache, int *erasures, char **data_ptrs, char **coding_ptrs, int size, int packetsize)</dt>
-<dd><p class="startdd">fix </p>
+<dd><p class="startdd">return data </p>
+<p>fix </p>
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000013"></a>Global <a class="el" href="jerasure_8h.html#aa2a3886ab7cb52edfa22739843d0548e">jerasure_schedule_decode_lazy</a>  (int k, int m, int w, int *bitmatrix, int *erasures, char **data_ptrs, char **coding_ptrs, int size, int packetsize, int smart)</dt>
-<dd><p class="startdd">formula </p>
+<dd><p class="startdd">return data </p>
+<p>formula </p>
 <p>fix </p>
 <p class="enddd">example code  </p>
 </dd>
@@ -164,7 +186,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p class="enddd">example code  </p>
 </dd>
 <dt><a class="anchor" id="_todo000003"></a>Global <a class="el" href="jerasure_8h.html#a419871f932d9c6ada171eab27ef220d6">jerasure_smart_bitmatrix_to_schedule</a>  (int k, int m, int w, int *bitmatrix)</dt>
-<dd><p class="startdd">formula </p>
+<dd><p class="startdd">return data </p>
 <p class="enddd">example code </p>
 </dd>
 </dl>
@@ -186,7 +208,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 19:28:35 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 19 2011 19:42:56 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
