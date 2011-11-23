@@ -1,0 +1,871 @@
+\hypertarget{jerasure_8h}{
+\section{jerasure.h \-File \-Reference}
+\label{jerasure_8h}\index{jerasure.\-h@{jerasure.\-h}}
+}
+{\ttfamily \#include \char`\"{}galois.\-h\char`\"{}}\*
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \hyperlink{jerasure_8h_a45bbbfa1c3681a7be4bb2082984edbdd}{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix} (int k, int m, int w, int $\ast$matrix)
+\item 
+int $\ast$$\ast$ \hyperlink{jerasure_8h_a3a5d41811a6385a6d20230cb6d76b553}{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule} (int k, int m, int w, int $\ast$bitmatrix)
+\item 
+int $\ast$$\ast$ \hyperlink{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule} (int k, int m, int w, int $\ast$bitmatrix)
+\item 
+int $\ast$$\ast$$\ast$ \hyperlink{jerasure_8h_ac4c2ec8a0b51756f7ebb58edff76db0d}{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache} (int k, int m, int w, int $\ast$bitmatrix, int smart)
+\item 
+void \hyperlink{jerasure_8h_a124c9f3182a9f9117776a6b86da63201}{jerasure\-\_\-free\-\_\-schedule} (int $\ast$$\ast$schedule)
+\item 
+void \hyperlink{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}{jerasure\-\_\-free\-\_\-schedule\-\_\-cache} (int k, int m, int $\ast$$\ast$$\ast$cache)
+\item 
+void \hyperlink{jerasure_8h_aaa052851dd4e60941d8ca83159803a4f}{jerasure\-\_\-do\-\_\-parity} (int k, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$parity\-\_\-ptr, int size)
+\item 
+void \hyperlink{jerasure_8h_a754e34d11221cab5e66841576583cd8f}{jerasure\-\_\-matrix\-\_\-encode} (int k, int m, int w, int $\ast$matrix, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+void \hyperlink{jerasure_8h_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bitmatrix\-\_\-encode} (int k, int m, int w, int $\ast$bitmatrix, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+void \hyperlink{jerasure_8h_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}{jerasure\-\_\-schedule\-\_\-encode} (int k, int m, int w, int $\ast$$\ast$schedule, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+int \hyperlink{jerasure_8h_a0d1a29afe55b6f1d8b09a1df6994f4dc}{jerasure\-\_\-matrix\-\_\-decode} (int k, int m, int w, int $\ast$matrix, int row\-\_\-k\-\_\-ones, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+int \hyperlink{jerasure_8h_a1436fa741650a7cb75ecbd6e2cd6225b}{jerasure\-\_\-bitmatrix\-\_\-decode} (int k, int m, int w, int $\ast$bitmatrix, int row\-\_\-k\-\_\-ones, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+int \hyperlink{jerasure_8h_aa2a3886ab7cb52edfa22739843d0548e}{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy} (int k, int m, int w, int $\ast$bitmatrix, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize, int smart)
+\item 
+int \hyperlink{jerasure_8h_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache} (int k, int m, int w, int $\ast$$\ast$$\ast$scache, int $\ast$erasures, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+int \hyperlink{jerasure_8h_aa4166dae3d47c8734473aaa41b1ab9c4}{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix} (int k, int m, int w, int $\ast$matrix, int $\ast$erased, int $\ast$decoding\-\_\-matrix, int $\ast$dm\-\_\-ids)
+\item 
+int \hyperlink{jerasure_8h_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix} (int k, int m, int w, int $\ast$matrix, int $\ast$erased, int $\ast$decoding\-\_\-matrix, int $\ast$dm\-\_\-ids)
+\item 
+int $\ast$ \hyperlink{jerasure_8h_a5ed25b377aa00ab5abe44c6ba58935a5}{jerasure\-\_\-erasures\-\_\-to\-\_\-erased} (int k, int m, int $\ast$erasures)
+\item 
+void \hyperlink{jerasure_8h_ae64314475c098664deb5eb2b9f1d41aa}{jerasure\-\_\-matrix\-\_\-dotprod} (int k, int w, int $\ast$matrix\-\_\-row, int $\ast$src\-\_\-ids, int dest\-\_\-id, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size)
+\item 
+void \hyperlink{jerasure_8h_a45f9cda66c9b596b8ec2be5545b55b1a}{jerasure\-\_\-bitmatrix\-\_\-dotprod} (int k, int w, int $\ast$bitmatrix\-\_\-row, int $\ast$src\-\_\-ids, int dest\-\_\-id, char $\ast$$\ast$data\-\_\-ptrs, char $\ast$$\ast$coding\-\_\-ptrs, int size, int packetsize)
+\item 
+void \hyperlink{jerasure_8h_a9cd08311ca1c9e541ea05bc5ef29c160}{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations} (char $\ast$$\ast$ptrs, int $\ast$$\ast$schedule, int packetsize)
+\item 
+int \hyperlink{jerasure_8h_aa134c10efabbe8620ba8de7ebe37c0f5}{jerasure\-\_\-invert\-\_\-matrix} (int $\ast$mat, int $\ast$inv, int rows, int w)
+\item 
+int \hyperlink{jerasure_8h_a846d044f23cb83c703bfa71569d3b172}{jerasure\-\_\-invert\-\_\-bitmatrix} (int $\ast$mat, int $\ast$inv, int rows)
+\item 
+int \hyperlink{jerasure_8h_ac2ca8b6489e85f209a040a9038347189}{jerasure\-\_\-invertible\-\_\-matrix} (int $\ast$mat, int rows, int w)
+\item 
+int \hyperlink{jerasure_8h_ae5140c0bccef55376dbd9aaed589a8ea}{jerasure\-\_\-invertible\-\_\-bitmatrix} (int $\ast$mat, int rows)
+\item 
+void \hyperlink{jerasure_8h_ac5eecf02eef457cfb4870f990ed2a5fe}{jerasure\-\_\-print\-\_\-matrix} (int $\ast$matrix, int rows, int cols, int w)
+\item 
+void \hyperlink{jerasure_8h_afbee542c76e1cbad8195d4049fb774b4}{jerasure\-\_\-print\-\_\-bitmatrix} (int $\ast$matrix, int rows, int cols, int w)
+\item 
+int $\ast$ \hyperlink{jerasure_8h_a2f092437db38d3078058679634dcd27b}{jerasure\-\_\-matrix\-\_\-multiply} (int $\ast$m1, int $\ast$m2, int r1, int c1, int r2, int c2, int w)
+\item 
+void \hyperlink{jerasure_8h_ab579e73d367c8db28bf75ee75c1cf17f}{jerasure\-\_\-get\-\_\-stats} (double $\ast$fill\-\_\-in)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{jerasure_8h_a1436fa741650a7cb75ecbd6e2cd6225b}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-bitmatrix\-\_\-decode@{jerasure\-\_\-bitmatrix\-\_\-decode}}
+\index{jerasure\-\_\-bitmatrix\-\_\-decode@{jerasure\-\_\-bitmatrix\-\_\-decode}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-bitmatrix\-\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-bitmatrix\-\_\-decode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{int}]{row\-\_\-k\-\_\-ones, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a1436fa741650a7cb75ecbd6e2cd6225b}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
+\hline
+{\em erasures} & \-Array of id's of erased devices. \-Id's are integers between 0 and k+m-\/1. \-Id's 0 to k-\/1 are id's of data devices. \-Id's k to k+m-\/1 are id's of coding devices\-: \-Coding device id = id-\/k. \-If there are e erasures, erasures\mbox{[}e\mbox{]} = -\/1. \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000012}{\-Todo}]return data 
+
+formula 
+
+fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a45f9cda66c9b596b8ec2be5545b55b1a}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}}
+\index{jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-bitmatrix\-\_\-dotprod}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-bitmatrix\-\_\-dotprod (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix\-\_\-row, }
+\item[{int $\ast$}]{src\-\_\-ids, }
+\item[{int}]{dest\-\_\-id, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a45f9cda66c9b596b8ec2be5545b55b1a}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000019}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a99834efc875053378999f3a44b29defb}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}}
+\index{jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-bitmatrix\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-bitmatrix\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a99834efc875053378999f3a44b29defb}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000009}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_aaa052851dd4e60941d8ca83159803a4f}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-do\-\_\-parity@{jerasure\-\_\-do\-\_\-parity}}
+\index{jerasure\-\_\-do\-\_\-parity@{jerasure\-\_\-do\-\_\-parity}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-do\-\_\-parity}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-do\-\_\-parity (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$}]{parity\-\_\-ptr, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_aaa052851dd4e60941d8ca83159803a4f}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000007}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a9cd08311ca1c9e541ea05bc5ef29c160}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}}
+\index{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations@{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-do\-\_\-scheduled\-\_\-operations}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-do\-\_\-scheduled\-\_\-operations (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{ptrs, }
+\item[{int $\ast$$\ast$}]{schedule, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a9cd08311ca1c9e541ea05bc5ef29c160}
+executes the schedule on w$\ast$packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
+\begin{DoxyParams}{\-Parameters}
+{\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000020}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a3a5d41811a6385a6d20230cb6d76b553}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
+\index{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a3a5d41811a6385a6d20230cb6d76b553}
+turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ just schedule the dot products defined by each row of the matrix.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000002}{\-Todo}]return data 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a5ed25b377aa00ab5abe44c6ba58935a5}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-erasures\-\_\-to\-\_\-erased@{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}}
+\index{jerasure\-\_\-erasures\-\_\-to\-\_\-erased@{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ jerasure\-\_\-erasures\-\_\-to\-\_\-erased (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int $\ast$}]{erasures}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a5ed25b377aa00ab5abe44c6ba58935a5}
+allocates and returns erased from erasures. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em erasures} & \-Array of id's of erased devices. \-Id's are integers between 0 and k+m-\/1. \-Id's 0 to k-\/1 are id's of data devices. \-Id's k to k+m-\/1 are id's of coding devices\-: \-Coding device id = id-\/k. \-If there are e erasures, erasures\mbox{[}e\mbox{]} = -\/1. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000017}{\-Todo}]return data 
+
+usage example \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a124c9f3182a9f9117776a6b86da63201}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-free\-\_\-schedule@{jerasure\-\_\-free\-\_\-schedule}}
+\index{jerasure\-\_\-free\-\_\-schedule@{jerasure\-\_\-free\-\_\-schedule}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-free\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-free\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{int $\ast$$\ast$}]{schedule}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a124c9f3182a9f9117776a6b86da63201}
+frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\-\_\-to\-\_\-schedule. 
+\begin{DoxyParams}{\-Parameters}
+{\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000005}{\-Todo}]example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}}
+\index{jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-free\-\_\-schedule\-\_\-cache (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int $\ast$$\ast$$\ast$}]{cache}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}
+reads a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedule\-\_\-cache. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_ac4c2ec8a0b51756f7ebb58edff76db0d}{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache(int k, int m, int w, int $\ast$bitmatrix, int smart)} 
+\end{DoxySeeAlso}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000006}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ac4c2ec8a0b51756f7ebb58edff76db0d}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-generate\-\_\-schedule\-\_\-cache@{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}}
+\index{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache@{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$$\ast$ jerasure\-\_\-generate\-\_\-schedule\-\_\-cache (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{int}]{smart}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ac4c2ec8a0b51756f7ebb58edff76db0d}
+precalcalculate all the schedule for the given distribution bitmatrix. \-M must equal 2. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}{jerasure\-\_\-free\-\_\-schedule\-\_\-cache(int k, int m, int $\ast$$\ast$$\ast$cache)} 
+\end{DoxySeeAlso}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000004}{\-Todo}]return data 
+
+fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ab579e73d367c8db28bf75ee75c1cf17f}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-get\-\_\-stats@{jerasure\-\_\-get\-\_\-stats}}
+\index{jerasure\-\_\-get\-\_\-stats@{jerasure\-\_\-get\-\_\-stats}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-get\-\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-get\-\_\-stats (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{fill\-\_\-in}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ab579e73d367c8db28bf75ee75c1cf17f}
+fills in a vector of three doubles\-: fill\-\_\-in\mbox{[}0\mbox{]} is the number of bytes that have been \-X\-O\-R'd, fill\-\_\-in\mbox{[}1\mbox{]} is the number of bytes that have been copied, fill\-\_\-in\mbox{[}2\mbox{]} is the number of bytes that have been multiplied by a constant in $GF(2^w)$ 
+\begin{DoxyParams}{\-Parameters}
+{\em fill\-\_\-in} & vector of three doubles to be filled 
+\begin{DoxyCode}
+ jerasure_get_stats(); // reset all values
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
+\hypertarget{jerasure_8h_a846d044f23cb83c703bfa71569d3b172}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-invert\-\_\-bitmatrix@{jerasure\-\_\-invert\-\_\-bitmatrix}}
+\index{jerasure\-\_\-invert\-\_\-bitmatrix@{jerasure\-\_\-invert\-\_\-bitmatrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-invert\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invert\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int $\ast$}]{inv, }
+\item[{int}]{rows}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a846d044f23cb83c703bfa71569d3b172}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000022}{\-Todo}]fix 
+
+return data \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_aa134c10efabbe8620ba8de7ebe37c0f5}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-invert\-\_\-matrix@{jerasure\-\_\-invert\-\_\-matrix}}
+\index{jerasure\-\_\-invert\-\_\-matrix@{jerasure\-\_\-invert\-\_\-matrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-invert\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invert\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int $\ast$}]{inv, }
+\item[{int}]{rows, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_aa134c10efabbe8620ba8de7ebe37c0f5}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000021}{\-Todo}]fix 
+
+return data 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ae5140c0bccef55376dbd9aaed589a8ea}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}}
+\index{jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-invertible\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invertible\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int}]{rows}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ae5140c0bccef55376dbd9aaed589a8ea}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000024}{\-Todo}]return data 
+
+fix \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ac2ca8b6489e85f209a040a9038347189}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-invertible\-\_\-matrix@{jerasure\-\_\-invertible\-\_\-matrix}}
+\index{jerasure\-\_\-invertible\-\_\-matrix@{jerasure\-\_\-invertible\-\_\-matrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-invertible\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-invertible\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{mat, }
+\item[{int}]{rows, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ac2ca8b6489e85f209a040a9038347189}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000023}{\-Todo}]fix 
+
+return data \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}}
+\index{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{int $\ast$}]{erased, }
+\item[{int $\ast$}]{decoding\-\_\-matrix, }
+\item[{int $\ast$}]{dm\-\_\-ids}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}
+make the k$\ast$k decoding matrix (or wk$\ast$wk bitmatrix) by taking the rows corresponding to k non-\/erased devices of the distribution matrix, and then inverting that matrix. \-You should already have allocated the decoding matrix and dm\-\_\-ids, which is a vector of k integers. \-These will be filled in appropriately. dm\-\_\-ids\mbox{[}i\mbox{]} is the id of element i of the survivors vector. \-I.\-e. row i of the decoding matrix times dm\-\_\-ids equals data drive i. \-Both of these routines take \char`\"{}erased\char`\"{} instead of \char`\"{}erasures\char`\"{}. \-Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000016}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_aa4166dae3d47c8734473aaa41b1ab9c4}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-make\-\_\-decoding\-\_\-matrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}}
+\index{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-make\-\_\-decoding\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-make\-\_\-decoding\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{int $\ast$}]{erased, }
+\item[{int $\ast$}]{decoding\-\_\-matrix, }
+\item[{int $\ast$}]{dm\-\_\-ids}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_aa4166dae3d47c8734473aaa41b1ab9c4}
+make the k$\ast$k decoding matrix (or wk$\ast$wk bitmatrix) by taking the rows corresponding to k non-\/erased devices of the distribution matrix, and then inverting that matrix. \-You should already have allocated the decoding matrix and dm\-\_\-ids, which is a vector of k integers. \-These will be filled in appropriately. dm\-\_\-ids\mbox{[}i\mbox{]} is the id of element i of the survivors vector. \-I.\-e. row i of the decoding matrix times dm\-\_\-ids equals data drive i. \-Both of these routines take \char`\"{}erased\char`\"{} instead of \char`\"{}erasures\char`\"{}. \-Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000015}{\-Todo}]fix 
+
+return data 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a0d1a29afe55b6f1d8b09a1df6994f4dc}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-matrix\-\_\-decode@{jerasure\-\_\-matrix\-\_\-decode}}
+\index{jerasure\-\_\-matrix\-\_\-decode@{jerasure\-\_\-matrix\-\_\-decode}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-matrix\-\_\-decode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{int}]{row\-\_\-k\-\_\-ones, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a0d1a29afe55b6f1d8b09a1df6994f4dc}
+only works when w = 8$|$16$|$32. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+\hline
+{\em erasures} & \-Array of id's of erased devices. \-Id's are integers between 0 and k+m-\/1. \-Id's 0 to k-\/1 are id's of data devices. \-Id's k to k+m-\/1 are id's of coding devices\-: \-Coding device id = id-\/k. \-If there are e erasures, erasures\mbox{[}e\mbox{]} = -\/1. \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs/coding\-\_\-ptrs in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 if it worked, -\/1 if it failed 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000011}{\-Todo}]fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ae64314475c098664deb5eb2b9f1d41aa}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-matrix\-\_\-dotprod@{jerasure\-\_\-matrix\-\_\-dotprod}}
+\index{jerasure\-\_\-matrix\-\_\-dotprod@{jerasure\-\_\-matrix\-\_\-dotprod}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-dotprod}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-matrix\-\_\-dotprod (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix\-\_\-row, }
+\item[{int $\ast$}]{src\-\_\-ids, }
+\item[{int}]{dest\-\_\-id, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ae64314475c098664deb5eb2b9f1d41aa}
+only works when w = 8$|$16$|$32. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000018}{\-Todo}]fix 
+
+sample code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a754e34d11221cab5e66841576583cd8f}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}}
+\index{jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-matrix\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a754e34d11221cab5e66841576583cd8f}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000008}{\-Todo}]fix \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a2f092437db38d3078058679634dcd27b}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}}
+\index{jerasure\-\_\-matrix\-\_\-multiply@{jerasure\-\_\-matrix\-\_\-multiply}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-multiply}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ jerasure\-\_\-matrix\-\_\-multiply (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{m1, }
+\item[{int $\ast$}]{m2, }
+\item[{int}]{r1, }
+\item[{int}]{c1, }
+\item[{int}]{r2, }
+\item[{int}]{c2, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a2f092437db38d3078058679634dcd27b}
+
+\begin{DoxyParams}{\-Parameters}
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000027}{\-Todo}]fix 
+
+return data \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a45bbbfa1c3681a7be4bb2082984edbdd}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}}
+\index{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{matrix}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a45bbbfa1c3681a7be4bb2082984edbdd}
+turns a m \-X k matrix in $GF(2^w)$ into a wm \-X wk bitmatrix (in $GF(2)$). \-This is explained in the \-Cauchy \-Reed-\/\-Solomon coding paper.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000001}{\-Todo}]return data 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_afbee542c76e1cbad8195d4049fb774b4}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}}
+\index{jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-print\-\_\-bitmatrix}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-print\-\_\-bitmatrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{matrix, }
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_afbee542c76e1cbad8195d4049fb774b4}
+
+\begin{DoxyParams}{\-Parameters}
+{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+\hline
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000026}{\-Todo}]fix \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ac5eecf02eef457cfb4870f990ed2a5fe}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}}
+\index{jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-print\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-print\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{matrix, }
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ac5eecf02eef457cfb4870f990ed2a5fe}
+
+\begin{DoxyParams}{\-Parameters}
+{\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
+\hline
+{\em w} & \-Word size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000025}{\-Todo}]fix \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}}
+\index{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-schedule\-\_\-decode\-\_\-cache (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$$\ast$$\ast$}]{scache, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_ad645cd0b56d0ffcd0ffc2d17b17cdec0}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em erasures} & \-Array of id's of erased devices. \-Id's are integers between 0 and k+m-\/1. \-Id's 0 to k-\/1 are id's of data devices. \-Id's k to k+m-\/1 are id's of coding devices\-: \-Coding device id = id-\/k. \-If there are e erasures, erasures\mbox{[}e\mbox{]} = -\/1. \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000014}{\-Todo}]return data 
+
+fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_aa2a3886ab7cb52edfa22739843d0548e}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}}
+\index{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy@{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy}]{\setlength{\rightskip}{0pt plus 5cm}int jerasure\-\_\-schedule\-\_\-decode\-\_\-lazy (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix, }
+\item[{int $\ast$}]{erasures, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize, }
+\item[{int}]{smart}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_aa2a3886ab7cb52edfa22739843d0548e}
+generates the schedule on the fly. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
+\hline
+{\em erasures} & \-Array of id's of erased devices. \-Id's are integers between 0 and k+m-\/1. \-Id's 0 to k-\/1 are id's of data devices. \-Id's k to k+m-\/1 are id's of coding devices\-: \-Coding device id = id-\/k. \-If there are e erasures, erasures\mbox{[}e\mbox{]} = -\/1. \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by coding\-\_\-ptrs/data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000013}{\-Todo}]return data 
+
+formula 
+
+fix 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-schedule\-\_\-encode@{jerasure\-\_\-schedule\-\_\-encode}}
+\index{jerasure\-\_\-schedule\-\_\-encode@{jerasure\-\_\-schedule\-\_\-encode}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-schedule\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}void jerasure\-\_\-schedule\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$$\ast$}]{schedule, }
+\item[{char $\ast$$\ast$}]{data\-\_\-ptrs, }
+\item[{char $\ast$$\ast$}]{coding\-\_\-ptrs, }
+\item[{int}]{size, }
+\item[{int}]{packetsize}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}
+
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
+\hline
+{\em data\-\_\-ptrs} & \-Array of k pointers to data which is size bytes. \-Size must be a multiple of sizeof(long). \-Pointers must also be longword aligned. \\
+\hline
+{\em coding\-\_\-ptrs} & \-Array of m pointers to coding data which is size bytes \\
+\hline
+{\em size} & \-Size of memory allocated by data\-\_\-ptrs in bytes. \\
+\hline
+{\em packetsize} & \-The size of a coding block with bitmatrix coding. \-When you code with a bitmatrix, you will use w packets of size packetsize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000010}{\-Todo}]add description 
+
+example code \end{DoxyRefDesc}
+\hypertarget{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}{
+\index{jerasure.\-h@{jerasure.\-h}!jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}}
+\index{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule@{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}!jerasure.h@{jerasure.\-h}}
+\subsubsection[{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{int}]{k, }
+\item[{int}]{m, }
+\item[{int}]{w, }
+\item[{int $\ast$}]{bitmatrix}
+\end{DoxyParamCaption}
+)}}
+\label{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}
+turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. \-This is the optimization explained in the original \-Liberation code paper. 
+\begin{DoxyParams}{\-Parameters}
+{\em k} & \-Number of data devices \\
+\hline
+{\em m} & \-Number of coding devices \\
+\hline
+{\em w} & \-Word size \\
+\hline
+{\em bitmatrix} & \-Array of k$\ast$m$\ast$w$\ast$w integers. \-It represents an mw by kw matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k$\ast$w+j\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000003}{\-Todo}]return data 
+
+example code \end{DoxyRefDesc}

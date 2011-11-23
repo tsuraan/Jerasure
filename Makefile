@@ -9,6 +9,7 @@ all: lib/libJerasure.so
 clean:
 	make -C src clean
 	make -C Examples clean
+	rm -rf include
 
 install: lib/libJerasure.so
 	cp -P lib/libJerasure.so* ${LIBDIR}

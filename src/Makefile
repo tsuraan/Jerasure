@@ -1,10 +1,11 @@
-CC			= gcc -g
+CC	= gcc -g
 CFLAGS	= -O3
 OBJS  	= galois.o jerasure.o reed_sol.o cauchy.o liberation.o
 
 all: ../lib/libJerasure.so headers
 
 headers:
+	mkdir -p "../include/"
 	cp *.h ../include/
 
 ../lib/libJerasure.so: ../lib/libJerasure.so.0
