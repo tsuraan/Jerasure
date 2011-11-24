@@ -180,7 +180,7 @@ int main (int argc, char **argv) {
 	}
 	c_tech = (char *)malloc(sizeof(char)*(strlen(argv[1])+10));
 	fscanf(fp, "%s", c_tech);
-	fscanf(fp, "%d", &tech);
+	fscanf(fp, "%d", (int*)&tech);
 	method = tech;
 	fscanf(fp, "%d", &readins);
 	fclose(fp);	
@@ -390,7 +390,7 @@ int main (int argc, char **argv) {
 void ctrl_bs_handler(int dummy) {
 	time_t mytime;
 	mytime = time(0);
-	fprintf(stderr, "\n%s\n", ctime(&mytime));
+	fprintf(stderr, "\n%d\n", ctime(&mytime));
 	fprintf(stderr, "You just typed ctrl-\\ in decoder.c\n");
 	fprintf(stderr, "Total number of read ins = %d\n", readins);
 	fprintf(stderr, "Current read in: %d\n", n);
