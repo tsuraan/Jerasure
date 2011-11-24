@@ -1,6 +1,5 @@
-This is the Jerasure project, by James S. Plank, Scott Simmerman, and
-Catherine D. Schuman.  More details can be found at
-http://web.eecs.utk.edu/~plank/plank/papers/CS-08-627.html .
+This is revision 1.2A of Jerasure.  It is basically equivalent to revision 1.2
+except it is released under the New BSD license.
 
 See technical report CS-08-627 for a description of the code.  
 
@@ -10,4 +9,4 @@ The home directory contains the jerasure code.
 
 The Examples directory contains the example programs.  
 
-It assumsed that it is a subdirectory of the home directory.
+The makefile assumes that Examples is a subdirectory of the home directory.
