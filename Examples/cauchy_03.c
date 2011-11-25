@@ -123,8 +123,8 @@ int main(int argc, char **argv)
 {
   long l;
   int k, w, i, j, m;
-  int *matrix, *bitmatrix, *m2, *x, *y;
-  char **data, **coding, **ptrs;
+  int *matrix, *bitmatrix;
+  char **data, **coding;
   int **smart;
   int no;
   int *erasures, *erased;
