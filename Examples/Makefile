@@ -27,7 +27,7 @@
 # $Revision: 1.2 $
 # $Date: 2008/08/19 17:41:40 $
 
-CC = gcc  
+CC = gcc
 CFLAGS = -g -I../include
 LDFLAGS = -L../lib -lJerasure
 
@@ -115,4 +115,3 @@ encoder: encoder.c
 
 decoder: decoder.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o decoder decoder.c
-
