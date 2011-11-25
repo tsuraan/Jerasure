@@ -64,7 +64,7 @@ void usage(char *s)
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+2 must be <= 2^w.  It sets up a classic\n");
   fprintf(stderr, "       RAID-6 coding matrix based on Anvin's optimization and encodes\n");
-  fprintf(stderr, "       %lu-byte devices with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       %zu-byte devices with it.  Then it decodes.\n", sizeof(long));
   fprintf(stderr, "       \n");
   fprintf(stderr, "This demonstrates: reed_sol_r6_encode()\n");
   fprintf(stderr, "                   reed_sol_r6_coding_matrix()\n");

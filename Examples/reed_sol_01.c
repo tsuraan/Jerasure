@@ -64,7 +64,7 @@ void usage(char *s)
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.  It sets up a classic\n");
   fprintf(stderr, "       Vandermonde-based distribution matrix and encodes k devices of\n");
-  fprintf(stderr, "       %lu bytes each with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       %zu bytes each with it.  Then it decodes.\n", sizeof(long));
   fprintf(stderr, "       \n");
   fprintf(stderr, "This demonstrates: jerasure_matrix_encode()\n");
   fprintf(stderr, "                   jerasure_matrix_decode()\n");
