@@ -118,7 +118,6 @@ int main(int argc, char **argv)
   int *matrix;
   char **data, **coding;
   int *erasures, *erased;
-  int *dm_ids;
   
   if (argc != 4) usage(NULL);
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
