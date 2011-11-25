@@ -71,7 +71,7 @@ usage(char *s)
 
 int main(int argc, char **argv)
 {
-  int k, w, i, j, m;
+  int k, w, m;
   int *matrix;
   
   if (argc != 4) usage(NULL);
