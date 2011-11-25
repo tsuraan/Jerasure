@@ -114,7 +114,7 @@ static void print_data_and_coding(int k, int m, int w, int size,
 int main(int argc, char **argv)
 {
   long l;
-  int k, w, i, j, m;
+  int k, w, i, m;
   int *matrix;
   char **data, **coding;
   int *erasures, *erased;
