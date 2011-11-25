@@ -115,11 +115,10 @@ static void print_data_and_coding(int k, int m, int w, int size,
 int main(int argc, char **argv)
 {
   long l;
-  int k, w, i, j, m;
+  int k, w, i, m;
   int *matrix;
   char **data, **coding;
   int *erasures, *erased;
-  int *decoding_matrix, *dm_ids;
   
   if (argc != 3) usage(NULL);
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
