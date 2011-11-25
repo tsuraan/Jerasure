@@ -80,7 +80,6 @@ static void print_data_and_coding(int k, int m, int w, int size,
 {
   int i, j, x;
   int n, sp;
-  long l;
 
   if(k > m) n = k;
   else n = m;
