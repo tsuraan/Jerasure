@@ -233,6 +233,9 @@ int main (int argc, char **argv) {
 			break;
 		case Liber8tion:
 			bitmatrix = liber8tion_coding_bitmatrix(k);
+		default:
+			fprintf(stderr,  "unsupported coding technique used\n");
+			break;
 	}
 	gettimeofday(&t4, &tz);
 	tsec = 0.0;
