@@ -145,7 +145,7 @@ int main(int argc, char **argv)
   }
   printf("Matrix has %d ones\n\n", no);
   jerasure_print_matrix(matrix, m, k, w);
-  printf("\n", no);
+  printf("\n");
   bitmatrix = jerasure_matrix_to_bitmatrix(k, m, w, matrix);
 
   smart = jerasure_smart_bitmatrix_to_schedule(k, m, w, bitmatrix);
