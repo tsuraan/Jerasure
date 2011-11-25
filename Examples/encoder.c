@@ -462,6 +462,9 @@ int main (int argc, char **argv) {
 			bitmatrix = liber8tion_coding_bitmatrix(k);
 			schedule = jerasure_smart_bitmatrix_to_schedule(k, m, w, bitmatrix);
 			break;
+		default:
+			fprintf(stderr,  "unsupported coding technique used\n");
+			break;
 	}
 	gettimeofday(&start, &tz);	
 	gettimeofday(&t4, &tz);
@@ -527,6 +530,9 @@ int main (int argc, char **argv) {
 				break;
 			case Liber8tion:
 				jerasure_schedule_encode(k, m, w, schedule, data, coding, blocksize, packetsize);
+				break;
+			default:
+				fprintf(stderr,  "unsupported coding technique used\n");
 				break;
 		}
 		gettimeofday(&t4, &tz);
