@@ -100,7 +100,6 @@ int jfread(void *ptr, int size, int nmembers, FILE *stream)
 
 int main (int argc, char **argv) {
 	FILE *fp, *fp2;				// file pointers
-	char *memblock;				// reading in file
 	char *block;				// padding file
 	int size, newsize;			// size of file and temp size 
 	struct stat status;			// finding file size
@@ -109,7 +108,7 @@ int main (int argc, char **argv) {
 	enum Coding_Technique tech;		// coding technique (parameter)
 	int k, m, w, packetsize;		// parameters
 	int buffersize;					// paramter
-	int i, j;						// loop control variables
+	int i;							// loop control variables
 	int blocksize;					// size of k+m files
 	int total;
 	int extra;
@@ -120,8 +119,6 @@ int main (int argc, char **argv) {
 	int *matrix;
 	int *bitmatrix;
 	int **schedule;
-	int *erasure;
-	int *erased;
 	
 	/* Creation of file name variables */
 	char temp[5];
@@ -135,7 +132,7 @@ int main (int argc, char **argv) {
 	struct timezone tz;
 	double tsec;
 	double totalsec;
-	struct timeval start, stop;
+	struct timeval start;
 
 	/* Find buffersize */
 	int up, down;
