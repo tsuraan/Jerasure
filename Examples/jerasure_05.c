@@ -62,7 +62,7 @@ void usage(char *s)
   fprintf(stderr, "       \n");
   fprintf(stderr, "       k+m must be <= 2^w.  w can be 8, 16 or 32.\n");
   fprintf(stderr, "       It sets up a Cauchy distribution matrix and encodes\n");
-  fprintf(stderr, "       k devices of size bytes with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       k devices of size %lu bytes with it.  Then it decodes.\n", sizeof(long));
   fprintf(stderr, "       After that, it decodes device 0 by using jerasure_make_decoding_matrix()\n");
   fprintf(stderr, "       and jerasure_matrix_dotprod().\n");
   fprintf(stderr, "       \n");
