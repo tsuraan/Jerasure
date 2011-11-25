@@ -66,7 +66,7 @@ void usage(char *s)
   fprintf(stderr, "       \n");
   fprintf(stderr, "       k+m must be <= 2^w.  It sets up a Cauchy distribution matrix using \n");
   fprintf(stderr, "       cauchy_good_coding_matrix(), then it encodes\n");
-  fprintf(stderr, "       k devices of w*%lu bytes using smart bit-matrix scheduling.\n", sizeof(long));
+  fprintf(stderr, "       k devices of w*%zu bytes using smart bit-matrix scheduling.\n", sizeof(long));
   fprintf(stderr, "       It decodes using bit-matrix scheduling as well.\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "This demonstrates: cauchy_original_coding_matrix()\n");
