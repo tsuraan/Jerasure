@@ -677,7 +677,7 @@ return data \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}
-turns a m \-X k matrix in $GF(2^w)$ into a wm \-X wk bitmatrix (in $GF(2)$). \-This is explained in the \-Cauchy \-Reed-\/\-Solomon coding paper.
+turns a $m \times k$ matrix in $GF(2^w)$ into a $wm \times wk$ bitmatrix (in $GF(2)$). \-For a detailed explanation see\-: \-J. \-Blomer, \-M. \-Kalfane, \-M. \-Karpinski, \-R. \-Karp, \-M. \-Luby and \-D. \-Zuckerman\-: \-An \-X\-O\-R-\/based erasure-\/resilinet coding scheme. \-Technical \-Report \-T\-R-\/95-\/048, \-International \-Computer \-Science \-Institute, \-August 1995
 
 
 \begin{DoxyParams}{\-Parameters}
@@ -690,10 +690,11 @@ turns a m \-X k matrix in $GF(2^w)$ into a wm \-X wk bitmatrix (in $GF(2)$). \-T
 {\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+bit-\/matrix 
+\end{DoxyReturn}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000001}{\-Todo}]return data 
-
-example code \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000001}{\-Todo}]example code \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}}
 \index{jerasure\-\_\-print\-\_\-bitmatrix@{jerasure\-\_\-print\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}

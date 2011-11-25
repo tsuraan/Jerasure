@@ -1,2 +1,4 @@
 \form#0:$GF(2^w)$
 \form#1:$GF(2)$
+\form#2:$m \times k$
+\form#3:$wm \times wk$
