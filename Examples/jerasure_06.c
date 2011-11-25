@@ -56,7 +56,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_06 k m w packetsize\n");
   fprintf(stderr, "Does a simple Cauchy Reed-Solomon coding example in GF(2^w).\n");

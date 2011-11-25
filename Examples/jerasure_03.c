@@ -53,7 +53,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_03 k w - Creates a kxk Cauchy matrix in GF(2^w). \n\n");
   fprintf(stderr, "       k must be < 2^w.  Element i,j is 1/(i+(2^w-j-1)).  (If that is\n");

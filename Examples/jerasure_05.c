@@ -56,7 +56,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_05 k m w size - Does a simple Reed-Solomon coding example in GF(2^w).\n");
   fprintf(stderr, "       \n");
