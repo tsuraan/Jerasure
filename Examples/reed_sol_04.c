@@ -54,7 +54,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: reed_sol_04 w - Shows reed_sol_galois_wXX_region_multby_2\n");
   fprintf(stderr, "       \n");

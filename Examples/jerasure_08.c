@@ -57,7 +57,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_08 k w - Example schedule cache usage with RAID-6\n");
   fprintf(stderr, "       \n");

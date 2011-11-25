@@ -52,7 +52,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: reed_sol_02 k m w - Vandermonde matrices in GF(2^w).\n");
   fprintf(stderr, "       \n");
