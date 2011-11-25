@@ -618,6 +618,8 @@ int is_prime(int w) {
 			else { return 0; }
 		}
 	}
+	// explicit return value
+	return 0;
 }
 
 /* Handles ctrl-\ event */
