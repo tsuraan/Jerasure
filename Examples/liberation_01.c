@@ -122,7 +122,7 @@ int main(int argc, char **argv)
   long l;
   int k, w, i, j, m;
   int *bitmatrix;
-  char **data, **coding, **ptrs;
+  char **data, **coding;
   int **dumb;
   int *erasures, *erased;
   double stats[3];
