@@ -53,7 +53,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: cauchy_01 n w - Prints the number of ones in the bitmatrix representation of n in GF(2^w).\n");
   fprintf(stderr, "       \n");

@@ -60,7 +60,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: cauchy_04 k m w - Scheduled CRS coding example with a good matrix in GF(2^w).\n");
   fprintf(stderr, "       \n");

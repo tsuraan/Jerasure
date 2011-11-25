@@ -58,7 +58,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+void usage(char *s)
 {
   fprintf(stderr, "usage: liberation_01 k w - Liberation RAID-6 coding/decoding example in GF(2^w).\n");
   fprintf(stderr, "       \n");
