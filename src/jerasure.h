@@ -68,14 +68,16 @@ POSSIBILITY OF SUCH DAMAGE.
 /* ---------------------------------------------------------------  */
 /* Bitmatrices / schedules ---------------------------------------- */
 
-/** turns a m X k matrix in \f$GF(2^w)\f$ into a wm X wk bitmatrix (in \f$GF(2)\f$).
- *  This is explained in the Cauchy Reed-Solomon coding paper.
+/** turns a \f$m \times k\f$ matrix in \f$GF(2^w)\f$ into a \f$wm \times wk\f$ bitmatrix (in \f$GF(2)\f$).
+ *  For a detailed explanation see: J. Blomer, M. Kalfane, M. Karpinski, R. Karp, M. Luby and D. Zuckerman:
+ *  An XOR-based erasure-resilinet coding scheme. Technical Report TR-95-048, International Computer Science
+ *  Institute, August 1995
  *
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
  * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
- * @todo return data
+ * @return bit-matrix
  * @todo example code
  */
 int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
