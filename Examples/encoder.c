@@ -626,7 +626,7 @@ int is_prime(int w) {
 void ctrl_bs_handler(int dummy) {
 	time_t mytime;
 	mytime = time(0);
-	fprintf(stderr, "\n%d\n", ctime(&mytime));
+	fprintf(stderr, "\n%s\n", ctime(&mytime));
 	fprintf(stderr, "You just typed ctrl-\\ in encoder.c.\n");
 	fprintf(stderr, "Total number of read ins = %d\n", readins);
 	fprintf(stderr, "Current read in: %d\n", n);
