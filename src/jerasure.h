@@ -104,6 +104,7 @@ int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
  * @todo example code
  * @see jerasure_free_schedule_cache(int k, int m, int ***cache)
  * @see jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)
+ * 
  */
 int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
@@ -180,7 +181,7 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
 
-/** This function 
+/** This function encodes with a previously created schedule.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -189,7 +190,8 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  * @param size Size of memory allocated by data_ptrs in bytes.
  * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
- * @todo add description
+ * @see jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)
+ * @see jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)
  * @todo example code
  */
 void jerasure_schedule_encode(int k, int m, int w, int **schedule,
