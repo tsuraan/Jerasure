@@ -163,7 +163,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
 
-/** This function 
+/** This function encodes a matrix with a bit-matrix in \f$GF(2^w)\f$. \f$w\f$ my be any number between 1 and 32.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -172,7 +172,6 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  * @param size Size of memory allocated by data_ptrs in bytes.
  * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
- * @todo fix
  * @todo example code
  */
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
