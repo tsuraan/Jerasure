@@ -212,7 +212,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
 
  */
 
-/** This function only works when w = 8|16|32.
+/** This function decodes unsing a matrix in \f$GF(2^w)\f$, only when \f$w\f$ = 8|16|32.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -222,8 +222,9 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  * @param size Size of memory allocated by data_ptrs/coding_ptrs in bytes.
  * @return 0 if it worked, -1 if it failed
- * @todo fix
+ * @todo crossreferences
  * @todo example code
+ * @see jerasure_bitmatrix_decode(int k, int m, int w, int *bitmatrix, int row_k_ones, int *erasures, char **data_ptrs, char **coding_ptrs, int size, int packetsize)
  * @see jerasure_matrix_encode(int k, int m, int w, int *matrix, char **data_ptrs, char **coding_ptrs, int size)
  */
 int jerasure_matrix_decode(int k, int m, int w, 
@@ -245,6 +246,8 @@ int jerasure_matrix_decode(int k, int m, int w,
  * @todo fix
  * @todo example code
  * @todo description
+ * @todo references
+ * @see jerasure_matrix_decode(int k, int m, int w, int *matrix, int row_k_ones, int *erasures, char **data_ptrs, char **coding_ptrs, int size)
  */
 int jerasure_bitmatrix_decode(int k, int m, int w, 
                             int *bitmatrix, int row_k_ones, int *erasures,
