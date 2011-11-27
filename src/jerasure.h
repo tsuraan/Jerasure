@@ -159,6 +159,8 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  * @param size Size of memory allocated by coding_ptrs in bytes.
+ * @see jerasure_matrix_decode(int k, int m, int w, int *matrix, int row_k_ones, int *erasures, char **data_ptrs, char **coding_ptrs, int size)
+ * @see void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix, char **data_ptrs, char **coding_ptrs, int size, int packetsize)
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
@@ -173,6 +175,7 @@ void jerasure_matrix_encode(int k, int m, int w, int *matrix,
  * @param size Size of memory allocated by data_ptrs in bytes.
  * @param packetsize The size of a coding block with bitmatrix coding. When you code with a bitmatrix, you will use w packets of size packetsize.
  * @todo example code
+ * @see jerasure_matrix_encode(int k, int m, int w, int *matrix, char **data_ptrs, char **coding_ptrs, int size)
  */
 void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
                             char **data_ptrs, char **coding_ptrs, int size, int packetsize);
@@ -219,6 +222,7 @@ void jerasure_schedule_encode(int k, int m, int w, int **schedule,
  * @return 0 if it worked, -1 if it failed
  * @todo fix
  * @todo example code
+ * @see jerasure_matrix_encode(int k, int m, int w, int *matrix, char **data_ptrs, char **coding_ptrs, int size)
  */
 int jerasure_matrix_decode(int k, int m, int w, 
                           int *matrix, int row_k_ones, int *erasures,
