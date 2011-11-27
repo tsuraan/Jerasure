@@ -77,7 +77,7 @@ POSSIBILITY OF SUCH DAMAGE.
  * @param m Number of coding devices
  * @param w Word size
  * @param matrix Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j]
- * @return bit-matrix
+ * @return bit-matrix (int*)
  * @todo example code
  */
 int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
@@ -88,7 +88,7 @@ int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix);
  * @param m Number of coding devices
  * @param w Word size
  * @param bitmatrix Array of k*m*w*w integers. It represents an mw by kw matrix. Element i,j is in matrix[i*k*w+j]
- * @todo return data
+ * @todo sreturn (int**)
  * @todo example code
  */
 int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
@@ -100,6 +100,7 @@ int **jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
  * @param bitmatrix Array of k*m*w*w integers. It represents an mw by kw matrix. Element i,j is in matrix[i*k*w+j] 
  * @todo return data
  * @todo example code
+ * @see jerasure_free_schedule_cache(int k, int m, int ***cache)
  */
 int **jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix);
 
@@ -118,6 +119,8 @@ int ***jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int
 /** frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule.
  * @param schedule Array of schedule operations. If there are m operations, then schedule[m][0] = -1. 
  * @todo example code
+ * @see jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)
+ * @see 
  */
 void jerasure_free_schedule(int **schedule);
 
@@ -125,6 +128,7 @@ void jerasure_free_schedule(int **schedule);
  * @param k Number of data devices
  * @param m Number of coding devices
  * @see jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart)
+ * @see jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)
  * @todo fix
  * @todo example code
  */
