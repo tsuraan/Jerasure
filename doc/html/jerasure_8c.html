@@ -222,6 +222,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -239,7 +240,8 @@ Functions</h2></td></tr>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd><p class="startdd">return data </p>
 <p>formula </p>
 <p>fix </p>
-<p class="enddd">example code </p>
+<p>example code </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -310,6 +312,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -322,7 +325,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd><p class="startdd">fix </p>
-<p class="enddd">example code </p>
+<p>example code </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -387,6 +391,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -442,6 +447,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function calculates the parity of size bytes of data from each of k regions of memory accessed by data_ptrs. It put the result into the size pointed to by parity_ptr. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -486,7 +492,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>executes the schedule on w*packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. </p>
+<p>This function executes the schedule on w*packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">schedule</td><td>Array of schedule operations. If there are m operations, then schedule[m][0] = -1. </td></tr>
@@ -536,7 +542,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>turns a bitmatrix into a schedule using the straightforward algorithm -- just schedule the dot products defined by each row of the matrix.</p>
+<p>This function turns a bitmatrix into a schedule using the straightforward algorithm -- just schedule the dot products defined by each row of the matrix.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -546,9 +552,12 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><p class="startdd">return data </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><p class="startdd">return (int**) </p>
 <p class="enddd">example code </p>
 </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#a419871f932d9c6ada171eab27ef220d6">jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)</a> </dd>
+<dd>
+<a class="el" href="jerasure_8h.html#adfc3cbe91ca6a418329eee7810887c57">jerasure_free_schedule_cache(int k, int m, int ***cache)</a> </dd></dl>
 
 </div>
 </div>
@@ -582,7 +591,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>allocates and returns erased from erasures. </p>
+<p>This function allocates and returns erased from erasures. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -611,7 +620,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule. </p>
+<p>This function frees a schedule that was allocated with jerasure_XXX_bitmatrix_to_schedule. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">schedule</td><td>Array of schedule operations. If there are m operations, then schedule[m][0] = -1. </td></tr>
@@ -619,6 +628,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>example code </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#a3a5d41811a6385a6d20230cb6d76b553">jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)</a> </dd>
+<dd>
+<a class="el" href="jerasure_8h.html#a419871f932d9c6ada171eab27ef220d6">jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)</a> </dd></dl>
 
 </div>
 </div>
@@ -652,7 +664,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>reads a schedule cache that was created with jerasure_generate_schedule_cache. </p>
+<p>This function reads a schedule cache that was created with jerasure_generate_schedule_cache. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -660,7 +672,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#ac4c2ec8a0b51756f7ebb58edff76db0d">jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart)</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#ac4c2ec8a0b51756f7ebb58edff76db0d">jerasure_generate_schedule_cache(int k, int m, int w, int *bitmatrix, int smart)</a> </dd>
+<dd>
+<a class="el" href="jerasure_8h.html#a419871f932d9c6ada171eab27ef220d6">jerasure_smart_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)</a> </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><p class="startdd">fix </p>
 <p class="enddd">example code </p>
 </dd></dl>
@@ -709,7 +723,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>precalcalculate all the schedule for the given distribution bitmatrix. M must equal 2. </p>
+<p>This function precalcalculate all the schedule for the given distribution bitmatrix. M must equal 2. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -741,7 +755,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>fills in a vector of three doubles: fill_in[0] is the number of bytes that have been XOR'd, fill_in[1] is the number of bytes that have been copied, fill_in[2] is the number of bytes that have been multiplied by a constant in <img class="formulaInl" alt="$GF(2^w)$" src="form_0.png"/> </p>
+<p>This function fills in a vector of three doubles: fill_in[0] is the number of bytes that have been XOR'd, fill_in[1] is the number of bytes that have been copied, fill_in[2] is the number of bytes that have been multiplied by a constant in <img class="formulaInl" alt="$GF(2^w)$" src="form_0.png"/>. When <a class="el" href="jerasure_8c.html#ab579e73d367c8db28bf75ee75c1cf17f">jerasure_get_stats()</a> is called, it resets its values. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">fill_in</td><td>vector of three doubles to be filled <div class="fragment"><pre class="fragment"> <a class="code" href="jerasure_8c.html#ab579e73d367c8db28bf75ee75c1cf17f">jerasure_get_stats</a>(); <span class="comment">// reset all values</span>
@@ -782,8 +796,10 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd><p class="startdd">fix </p>
-<p class="enddd">return data </p>
+<p>return data </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -824,6 +840,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">w</td><td>Word size </td></tr>
@@ -832,7 +849,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd><p class="startdd">fix </p>
 <p>return data </p>
-<p class="enddd">example code </p>
+<p>example code </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -861,8 +879,10 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd><p class="startdd">return data </p>
-<p class="enddd">fix </p>
+<p>fix </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -897,6 +917,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">w</td><td>Word size </td></tr>
@@ -904,7 +925,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd><p class="startdd">fix </p>
-<p class="enddd">return data </p>
+<p>return data </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -963,7 +985,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>make the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers. These will be filled in appropriately. dm_ids[i] is the id of element i of the survivors vector. I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. </p>
+<p>This function makes the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers. These will be filled in appropriately. dm_ids[i] is the id of element i of the survivors vector. I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1033,7 +1055,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>make the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers. These will be filled in appropriately. dm_ids[i] is the id of element i of the survivors vector. I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. </p>
+<p>This function makes the k*k decoding matrix (or wk*wk bitmatrix) by taking the rows corresponding to k non-erased devices of the distribution matrix, and then inverting that matrix. You should already have allocated the decoding matrix and dm_ids, which is a vector of k integers. These will be filled in appropriately. dm_ids[i] is the id of element i of the survivors vector. I.e. row i of the decoding matrix times dm_ids equals data drive i. Both of these routines take "erased" instead of "erasures". Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1115,7 +1137,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>only works when w = 8|16|32. </p>
+<p>This function only works when w = 8|16|32. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1196,7 +1218,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>only works when w = 8|16|32. </p>
+<p>This function only works when w = 8|16|32. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1207,7 +1229,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd><p class="startdd">fix </p>
-<p class="enddd">sample code </p>
+<p>sample code </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -1266,6 +1289,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1336,6 +1360,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">w</td><td>Word size </td></tr>
@@ -1343,7 +1368,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd><p class="startdd">fix </p>
-<p class="enddd">return data </p>
+<p>return data </p>
+<p class="enddd">description </p>
 </dd></dl>
 
 </div>
@@ -1384,7 +1410,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>turns a <img class="formulaInl" alt="$m \times k$" src="form_2.png"/> matrix in <img class="formulaInl" alt="$GF(2^w)$" src="form_0.png"/> into a <img class="formulaInl" alt="$wm \times wk$" src="form_3.png"/> bitmatrix (in <img class="formulaInl" alt="$GF(2)$" src="form_1.png"/>). For a detailed explanation see: J. Blomer, M. Kalfane, M. Karpinski, R. Karp, M. Luby and D. Zuckerman: An XOR-based erasure-resilinet coding scheme. Technical Report TR-95-048, International Computer Science Institute, August 1995</p>
+<p>This function turns a <img class="formulaInl" alt="$m \times k$" src="form_2.png"/> matrix in <img class="formulaInl" alt="$GF(2^w)$" src="form_0.png"/> into a <img class="formulaInl" alt="$wm \times wk$" src="form_3.png"/> bitmatrix (in <img class="formulaInl" alt="$GF(2)$" src="form_1.png"/>). For a detailed explanation see: J. Blomer, M. Kalfane, M. Karpinski, R. Karp, M. Luby and D. Zuckerman: An XOR-based erasure-resilinet coding scheme. Technical Report TR-95-048, International Computer Science Institute, August 1995</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1394,7 +1420,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>bit-matrix </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>bit-matrix (int*) </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>example code </dd></dl>
 
 </div>
@@ -1435,6 +1461,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix</td><td>Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j] </td></tr>
@@ -1442,7 +1469,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">description </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1482,6 +1511,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix</td><td>Array of k*m integers. It represents an m by k matrix. Element i,j is in matrix[i*k+j] </td></tr>
@@ -1489,7 +1519,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>fix </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd><p class="startdd">fix </p>
+<p class="enddd">description </p>
+</dd></dl>
 
 </div>
 </div>
@@ -1559,6 +1591,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1651,7 +1684,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>generates the schedule on the fly. </p>
+<p>This function generates the schedule on the fly. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1734,6 +1767,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This function </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1789,7 +1823,7 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. This is the optimization explained in the original Liberation code paper. </p>
+<p>This function turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. This is the optimization explained in the original Liberation code paper. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of data devices </td></tr>
@@ -1802,6 +1836,9 @@ Functions</h2></td></tr>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><p class="startdd">return data </p>
 <p class="enddd">example code </p>
 </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="jerasure_8h.html#adfc3cbe91ca6a418329eee7810887c57">jerasure_free_schedule_cache(int k, int m, int ***cache)</a> </dd>
+<dd>
+<a class="el" href="jerasure_8h.html#a3a5d41811a6385a6d20230cb6d76b553">jerasure_dumb_bitmatrix_to_schedule(int k, int m, int w, int *bitmatrix)</a> </dd></dl>
 
 </div>
 </div>
@@ -1823,7 +1860,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 25 2011 16:13:05 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 27 2011 16:01:57 for Jerasure by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

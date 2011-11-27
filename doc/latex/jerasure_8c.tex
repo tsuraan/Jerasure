@@ -105,7 +105,7 @@ void \hyperlink{jerasure_8c_a99834efc875053378999f3a44b29defb}{jerasure\-\_\-bit
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a1436fa741650a7cb75ecbd6e2cd6225b}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -133,7 +133,9 @@ formula
 
 fix 
 
-example code \end{DoxyRefDesc}
+example code 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}}
 \index{jerasure\-\_\-bitmatrix\-\_\-dotprod@{jerasure\-\_\-bitmatrix\-\_\-dotprod}!jerasure.c@{jerasure.\-c}}
@@ -151,7 +153,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a45f9cda66c9b596b8ec2be5545b55b1a}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -169,7 +171,9 @@ example code \end{DoxyRefDesc}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000019}{\-Todo}]fix 
 
-example code \end{DoxyRefDesc}
+example code 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a99834efc875053378999f3a44b29defb}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}}
 \index{jerasure\-\_\-bitmatrix\-\_\-encode@{jerasure\-\_\-bitmatrix\-\_\-encode}!jerasure.c@{jerasure.\-c}}
@@ -186,7 +190,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a99834efc875053378999f3a44b29defb}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -221,7 +225,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_aaa052851dd4e60941d8ca83159803a4f}
-
+\-This function calculates the parity of size bytes of data from each of k regions of memory accessed by data\-\_\-ptrs. \-It put the result into the size pointed to by parity\-\_\-ptr. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -245,7 +249,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a5430f322b65d032a0fc6ff766b4b0c95}
-executes the schedule on w$\ast$packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
+\-This function executes the schedule on w$\ast$packetsize worth of bytes from each device. ptrs is an array of pointers which should have as many elements as the highest referenced device in the schedule. 
 \begin{DoxyParams}{\-Parameters}
 {\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
 \hline
@@ -268,7 +272,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a3a5d41811a6385a6d20230cb6d76b553}
-turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ just schedule the dot products defined by each row of the matrix.
+\-This function turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ just schedule the dot products defined by each row of the matrix.
 
 
 \begin{DoxyParams}{\-Parameters}
@@ -282,9 +286,14 @@ turns a bitmatrix into a schedule using the straightforward algorithm -\/-\/ jus
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000002}{\-Todo}]return data 
+\item[\hyperlink{todo__todo000002}{\-Todo}]return (int$\ast$$\ast$) 
 
 example code \end{DoxyRefDesc}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule(int k, int m, int w, int $\ast$bitmatrix)} 
+
+\hyperlink{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}{jerasure\-\_\-free\-\_\-schedule\-\_\-cache(int k, int m, int $\ast$$\ast$$\ast$cache)} 
+\end{DoxySeeAlso}
 \hypertarget{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-erasures\-\_\-to\-\_\-erased@{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}}
 \index{jerasure\-\_\-erasures\-\_\-to\-\_\-erased@{jerasure\-\_\-erasures\-\_\-to\-\_\-erased}!jerasure.c@{jerasure.\-c}}
@@ -296,7 +305,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a5ed25b377aa00ab5abe44c6ba58935a5}
-allocates and returns erased from erasures. 
+\-This function allocates and returns erased from erasures. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -318,13 +327,18 @@ usage example \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a124c9f3182a9f9117776a6b86da63201}
-frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\-\_\-to\-\_\-schedule. 
+\-This function frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\-\_\-to\-\_\-schedule. 
 \begin{DoxyParams}{\-Parameters}
 {\em schedule} & \-Array of schedule operations. \-If there are m operations, then schedule\mbox{[}m\mbox{]}\mbox{[}0\mbox{]} = -\/1. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000005}{\-Todo}]example code \end{DoxyRefDesc}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_a3a5d41811a6385a6d20230cb6d76b553}{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule(int k, int m, int w, int $\ast$bitmatrix)} 
+
+\hyperlink{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule(int k, int m, int w, int $\ast$bitmatrix)} 
+\end{DoxySeeAlso}
 \hypertarget{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}}
 \index{jerasure\-\_\-free\-\_\-schedule\-\_\-cache@{jerasure\-\_\-free\-\_\-schedule\-\_\-cache}!jerasure.c@{jerasure.\-c}}
@@ -336,7 +350,7 @@ frees a schedule that was allocated with jerasure\-\_\-\-X\-X\-X\-\_\-bitmatrix\
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_adfc3cbe91ca6a418329eee7810887c57}
-reads a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedule\-\_\-cache. 
+\-This function reads a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedule\-\_\-cache. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -345,6 +359,8 @@ reads a schedule cache that was created with jerasure\-\_\-generate\-\_\-schedul
 \end{DoxyParams}
 \begin{DoxySeeAlso}{\-See also}
 \hyperlink{jerasure_8h_ac4c2ec8a0b51756f7ebb58edff76db0d}{jerasure\-\_\-generate\-\_\-schedule\-\_\-cache(int k, int m, int w, int $\ast$bitmatrix, int smart)} 
+
+\hyperlink{jerasure_8h_a419871f932d9c6ada171eab27ef220d6}{jerasure\-\_\-smart\-\_\-bitmatrix\-\_\-to\-\_\-schedule(int k, int m, int w, int $\ast$bitmatrix)} 
 \end{DoxySeeAlso}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000006}{\-Todo}]fix 
@@ -363,7 +379,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ac4c2ec8a0b51756f7ebb58edff76db0d}
-precalcalculate all the schedule for the given distribution bitmatrix. \-M must equal 2. 
+\-This function precalcalculate all the schedule for the given distribution bitmatrix. \-M must equal 2. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -392,7 +408,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}
-fills in a vector of three doubles\-: fill\-\_\-in\mbox{[}0\mbox{]} is the number of bytes that have been \-X\-O\-R'd, fill\-\_\-in\mbox{[}1\mbox{]} is the number of bytes that have been copied, fill\-\_\-in\mbox{[}2\mbox{]} is the number of bytes that have been multiplied by a constant in $GF(2^w)$ 
+\-This function fills in a vector of three doubles\-: fill\-\_\-in\mbox{[}0\mbox{]} is the number of bytes that have been \-X\-O\-R'd, fill\-\_\-in\mbox{[}1\mbox{]} is the number of bytes that have been copied, fill\-\_\-in\mbox{[}2\mbox{]} is the number of bytes that have been multiplied by a constant in $GF(2^w)$. \-When \hyperlink{jerasure_8c_ab579e73d367c8db28bf75ee75c1cf17f}{jerasure\-\_\-get\-\_\-stats()} is called, it resets its values. 
 \begin{DoxyParams}{\-Parameters}
 {\em fill\-\_\-in} & vector of three doubles to be filled 
 \begin{DoxyCode}
@@ -412,10 +428,12 @@ fills in a vector of three doubles\-: fill\-\_\-in\mbox{[}0\mbox{]} is the numbe
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a846d044f23cb83c703bfa71569d3b172}
-\begin{DoxyRefDesc}{\-Todo}
+\-This function \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000022}{\-Todo}]fix 
 
-return data \end{DoxyRefDesc}
+return data 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_aa134c10efabbe8620ba8de7ebe37c0f5}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invert\-\_\-matrix@{jerasure\-\_\-invert\-\_\-matrix}}
 \index{jerasure\-\_\-invert\-\_\-matrix@{jerasure\-\_\-invert\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
@@ -428,7 +446,7 @@ return data \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_aa134c10efabbe8620ba8de7ebe37c0f5}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em w} & \-Word size \\
 \hline
@@ -438,7 +456,9 @@ return data \end{DoxyRefDesc}
 
 return data 
 
-example code \end{DoxyRefDesc}
+example code 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}}
 \index{jerasure\-\_\-invertible\-\_\-bitmatrix@{jerasure\-\_\-invertible\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -449,10 +469,12 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ae5140c0bccef55376dbd9aaed589a8ea}
-\begin{DoxyRefDesc}{\-Todo}
+\-This function \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000024}{\-Todo}]return data 
 
-fix \end{DoxyRefDesc}
+fix 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ac2ca8b6489e85f209a040a9038347189}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-invertible\-\_\-matrix@{jerasure\-\_\-invertible\-\_\-matrix}}
 \index{jerasure\-\_\-invertible\-\_\-matrix@{jerasure\-\_\-invertible\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
@@ -464,7 +486,7 @@ fix \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ac2ca8b6489e85f209a040a9038347189}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em w} & \-Word size \\
 \hline
@@ -472,7 +494,9 @@ fix \end{DoxyRefDesc}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000023}{\-Todo}]fix 
 
-return data \end{DoxyRefDesc}
+return data 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}}
 \index{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix@{jerasure\-\_\-make\-\_\-decoding\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -488,7 +512,7 @@ return data \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ad1bb5971c4fdee7c4c50fb46d6ef9c2f}
-make the k$\ast$k decoding matrix (or wk$\ast$wk bitmatrix) by taking the rows corresponding to k non-\/erased devices of the distribution matrix, and then inverting that matrix. \-You should already have allocated the decoding matrix and dm\-\_\-ids, which is a vector of k integers. \-These will be filled in appropriately. dm\-\_\-ids\mbox{[}i\mbox{]} is the id of element i of the survivors vector. \-I.\-e. row i of the decoding matrix times dm\-\_\-ids equals data drive i. \-Both of these routines take \char`\"{}erased\char`\"{} instead of \char`\"{}erasures\char`\"{}. \-Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. 
+\-This function makes the k$\ast$k decoding matrix (or wk$\ast$wk bitmatrix) by taking the rows corresponding to k non-\/erased devices of the distribution matrix, and then inverting that matrix. \-You should already have allocated the decoding matrix and dm\-\_\-ids, which is a vector of k integers. \-These will be filled in appropriately. dm\-\_\-ids\mbox{[}i\mbox{]} is the id of element i of the survivors vector. \-I.\-e. row i of the decoding matrix times dm\-\_\-ids equals data drive i. \-Both of these routines take \char`\"{}erased\char`\"{} instead of \char`\"{}erasures\char`\"{}. \-Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -518,7 +542,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_aa4166dae3d47c8734473aaa41b1ab9c4}
-make the k$\ast$k decoding matrix (or wk$\ast$wk bitmatrix) by taking the rows corresponding to k non-\/erased devices of the distribution matrix, and then inverting that matrix. \-You should already have allocated the decoding matrix and dm\-\_\-ids, which is a vector of k integers. \-These will be filled in appropriately. dm\-\_\-ids\mbox{[}i\mbox{]} is the id of element i of the survivors vector. \-I.\-e. row i of the decoding matrix times dm\-\_\-ids equals data drive i. \-Both of these routines take \char`\"{}erased\char`\"{} instead of \char`\"{}erasures\char`\"{}. \-Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. 
+\-This function makes the k$\ast$k decoding matrix (or wk$\ast$wk bitmatrix) by taking the rows corresponding to k non-\/erased devices of the distribution matrix, and then inverting that matrix. \-You should already have allocated the decoding matrix and dm\-\_\-ids, which is a vector of k integers. \-These will be filled in appropriately. dm\-\_\-ids\mbox{[}i\mbox{]} is the id of element i of the survivors vector. \-I.\-e. row i of the decoding matrix times dm\-\_\-ids equals data drive i. \-Both of these routines take \char`\"{}erased\char`\"{} instead of \char`\"{}erasures\char`\"{}. \-Erased is a vector with k+m elements, which has 0 or 1 for each device's id, according to whether the device is erased. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -550,7 +574,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a0d1a29afe55b6f1d8b09a1df6994f4dc}
-only works when w = 8$|$16$|$32. 
+\-This function only works when w = 8$|$16$|$32. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -592,7 +616,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ae64314475c098664deb5eb2b9f1d41aa}
-only works when w = 8$|$16$|$32. 
+\-This function only works when w = 8$|$16$|$32. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -606,7 +630,9 @@ only works when w = 8$|$16$|$32.
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000018}{\-Todo}]fix 
 
-sample code \end{DoxyRefDesc}
+sample code 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a754e34d11221cab5e66841576583cd8f}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}}
 \index{jerasure\-\_\-matrix\-\_\-encode@{jerasure\-\_\-matrix\-\_\-encode}!jerasure.c@{jerasure.\-c}}
@@ -622,7 +648,7 @@ sample code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a754e34d11221cab5e66841576583cd8f}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -656,7 +682,7 @@ sample code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a2f092437db38d3078058679634dcd27b}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em w} & \-Word size \\
 \hline
@@ -664,7 +690,9 @@ sample code \end{DoxyRefDesc}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000027}{\-Todo}]fix 
 
-return data \end{DoxyRefDesc}
+return data 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}}
 \index{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix@{jerasure\-\_\-matrix\-\_\-to\-\_\-bitmatrix}!jerasure.c@{jerasure.\-c}}
@@ -677,7 +705,7 @@ return data \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a45bbbfa1c3681a7be4bb2082984edbdd}
-turns a $m \times k$ matrix in $GF(2^w)$ into a $wm \times wk$ bitmatrix (in $GF(2)$). \-For a detailed explanation see\-: \-J. \-Blomer, \-M. \-Kalfane, \-M. \-Karpinski, \-R. \-Karp, \-M. \-Luby and \-D. \-Zuckerman\-: \-An \-X\-O\-R-\/based erasure-\/resilinet coding scheme. \-Technical \-Report \-T\-R-\/95-\/048, \-International \-Computer \-Science \-Institute, \-August 1995
+\-This function turns a $m \times k$ matrix in $GF(2^w)$ into a $wm \times wk$ bitmatrix (in $GF(2)$). \-For a detailed explanation see\-: \-J. \-Blomer, \-M. \-Kalfane, \-M. \-Karpinski, \-R. \-Karp, \-M. \-Luby and \-D. \-Zuckerman\-: \-An \-X\-O\-R-\/based erasure-\/resilinet coding scheme. \-Technical \-Report \-T\-R-\/95-\/048, \-International \-Computer \-Science \-Institute, \-August 1995
 
 
 \begin{DoxyParams}{\-Parameters}
@@ -691,7 +719,7 @@ turns a $m \times k$ matrix in $GF(2^w)$ into a $wm \times wk$ bitmatrix (in $GF
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{\-Returns}
-bit-\/matrix 
+bit-\/matrix (int$\ast$) 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{\-Todo}
 \item[\hyperlink{todo__todo000001}{\-Todo}]example code \end{DoxyRefDesc}
@@ -707,7 +735,7 @@ bit-\/matrix
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a9438133760db4ebba402978f59e5a5e5}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
 \hline
@@ -715,7 +743,9 @@ bit-\/matrix
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000026}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000026}{\-Todo}]fix 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_a82af32a83686762b8d3333707cfad155}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}}
 \index{jerasure\-\_\-print\-\_\-matrix@{jerasure\-\_\-print\-\_\-matrix}!jerasure.c@{jerasure.\-c}}
@@ -728,7 +758,7 @@ bit-\/matrix
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a82af32a83686762b8d3333707cfad155}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em matrix} & \-Array of k$\ast$m integers. \-It represents an m by k matrix. \-Element i,j is in matrix\mbox{[}i$\ast$k+j\mbox{]} \\
 \hline
@@ -736,7 +766,9 @@ bit-\/matrix
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{\-Todo}
-\item[\hyperlink{todo__todo000025}{\-Todo}]fix \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000025}{\-Todo}]fix 
+
+description \end{DoxyRefDesc}
 \hypertarget{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}{
 \index{jerasure.\-c@{jerasure.\-c}!jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}}
 \index{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache@{jerasure\-\_\-schedule\-\_\-decode\-\_\-cache}!jerasure.c@{jerasure.\-c}}
@@ -754,7 +786,7 @@ bit-\/matrix
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_ad645cd0b56d0ffcd0ffc2d17b17cdec0}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -797,7 +829,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_aa2a3886ab7cb52edfa22739843d0548e}
-generates the schedule on the fly. 
+\-This function generates the schedule on the fly. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -842,7 +874,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a5b4bbb1fe3a6ca30468d8d021ee7dc8d}
-
+\-This function 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -877,7 +909,7 @@ example code \end{DoxyRefDesc}
 \end{DoxyParamCaption}
 )}}
 \label{jerasure_8c_a419871f932d9c6ada171eab27ef220d6}
-turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. \-This is the optimization explained in the original \-Liberation code paper. 
+\-This function turns a bitmatrix into a schedule, but tries to use previous dot products to calculate new ones. \-This is the optimization explained in the original \-Liberation code paper. 
 \begin{DoxyParams}{\-Parameters}
 {\em k} & \-Number of data devices \\
 \hline
@@ -892,3 +924,8 @@ turns a bitmatrix into a schedule, but tries to use previous dot products to cal
 \item[\hyperlink{todo__todo000003}{\-Todo}]return data 
 
 example code \end{DoxyRefDesc}
+\begin{DoxySeeAlso}{\-See also}
+\hyperlink{jerasure_8h_adfc3cbe91ca6a418329eee7810887c57}{jerasure\-\_\-free\-\_\-schedule\-\_\-cache(int k, int m, int $\ast$$\ast$$\ast$cache)} 
+
+\hyperlink{jerasure_8h_a3a5d41811a6385a6d20230cb6d76b553}{jerasure\-\_\-dumb\-\_\-bitmatrix\-\_\-to\-\_\-schedule(int k, int m, int w, int $\ast$bitmatrix)} 
+\end{DoxySeeAlso}
