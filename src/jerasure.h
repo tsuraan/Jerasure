@@ -151,7 +151,7 @@ void jerasure_free_schedule_cache(int k, int m, int ***cache);
  */
 void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
 
-/** This function 
+/** This function encodes a matrix in \f$GF(2^w)\f$. \f$w\f$ must be either 8, 16 or 32.
  * @param k Number of data devices
  * @param m Number of coding devices
  * @param w Word size
@@ -159,7 +159,6 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size);
  * @param data_ptrs Array of k pointers to data which is size bytes. Size must be a multiple of sizeof(long). Pointers must also be longword aligned.
  * @param coding_ptrs Array of m pointers to coding data which is size bytes
  * @param size Size of memory allocated by coding_ptrs in bytes.
- * @todo fix
  */
 void jerasure_matrix_encode(int k, int m, int w, int *matrix,
                           char **data_ptrs, char **coding_ptrs, int size);
