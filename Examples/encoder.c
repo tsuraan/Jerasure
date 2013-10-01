@@ -403,7 +403,7 @@ int main (int argc, char **argv) {
 	}
 	
 	/* Break inputfile name into the filename and extension */	
-	s1 = (char*)malloc(sizeof(char)*(strlen(argv[1])+10));
+	s1 = (char*)malloc(sizeof(char)*(strlen(argv[1])+20));
 	s2 = strrchr(argv[1], '/');
 	if (s2 != NULL) {
 		s2++;
@@ -421,7 +421,7 @@ int main (int argc, char **argv) {
         }
 	
 	/* Allocate for full file name */
-	fname = (char*)malloc(sizeof(char)*(strlen(argv[1])+strlen(curdir)+10));
+	fname = (char*)malloc(sizeof(char)*(strlen(argv[1])+strlen(curdir)+20));
 	sprintf(temp, "%d", k);
 	md = strlen(temp);
 	
