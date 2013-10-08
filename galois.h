@@ -51,33 +51,13 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <gf_complete.h>
+
+extern void galois_change_technique(gf_t *gf, int w);
 
 extern int galois_single_multiply(int a, int b, int w);
 extern int galois_single_divide(int a, int b, int w);
-extern int galois_log(int value, int w);
-extern int galois_ilog(int value, int w);
-
-extern int galois_create_log_tables(int w);   /* Returns 0 on success, -1 on failure */
-extern int galois_logtable_multiply(int x, int y, int w);
-extern int galois_logtable_divide(int x, int y, int w);
-
-extern int galois_create_mult_tables(int w);   /* Returns 0 on success, -1 on failure */
-extern int galois_multtable_multiply(int x, int y, int w);
-extern int galois_multtable_divide(int x, int y, int w);
-
-extern int galois_shift_multiply(int x, int y, int w);
-extern int galois_shift_divide(int x, int y, int w);
-
-extern int galois_create_split_w8_tables();
-extern int galois_split_w8_multiply(int x, int y);
-
 extern int galois_inverse(int x, int w);
-extern int galois_shift_inverse(int y, int w);
-
-extern int *galois_get_mult_table(int w);
-extern int *galois_get_div_table(int w);
-extern int *galois_get_log_table(int w);
-extern int *galois_get_ilog_table(int w);
 
 void galois_region_xor(           char *r1,         /* Region 1 */
                                   char *r2,         /* Region 2 */

@@ -27,15 +27,24 @@
 # $Revision: 1.0 $
 # $Date: 2007/09/25 15:12:20 $
 
-CC = gcc  
-CFLAGS = -O3 -I$(HOME)/include
+PREFIX=/usr/local
+BINDIR=${PREFIX}/bin
+LIBDIR=${PREFIX}/lib
+INCDIR=${PREFIX}/include
 
-ALL =	galois.o jerasure.o reed_sol.o cauchy.o liberation.o
+CC = gcc  
+CFLAGS = -O3 -I${INCDIR} -L${LIBDIR}
+
+ALL =	galois.o jerasure.o reed_sol.o cauchy.o liberation.o lib/libJerasure.so
+OBJS = galois.o jerasure.o reed_sol.o cauchy.o liberation.o
 
 all: $(ALL)
 
 clean:
 	rm -f core *.o $(ALL) a.out
+
+lib:
+	mkdir -p lib
 
 .SUFFIXES: .c .o
 .c.o:
@@ -46,4 +55,16 @@ jerasure.o: jerasure.h galois.h
 reed_sol.o: jerasure.h galois.h reed_sol.h
 cauchy.o: jerasure.h galois.h cauchy.h
 liberation.o: jerasure.h galois.h liberation.h
+
+lib/libJerasure.so: lib/libJerasure.so.0
+	ln -sf libJerasure.so.0 lib/libJerasure.so
+
+lib/libJerasure.so.0: lib $(OBJS)
+	$(CC) -shared -Wl,-soname,libJerasure.so.0 \
+	  -o lib/libJerasure.so.0 $(OBJS) ${LIBDIR}/gf_complete.a
+
+install: lib/libJerasure.so
+	cp -P lib/libJerasure.so* ${LIBDIR}
+	mkdir -p ${INCDIR}/jerasure
+	cp *.h ${INCDIR}/jerasure
 
