@@ -27,6 +27,15 @@
 # $Revision: 1.0 $
 # $Date: 2007/09/25 15:12:20 $
 
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+LIBARGS=-shared -Wl,-soname,libJerasure.so.0
+endif
+ifeq ($(UNAME), Darwin)
+LIBARGS=-shared -Wl,-install_name,libJerasure.so.0
+endif
+
 PREFIX=/usr/local
 BINDIR=${PREFIX}/bin
 LIBDIR=${PREFIX}/lib
@@ -41,7 +50,7 @@ OBJS = galois.o jerasure.o reed_sol.o cauchy.o liberation.o
 all: $(ALL)
 
 clean:
-	rm -f core *.o $(ALL) a.out
+	rm -f core *.o $(ALL) a.out lib/libJerasure.so.0
 
 lib:
 	mkdir -p lib
@@ -60,7 +69,7 @@ lib/libJerasure.so: lib/libJerasure.so.0
 	ln -sf libJerasure.so.0 lib/libJerasure.so
 
 lib/libJerasure.so.0: lib $(OBJS)
-	$(CC) -shared -Wl,-soname,libJerasure.so.0 \
+	$(CC) $(LIBARGS) \
 	  -o lib/libJerasure.so.0 $(OBJS) ${LIBDIR}/gf_complete.a
 
 install: lib/libJerasure.so
