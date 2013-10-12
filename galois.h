@@ -88,4 +88,23 @@ void galois_w32_region_multiply(char *region,       /* Region to multiply */
                                                        Otherwise region is overwritten */
                                   int add);         /* If (r2 != NULL && add) the produce is XOR'd with r2 */
 
+int galois_init_base_field(int w,
+                           int mult_type,
+                           int region_type,
+                           int divide_type,
+                           uint64_t prim_poly,
+                           int arg1,
+                           int arg2);
+
+int galois_init_composite_field(int w,
+                                int region_type,
+                                int divide_type,
+                                uint64_t prim_poly,
+                                int arg1,
+                                int arg2,
+                                gf_t* base_gf);
+
+gf_t * galois_get_field_ptr(int w);
+
+
 #endif
