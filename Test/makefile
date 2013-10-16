@@ -47,10 +47,9 @@ BINDIR=${PREFIX}/bin
 LIBDIR=${PREFIX}/lib
 INCDIR=${PREFIX}/include
 CC = gcc  
-#CFLAGS = -O3 -I$(HOME)/include
-CFLAGS = -g -I$(HOME)/include
+CFLAGS = -O3 -I$(HOME)/include
 
-ALL =	reed_sol_test_01
+ALL =	reed_sol_test_01 reed_sol_test_02
 
 all: $(ALL)
 
@@ -99,3 +98,6 @@ reed_sol_test_01.o: galois.h reed_sol.h jerasure.h
 reed_sol_test_01: reed_sol_test_01.o galois.o ${LIBDIR}/gf_complete.a jerasure.o reed_sol.o
 	$(CC) $(CFLAGS) -o reed_sol_test_01 reed_sol_test_01.o reed_sol.o jerasure.o galois.o ${LIBDIR}/gf_complete.a
 
+reed_sol_test_02.o: galois.h reed_sol.h jerasure.h
+reed_sol_test_02: reed_sol_test_02.o galois.o ${LIBDIR}/gf_complete.a jerasure.o reed_sol.o
+	$(CC) $(CFLAGS) -o reed_sol_test_02 reed_sol_test_02.o reed_sol.o jerasure.o galois.o ${LIBDIR}/gf_complete.a

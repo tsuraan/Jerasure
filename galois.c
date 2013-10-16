@@ -196,6 +196,14 @@ static void galois_init_default_field(int w)
       exit(1);
     }
   }
+
+  if (w == 16) {
+    if (!gf_init_hard(gfp_array[w], w, GF_MULT_SPLIT_TABLE, GF_REGION_ALTMAP, GF_DIVIDE_DEFAULT, 0, 16, 4, NULL, NULL)) {
+      fprintf(stderr, "ERROR -- cannot init default Galois field for w=%d\n", w);
+      exit(1); 
+    }
+  }
+
   if (!gf_init_easy(gfp_array[w], w)) {
     fprintf(stderr, "ERROR -- cannot init default Galois field for w=%d\n", w);
     exit(1);

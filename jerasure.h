@@ -297,4 +297,6 @@ int *jerasure_matrix_multiply(int *m1, int *m2, int r1, int c1, int r2, int c2, 
 
 void jerasure_get_stats(double *fill_in);
 
+int jerasure_autoconf_test();
+
 #endif

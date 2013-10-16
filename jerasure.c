@@ -1380,3 +1380,16 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
   }
 }
 
+/*
+ * Exported function for use by autoconf to perform quick 
+ * spot-check.
+ */
+int jerasure_autoconf_test()
+{
+  int x = galois_single_multiply(1, 2, 8);
+  if (x != 2) {
+    return -1;
+  }
+  return 0;
+}
+
