@@ -42,7 +42,7 @@ LIBDIR=${PREFIX}/lib
 INCDIR=${PREFIX}/include
 
 CC = gcc  
-CFLAGS = -O3 -I${INCDIR} -L${LIBDIR}
+CFLAGS = -O3 -I${INCDIR} -L${LIBDIR} -fPIC
 
 ALL =	galois.o jerasure.o reed_sol.o cauchy.o liberation.o lib/libJerasure.so
 OBJS = galois.o jerasure.o reed_sol.o cauchy.o liberation.o
