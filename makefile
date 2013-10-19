@@ -74,6 +74,6 @@ lib/libJerasure.so.0: lib $(OBJS)
 
 install: lib/libJerasure.so
 	cp -P lib/libJerasure.so* ${LIBDIR}
-	mkdir -p ${INCDIR}/jerasure
-	cp *.h ${INCDIR}/jerasure
+	mkdir -p ${INCDIR}
+	cp *.h ${INCDIR}
 
