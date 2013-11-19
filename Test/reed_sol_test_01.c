@@ -59,7 +59,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define BUFSIZE 4096
 
-#define talloc(type, num) (type *) malloc(sizeof(type)*(num))
+#define talloc(type, num) (type *) valloc(sizeof(type)*(num))
 
 usage(char *s)
 {

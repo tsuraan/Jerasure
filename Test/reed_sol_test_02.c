@@ -57,7 +57,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "jerasure.h"
 #include "reed_sol.h"
 
-#define talloc(type, num) (type *) malloc(sizeof(type)*(num))
+#define talloc(type, num) (type *) valloc(sizeof(type)*(num))
 
 void
 timer_start (double *t)

@@ -15,7 +15,7 @@ while read method; do
 done
 
 # Test all w=16
-${GF_METHODS} | grep -v 'TABLE' | awk -F: '{ if ($1 == "w=16") print $2; }' |
+${GF_METHODS} | awk -F: '{ if ($1 == "w=16") print $2; }' |
 while read method; do
   echo "Testing ${k} ${m} 16 ${method}"
   ./reed_sol_test_01 ${k} ${m} 16 ${method}
