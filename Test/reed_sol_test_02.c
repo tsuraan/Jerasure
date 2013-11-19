@@ -57,7 +57,18 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "jerasure.h"
 #include "reed_sol.h"
 
-#define talloc(type, num) (type *) valloc(sizeof(type)*(num))
+static void *malloc16(int size) {
+    void *mem = malloc(size+16+sizeof(void*));
+    void **ptr = (void**)((long)(mem+16+sizeof(void*)) & ~(15));
+    ptr[-1] = mem;
+    return ptr;
+}
+
+static void free16(void *ptr) {
+    free(((void**)ptr)[-1]);
+}
+
+#define talloc(type, num) (type *) malloc16(sizeof(type)*(num))
 
 void
 timer_start (double *t)

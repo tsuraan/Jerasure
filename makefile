@@ -70,7 +70,7 @@ lib/libJerasure.so: lib/libJerasure.so.0
 
 lib/libJerasure.so.0: lib $(OBJS)
 	$(CC) $(LIBARGS) \
-	  -o lib/libJerasure.so.0 $(OBJS) ${LIBDIR}/gf_complete.a
+	  -o lib/libJerasure.so.0 $(OBJS) -lgf_complete
 
 install: lib/libJerasure.so
 	cp -P lib/libJerasure.so* ${LIBDIR}
