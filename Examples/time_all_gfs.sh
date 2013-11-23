@@ -43,7 +43,6 @@ ITERATIONS=128
 BUFSIZE=65536
 k=12
 m=3
-FAIL=
 
 # Test all w=8
 ${GF_METHODS} | awk -F: '{ if ($1 == "w=8") print $2; }' |
@@ -52,12 +51,11 @@ while read method; do
   ./reed_sol_time_gf ${k} ${m} 8 ${ITERATIONS} ${BUFSIZE} ${method}
   if [[ $? != "0" ]]; then
     echo "Failed test for ${k} ${m} 8 ${ITERATIONS} ${BUFSIZE} ${method}"
-    FAIL=1
     exit 1
   fi
 done
 
-if [ -n ${FAIL} ]; then
+if [[ $? == "1" ]]; then
   exit 1
 fi
 
@@ -68,12 +66,11 @@ while read method; do
   ./reed_sol_time_gf ${k} ${m} 16 ${ITERATIONS} ${BUFSIZE} ${method}
   if [[ $? != "0" ]]; then
     echo "Failed test for ${k} ${m} 16 ${ITERATIONS} ${BUFSIZE} ${method}"
-    FAIL=1
     exit 1
   fi
 done
 
-if [ -n ${FAIL} ]; then
+if [[ $? == "1" ]]; then
   exit 1
 fi
 
@@ -84,12 +81,11 @@ while read method; do
   ./reed_sol_time_gf ${k} ${m} 32 ${ITERATIONS} ${BUFSIZE} ${method}
   if [[ $? != "0" ]]; then
     echo "Failed test for ${k} ${m} 32 ${ITERATIONS} ${BUFSIZE} ${method}"
-    FAIL=1
     exit 1
   fi
 done
 
-if [ -n ${FAIL} ]; then
+if [[ $? == "1" ]]; then
   exit 1
 fi
 
