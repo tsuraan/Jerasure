@@ -1,8 +1,10 @@
-Copyright (c) 2011, James S. Plank
+
+Copyright (c) 2013, James S. Plank and Kevin Greenan
 All rights reserved.
 
-Revision 2.0
-Nov, 18 2013 (Kevin Greenan and James S. Plank)
+Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure Coding Techniques
+
+Revision 2.0: Galois Field backend now links to GF-Complete
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
