@@ -46,10 +46,6 @@ POSSIBILITY OF SUCH DAMAGE.
  */
     
 
-/*
-	revised by S. Simmerman
-	2/25/08  
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -92,15 +88,17 @@ timer_split (const double *t)
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_test_01 k m w iterations bufsize [additional GF args]- Tests Reed-Solomon in GF(2^w).\n");
+  fprintf(stderr, "usage: reed_sol_test_gf k m w [additional GF args]- Test and time Reed-Solomon in a particular GF(2^w).\n");
   fprintf(stderr, "       \n");
-  fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.  It sets up a classic\n");
-  fprintf(stderr, "       Vandermonde-based distribution matrix and encodes k devices of\n");
-  fprintf(stderr, "       <bufsize> bytes each with it.  Then it decodes.\n");
+  fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.\n");
+  fprintf(stderr, "       See the README for information on the additional GF args.\n");
+  fprintf(stderr, "       Set up a Vandermonde-based distribution matrix and encodes k devices of\n");
+  fprintf(stderr, "       %d bytes each with it.  Then it decodes.\n", BUFSIZE);
   fprintf(stderr, "       \n");
   fprintf(stderr, "This tests:        jerasure_matrix_encode()\n");
   fprintf(stderr, "                   jerasure_matrix_decode()\n");
   fprintf(stderr, "                   jerasure_print_matrix()\n");
+  fprintf(stderr, "                   galois_change_technique()\n");
   fprintf(stderr, "                   reed_sol_vandermonde_coding_matrix()\n");
   if (s != NULL) fprintf(stderr, "%s\n", s);
   exit(1);

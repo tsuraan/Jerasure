@@ -61,6 +61,8 @@ ALL =	jerasure_01 \
         reed_sol_02 \
         reed_sol_03 \
         reed_sol_04 \
+        reed_sol_test_gf \
+        reed_sol_time_gf \
         cauchy_01 \
         cauchy_02 \
         cauchy_03 \
@@ -186,3 +188,11 @@ encoder: encoder.o galois.o  jerasure.o liberation.o reed_sol.o cauchy.o
 decoder.o: galois.h liberation.h jerasure.h reed_sol.h cauchy.h
 decoder: decoder.o galois.o  jerasure.o liberation.o reed_sol.o cauchy.o
 	$(CC) $(CFLAGS) -o decoder decoder.o liberation.o jerasure.o galois.o  reed_sol.o cauchy.o -lgf_complete
+
+reed_sol_test_gf.o: galois.h reed_sol.h jerasure.h
+reed_sol_test_gf: reed_sol_test_gf.o galois.o ${LIBDIR}/gf_complete.a jerasure.o reed_sol.o
+	$(CC) $(CFLAGS) -o reed_sol_test_gf reed_sol_test_gf.o reed_sol.o jerasure.o galois.o ${LIBDIR}/gf_complete.a
+
+reed_sol_time_gf.o: galois.h reed_sol.h jerasure.h
+reed_sol_time_gf: reed_sol_time_gf.o galois.o ${LIBDIR}/gf_complete.a jerasure.o reed_sol.o
+	$(CC) $(CFLAGS) -o reed_sol_time_gf reed_sol_time_gf.o reed_sol.o jerasure.o galois.o ${LIBDIR}/gf_complete.a
