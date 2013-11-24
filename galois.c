@@ -44,8 +44,9 @@
 
 #include "galois.h"
 
-#define MAX_GF_INSTANCES 128
+#define MAX_GF_INSTANCES 64
 gf_t *gfp_array[MAX_GF_INSTANCES] = { 0 };
+int  gfp_is_composite[MAX_GF_INSTANCES] = { 0 };
 
 gf_t *galois_get_field_ptr(int w)
 {
@@ -56,20 +57,26 @@ gf_t *galois_get_field_ptr(int w)
   return NULL;
 }
 
-int galois_init_base_field(int w,
-                           int mult_type,
-                           int region_type,
-                           int divide_type,
-                           uint64_t prim_poly,
-                           int arg1,
-                           int arg2)
+gf_t* galois_init_field(int w,
+                        int mult_type,
+                        int region_type,
+                        int divide_type,
+                        uint64_t prim_poly,
+                        int arg1,
+                        int arg2)
 {
   int scratch_size;
   void *scratch_memory;
-  int ret;
+  gf_t *gfp;
 
   if (w <= 0 || w > 32) {
     fprintf(stderr, "ERROR -- cannot init default Galois field for w=%d\n", w);
+    exit(1);
+  }
+
+  gfp = (gf_t *) malloc(sizeof(gf_t));
+  if (!gfp) {
+    fprintf(stderr, "ERROR -- cannot allocate memory for Galois field w=%d\n", w);
     exit(1);
   }
 
@@ -85,20 +92,7 @@ int galois_init_base_field(int w,
     exit(1);
   }
 
-  /*
-   * Properly free up the old field
-   */
-  if (gfp_array[w] != NULL) {
-    gf_free(gfp_array[w], 0); 
-  }
-
-  gfp_array[w] = (gf_t*)malloc(sizeof(gf_t));
-  if (gfp_array[w] == NULL) {
-    fprintf(stderr, "ERROR -- cannot allocate memory for Galois field w=%d\n", w);
-    exit(1);
-  }
-
-  if(!gf_init_hard(gfp_array[w], 
+  if(!gf_init_hard(gfp,
                    w, 
                    mult_type, 
                    region_type, 
@@ -112,27 +106,33 @@ int galois_init_base_field(int w,
     fprintf(stderr, "ERROR -- cannot init default Galois field for w=%d\n", w);
     exit(1);
   }
-  return 0;
+
+  gfp_is_composite[w] = 0;
+  return gfp;
 }
 
-int galois_init_composite_field(int w,
+gf_t* galois_init_composite_field(int w,
                                 int region_type,
                                 int divide_type,
-                                uint64_t prim_poly,
-                                int arg1,
-                                int arg2,
+                                int degree,
                                 gf_t* base_gf)
 {
   int scratch_size;
   void *scratch_memory;
-  int ret;
+  gf_t *gfp;
   
   if (w <= 0 || w > 32) {
     fprintf(stderr, "ERROR -- cannot init composite field for w=%d\n", w);
     exit(1);
   }
+  
+  gfp = (gf_t *) malloc(sizeof(gf_t));
+  if (!gfp) {
+    fprintf(stderr, "ERROR -- cannot allocate memory for Galois field w=%d\n", w);
+    exit(1);
+  }
 
-  scratch_size = gf_scratch_size(w, GF_MULT_COMPOSITE, region_type, divide_type, arg1, arg2);
+  scratch_size = gf_scratch_size(w, GF_MULT_COMPOSITE, region_type, divide_type, degree, 0);
   if (!scratch_size) {
     fprintf(stderr, "ERROR -- cannot get scratch size for composite field w=%d\n", w);
     exit(1);
@@ -144,34 +144,22 @@ int galois_init_composite_field(int w,
     exit(1);
   }
 
-  /*
-   * Properly free up the old field
-   */
-  if (gfp_array[w] != NULL) {
-    gf_free(gfp_array[w], 1);
-  }
-
-  gfp_array[w] = (gf_t*)malloc(sizeof(gf_t));
-  if (gfp_array[w] == NULL) {
-    fprintf(stderr, "ERROR -- cannot allocate memory for composite field w=%d\n", w);
-    exit(1);
-  }
-
-  if(!gf_init_hard(gfp_array[w],
+  if(!gf_init_hard(gfp,
                    w,
                    GF_MULT_COMPOSITE,
                    region_type,
                    divide_type,
-                   prim_poly,
-                   arg1,
-                   arg2,
+                   0, 
+                   degree, 
+                   0, 
                    base_gf,
                    scratch_memory))
   {
     fprintf(stderr, "ERROR -- cannot init default composite field for w=%d\n", w);
     exit(1);
   }
-  return 0;
+  gfp_is_composite[w] = 1;
+  return gfp;
 }
 
 static void galois_init_default_field(int w)
@@ -235,6 +223,10 @@ void galois_change_technique(gf_t *gf, int w)
   if (!is_valid_gf(gf, w)) {
     fprintf(stderr, "ERROR -- overriding with invalid Galois field for w=%d\n", w);
     exit(1);
+  }
+
+  if (gfp_array[w] != NULL) {
+    gf_free(gfp_array[w], gfp_is_composite[w]);
   }
 
   gfp_array[w] = gf;
