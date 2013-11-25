@@ -20,6 +20,26 @@ The Examples directory contains the example programs.
 
 The makefile assumes that Examples is a subdirectory of the home directory.
 
+Installing:
+
+1.) Install GF-Complete
+
+2.) 'cd' to root directory of Jerasure
+
+3.) Set PREFIX in ./makefile to appropriate directory (/usr/local by default)
+
+4.) make
+
+5.) make install
+
+Running tests and examples:
+
+1.) 'cd' into Examples
+
+2.) make
+
+See individual source file to determine what the examples do.  
+
 Inclusion of GF-Complete:
 
 As long as GF-Complete is installed, Jerasure 2.0 can be used just as previous
@@ -138,3 +158,24 @@ For more information on how to change the backing fields for Jerasure, please re
   for a backing GF (uses galois_init_field and galois_init_composite_field to get gf_t
   pointer)
 
+Performance:
+
+There are two performance-based test scripts: time_all_gfs_argv_init.sh and
+time_all_gfs_hard_init.sh.  Both scripts run the same tests, but initialize the
+underlying GF fields in different ways (*argv* uses reed_sol_time_gf and *hard*
+uses reed_sol_hard_time_gf.c).
+
+You can run 'time_all_gfs_argv_init.sh' to time *all* possible GF
+implementations on your computer.  This script requires the 'gf_methods'
+utility from GF-Complete to be in your PATH.
+
+time_all_gfs_argv_init.sh was run on a MacBook Air and the distilled numbers
+are given in ./PERF.txt.  The results are sorted by encoding throughput.  The
+format of each entry reflects the arguments given to reed_sol_time_gf.  For example,
+the test run of
+
+'Examples/reed_sol_time_gf 12 3 8 128 65536 -m SPLIT 8 4 -r SSE'
+
+is recorded as this in PERF.txt:
+
+_12_3_8_128_65536_-m_SPLIT_8_4_-r_SSE_- 2813.34
