@@ -14,7 +14,7 @@ NOTE: You must have GF-Complete installed in order to use Jerasure 2.0.
 
 There are two directories:
 
-The home directory contains the jerasure code.
+The src directory contains the jerasure code.
 
 The Examples directory contains the example programs.  
 
