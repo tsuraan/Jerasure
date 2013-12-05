@@ -24,19 +24,14 @@ Installing:
 
 1.) Install GF-Complete
 
-2.) 'cd' to root directory of Jerasure
+2.) ./configure
 
-3.) Set PREFIX in ./makefile to appropriate directory (/usr/local by default)
+3.) make
 
-4.) make
+4.) make install 
 
-5.) make install
-
-Running tests and examples:
-
-1.) 'cd' into Examples
-
-2.) make
+This will install the examples under PREFIX/bin, the library under PREFIX/lib
+and the header files under PREFIX/include
 
 See individual source file to determine what the examples do.  
 
