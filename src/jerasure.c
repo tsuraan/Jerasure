@@ -341,7 +341,7 @@ void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
               jerasure_total_memcpy_bytes += packetsize;
               pstarted = 1;
             } else {
-              galois_region_xor(pptr, dptr, pptr, packetsize);
+              galois_region_xor(dptr, pptr, packetsize);
               jerasure_total_xor_bytes += packetsize;
             }
           }
@@ -360,7 +360,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size)
   jerasure_total_memcpy_bytes += size;
   
   for (i = 1; i < k; i++) {
-    galois_region_xor(data_ptrs[i], parity_ptr, parity_ptr, size);
+    galois_region_xor(data_ptrs[i], parity_ptr, size);
     jerasure_total_xor_bytes += size;
   }
 }
@@ -599,7 +599,7 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
         jerasure_total_memcpy_bytes += size;
         init = 1;
       } else {
-        galois_region_xor(sptr, dptr, dptr, size);
+        galois_region_xor(sptr, dptr, size);
         jerasure_total_xor_bytes += size;
       }
     }
@@ -1173,7 +1173,7 @@ void jerasure_do_scheduled_operations(char **ptrs, int **operations, int packets
       operations[op][2], 
       operations[op][3]); 
       printf("xor(0x%x, 0x%x -> 0x%x, %d)\n", sptr, dptr, dptr, packetsize); */
-      galois_region_xor(sptr, dptr, dptr, packetsize);
+      galois_region_xor(sptr, dptr, packetsize);
       jerasure_total_xor_bytes += packetsize;
     } else {
 /*      printf("memcpy(0x%x <- 0x%x)\n", dptr, sptr); */

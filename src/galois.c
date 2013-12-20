@@ -324,29 +324,9 @@ void galois_w32_region_xor(void *src, void *dest, int nbytes)
   gfp_array[32]->multiply_region.w32(gfp_array[32], src, dest, 1, nbytes, 1);
 }
 
-void galois_region_xor(char *r1,         /* Region 1 */
-                            char *r2,         /* Region 2 */
-                            char *r3,         /* Sum region (r3 = r1 ^ r2) -- can be r1 or r2 */
-                            int nbytes)       /* Number of bytes in region */
+void galois_region_xor(char *src, char *dest, int nbytes)
 {
-  long *l1;
-  long *l2;
-  long *l3;
-  long *ltop;
-  char *ctop;
-  
-  ctop = r1 + nbytes;
-  ltop = (long *) ctop;
-  l1 = (long *) r1;
-  l2 = (long *) r2;
-  l3 = (long *) r3;
- 
-  while (l1 < ltop) {
-    *l3 = ((*l1)  ^ (*l2));
-    l1++;
-    l2++;
-    l3++;
-  }
+  galois_w32_region_xor(src, dest, nbytes);
 }
 
 int galois_inverse(int y, int w)

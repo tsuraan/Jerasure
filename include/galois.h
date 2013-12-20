@@ -51,9 +51,8 @@ extern int galois_single_multiply(int a, int b, int w);
 extern int galois_single_divide(int a, int b, int w);
 extern int galois_inverse(int x, int w);
 
-void galois_region_xor(           char *r1,         /* Region 1 */
-                                  char *r2,         /* Region 2 */
-                                  char *r3,         /* Sum region (r3 = r1 ^ r2) -- can be r1 or r2 */
+void galois_region_xor(           char *src,         /* Source Region */
+                                  char *dest,        /* Dest Region (holds result) */
                                   int nbytes);      /* Number of bytes in region */
 
 /* These multiply regions in w=8, w=16 and w=32.  They are much faster

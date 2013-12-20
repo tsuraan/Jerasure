@@ -213,7 +213,7 @@ int reed_sol_r6_encode(int k, int w, char **data_ptrs, char **coding_ptrs, int s
 
   memcpy(coding_ptrs[0], data_ptrs[0], size);
 
-  for (i = 1; i < k; i++) galois_region_xor(coding_ptrs[0], data_ptrs[i], coding_ptrs[0], size);
+  for (i = 1; i < k; i++) galois_region_xor(data_ptrs[i], coding_ptrs[0], size);
 
   /* Next, put the sum of (2^j)*Dj into coding region 1 */
 
@@ -227,7 +227,7 @@ int reed_sol_r6_encode(int k, int w, char **data_ptrs, char **coding_ptrs, int s
       default: return 0;
     }
 
-    galois_region_xor(coding_ptrs[1], data_ptrs[i], coding_ptrs[1], size);
+    galois_region_xor(data_ptrs[i], coding_ptrs[1], size);
   }
   return 1;
 }
