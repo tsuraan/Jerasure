@@ -326,7 +326,16 @@ void galois_w32_region_xor(void *src, void *dest, int nbytes)
 
 void galois_region_xor(char *src, char *dest, int nbytes)
 {
-  galois_w32_region_xor(src, dest, nbytes);
+  if (nbytes >= 16) {
+    galois_w32_region_xor(src, dest, nbytes);
+  } else {
+    int i = 0;
+    for (i = 0; i < nbytes; i++) {
+      *dest ^= *src;
+      dest++;
+      src++;
+    } 
+  }
 }
 
 int galois_inverse(int y, int w)
