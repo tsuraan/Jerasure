@@ -37,12 +37,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-    
 
-/*
-	revised by S. Simmerman
-	2/25/08  
-*/
+/* Part of this code was revised by Scott Simmerman 2/25/08 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -56,8 +53,8 @@ usage(char *s)
   fprintf(stderr, "usage: reed_sol_01 k m w - Does a simple Reed-Solomon coding example in GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.  It sets up a classic\n");
-  fprintf(stderr, "       Vandermonde-based distribution matrix and encodes k devices of\n");
-  fprintf(stderr, "       %d bytes each with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       Vandermonde-based generator matrix and encodes k devices of\n");
+  fprintf(stderr, "       %ld bytes each with it.  Then it decodes.\n", sizeof(long));
   fprintf(stderr, "       \n");
   fprintf(stderr, "This demonstrates: jerasure_matrix_encode()\n");
   fprintf(stderr, "                   jerasure_matrix_decode()\n");
@@ -111,6 +108,7 @@ int main(int argc, char **argv)
   int k, w, i, j, m;
   int *matrix;
   char **data, **coding;
+  unsigned char uc;
   int *erasures, *erased;
   int *decoding_matrix, *dm_ids;
   
@@ -130,8 +128,10 @@ int main(int argc, char **argv)
   data = talloc(char *, k);
   for (i = 0; i < k; i++) {
     data[i] = talloc(char, sizeof(long));
-    l = lrand48();
-    memcpy(data[i], &l, sizeof(long));
+    for (j = 0; j < sizeof(long); j++) {
+      uc = lrand48()%256;
+      data[i][j] = (char) uc;
+    }
   }
 
   coding = talloc(char *, m);

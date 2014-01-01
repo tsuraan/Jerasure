@@ -81,7 +81,7 @@ timer_split (const double *t)
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_test_gf k m w [additional GF args]- Test and time Reed-Solomon in a particular GF(2^w).\n");
+  fprintf(stderr, "usage: reed_sol_time_gf k m w iterations bufsize [additional GF args]- Test and time Reed-Solomon in a particular GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.\n");
   fprintf(stderr, "       See the README for information on the additional GF args.\n");

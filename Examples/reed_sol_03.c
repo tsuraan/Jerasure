@@ -57,7 +57,7 @@ usage(char *s)
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+2 must be <= 2^w.  It sets up a classic\n");
   fprintf(stderr, "       RAID-6 coding matrix based on Anvin's optimization and encodes\n");
-  fprintf(stderr, "       %d-byte devices with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       %ld-byte devices with it.  Then it decodes.\n", sizeof(long));
   fprintf(stderr, "       \n");
   fprintf(stderr, "This demonstrates: reed_sol_r6_encode()\n");
   fprintf(stderr, "                   reed_sol_r6_coding_matrix()\n");
@@ -109,6 +109,7 @@ static void print_data_and_coding(int k, int m, int w, int size,
 int main(int argc, char **argv)
 {
   long l;
+  unsigned char uc;
   int k, w, i, j, m;
   int *matrix;
   char **data, **coding;
@@ -123,7 +124,7 @@ int main(int argc, char **argv)
 
   matrix = reed_sol_r6_coding_matrix(k, w);
 
-  printf("Last 2 rows of the Distribution Matrix:\n\n");
+  printf("Last 2 rows of the Generator Matrix:\n\n");
   jerasure_print_matrix(matrix, m, k, w);
   printf("\n");
 
@@ -131,8 +132,10 @@ int main(int argc, char **argv)
   data = talloc(char *, k);
   for (i = 0; i < k; i++) {
     data[i] = talloc(char, sizeof(long));
-    l = lrand48();
-    memcpy(data[i], &l, sizeof(long));
+    for (j = 0; j < sizeof(long); j++) {
+      uc = lrand48()%256;
+      data[i][j] = (char) uc;   
+    }
   }
 
   coding = talloc(char *, m);
