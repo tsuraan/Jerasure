@@ -5,7 +5,7 @@ AC_INIT(Jerasure, 2.0)
 
 AC_PREREQ([2.61])
 
-AM_INIT_AUTOMAKE(no-dependencies)
+AM_INIT_AUTOMAKE([no-dependencies], [foreign])
 LT_INIT # libtool
 
 AC_CONFIG_HEADER(include/config.h)
