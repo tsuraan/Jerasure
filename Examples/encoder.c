@@ -56,9 +56,9 @@ is the file name with "_k#" or "_m#" and then the extension.
 #include <stdlib.h>
 #include <errno.h>
 #include <signal.h>
+#include <gf_rand.h>
 #include "jerasure.h"
 #include "reed_sol.h"
-#include "galois.h"
 #include "cauchy.h"
 #include "liberation.h"
 
@@ -82,9 +82,7 @@ int jfread(void *ptr, int size, int nmembers, FILE *stream)
   int *li, i;
   if (stream != NULL) return fread(ptr, size, nmembers, stream);
 
-  nd = size/sizeof(int);
-  li = (int *) ptr;
-  for (i = 0; i < nd; i++) li[i] = mrand48();
+  MOA_Fill_Random_Region(ptr, size);
   return size;
 }
 
@@ -143,8 +141,11 @@ int main (int argc, char **argv) {
 	
 	/* Error check Arguments*/
 	if (argc != 8) {
-		fprintf(stderr,  "usage: inputfile k m coding_technique w (packetsize) (buffersize)\n");
+		fprintf(stderr,  "usage: inputfile k m coding_technique w packetsize buffersize\n");
 		fprintf(stderr,  "\nChoose one of the following coding techniques: \nreed_sol_van, \nreed_sol_r6_op, \ncauchy_orig, \ncauchy_good, \nliberation, \nblaum_roth, \nliber8tion");
+		fprintf(stderr,  "\n\nPacketsize is ignored for the reed_sol's");
+		fprintf(stderr,  "\nBuffersize of 0 means the buffersize is chosen automatically.\n");
+		fprintf(stderr,  "\nIf you just want to test speed, use an inputfile of \"-number\" where number is the size of the fake file you want to test.\n\n");
 		exit(0);
 	}
 	/* Conversion of parameters and error checking */	
@@ -182,16 +183,16 @@ int main (int argc, char **argv) {
 
 	/* Determine proper buffersize by finding the closest valid buffersize to the input value  */
 	if (buffersize != 0) {
-		if (packetsize != 0 && buffersize%(sizeof(int)*w*k*packetsize) != 0) { 
+		if (packetsize != 0 && buffersize%(sizeof(long)*w*k*packetsize) != 0) { 
 			up = buffersize;
 			down = buffersize;
-			while (up%(sizeof(int)*w*k*packetsize) != 0 && (down%(sizeof(int)*w*k*packetsize) != 0)) {
+			while (up%(sizeof(long)*w*k*packetsize) != 0 && (down%(sizeof(long)*w*k*packetsize) != 0)) {
 				up++;
 				if (down == 0) {
 					down--;
 				}
 			}
-			if (up%(sizeof(int)*w*k*packetsize) == 0) {
+			if (up%(sizeof(long)*w*k*packetsize) == 0) {
 				buffersize = up;
 			}
 			else {
@@ -200,14 +201,14 @@ int main (int argc, char **argv) {
 				}
 			}
 		}
-		else if (packetsize == 0 && buffersize%(sizeof(int)*w*k) != 0) {
+		else if (packetsize == 0 && buffersize%(sizeof(long)*w*k) != 0) {
 			up = buffersize;
 			down = buffersize;
-			while (up%(sizeof(int)*w*k) != 0 && down%(sizeof(int)*w*k) != 0) {
+			while (up%(sizeof(long)*w*k) != 0 && down%(sizeof(long)*w*k) != 0) {
 				up++;
 				down--;
 			}
-			if (up%(sizeof(int)*w*k) == 0) {
+			if (up%(sizeof(long)*w*k) == 0) {
 				buffersize = up;
 			}
 			else {
@@ -266,8 +267,8 @@ int main (int argc, char **argv) {
 			fprintf(stderr, "Must include packetsize.\n");
 			exit(0);
 		}
-		if ((packetsize%(sizeof(int))) != 0) {
-			fprintf(stderr,  "packetsize must be a multiple of sizeof(int)\n");
+		if ((packetsize%(sizeof(long))) != 0) {
+			fprintf(stderr,  "packetsize must be a multiple of sizeof(long)\n");
 			exit(0);
 		}
 		tech = Liberation;
@@ -285,8 +286,8 @@ int main (int argc, char **argv) {
 			fprintf(stderr, "Must include packetsize.\n");
 			exit(0);
 		}
-		if ((packetsize%(sizeof(int))) != 0) {
-			fprintf(stderr,  "packetsize must be a multiple of sizeof(int)\n");
+		if ((packetsize%(sizeof(long))) != 0) {
+			fprintf(stderr,  "packetsize must be a multiple of sizeof(long)\n");
 			exit(0);
 		}
 		tech = Blaum_Roth;
@@ -347,21 +348,21 @@ int main (int argc, char **argv) {
 			exit(1);
 		}
         	fp = NULL;
-		srand48(time(0));
+		MOA_Seed(time(0));
         }
 
 	newsize = size;
 	
 	/* Find new size by determining next closest multiple */
 	if (packetsize != 0) {
-		if (size%(k*w*packetsize*sizeof(int)) != 0) {
-			while (newsize%(k*w*packetsize*sizeof(int)) != 0) 
+		if (size%(k*w*packetsize*sizeof(long)) != 0) {
+			while (newsize%(k*w*packetsize*sizeof(long)) != 0) 
 				newsize++;
 		}
 	}
 	else {
-		if (size%(k*w*sizeof(int)) != 0) {
-			while (newsize%(k*w*sizeof(int)) != 0) 
+		if (size%(k*w*sizeof(long)) != 0) {
+			while (newsize%(k*w*sizeof(long)) != 0) 
 				newsize++;
 		}
 	}
@@ -466,6 +467,7 @@ int main (int argc, char **argv) {
 	tsec += t4.tv_sec;
 	tsec -= t3.tv_sec;
 	totalsec += tsec;
+
 	
 
 	/* Read in data until finished */
@@ -490,13 +492,12 @@ int main (int argc, char **argv) {
 			}
 		}
 	
-			
 		/* Set pointers to point to file data */
 		for (i = 0; i < k; i++) {
 			data[i] = block+(i*blocksize);
 		}
 
-	gettimeofday(&t3, &tz);
+ 	 	gettimeofday(&t3, &tz);
 		/* Encode according to coding method */
 		switch(tech) {	
 			case No_Coding:
@@ -596,8 +597,8 @@ int main (int argc, char **argv) {
 	tsec /= 1000000.0;
 	tsec += t2.tv_sec;
 	tsec -= t1.tv_sec;
-	printf("Encoding (MB/sec): %0.10f\n", (size/1024/1024)/totalsec);
-	printf("En_Total (MB/sec): %0.10f\n", (size/1024/1024)/tsec);
+	printf("Encoding (MB/sec): %0.10f\n", (((double) size)/1024.0/1024.0)/totalsec);
+	printf("En_Total (MB/sec): %0.10f\n", (((double) size)/1024.0/1024.0)/tsec);
 }
 
 /* is_prime returns 1 if number if prime, 0 if not prime */

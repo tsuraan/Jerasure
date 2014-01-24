@@ -50,7 +50,7 @@ usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_03 k w - Creates a kxk Cauchy matrix in GF(2^w). \n\n");
   fprintf(stderr, "       k must be < 2^w.  Element i,j is 1/(i+(2^w-j-1)).  (If that is\n");
-  fprintf(stderr, "       1/0, then it sets it to zero).  \n");
+  fprintf(stderr, "       If that is 1/0, then it sets it to zero).  \n");
   fprintf(stderr, "       It then tests whether that matrix is invertible.\n");
   fprintf(stderr, "       If it is invertible, then it prints out the inverse.\n");
   fprintf(stderr, "       Finally, it prints the product of the matrix and its inverse.\n");
@@ -86,6 +86,14 @@ int main(int argc, char **argv)
       matrix[i*k+j] = (n == 0) ? 0 : galois_single_divide(1, n, w);
     }
   }
+
+  printf("<HTML><TITLE>jerasure_03");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>jerasure_03");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
 
   printf("The Cauchy Matrix:\n");
   jerasure_print_matrix(matrix, k, k, w);

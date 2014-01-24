@@ -73,6 +73,14 @@ int main(int argc, char **argv)
     n = galois_single_multiply(n, 2, w);
   }
 
+  printf("<HTML><TITLE>jerasure_01");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>jerasure_01");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
+
   jerasure_print_matrix(matrix, r, c, w);
   return 0;
 }

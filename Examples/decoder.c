@@ -90,7 +90,7 @@ int main (int argc, char **argv) {
 	
 	/* Parameters */
 	int k, m, w, packetsize, buffersize;
-	enum Coding_Technique tech;
+	int tech;
 	char *c_tech;
 	
 	int i, j;				// loop control variables
@@ -148,7 +148,7 @@ int main (int argc, char **argv) {
 	} else {
            extension = strdup("");
         }	
-	fname = (char *)malloc(sizeof(char*)*(100+strlen(argv[1])+10));
+	fname = (char *)malloc(sizeof(char*)*(100+strlen(argv[1])+20));
 
 	/* Read in parameters from metadata file */
 	sprintf(fname, "%s/Coding/%s_meta.txt", curdir, cs1);
@@ -158,7 +158,7 @@ int main (int argc, char **argv) {
           fprintf(stderr, "Error: no metadata file %s\n", fname);
           exit(1);
         }
-	temp = (char *)malloc(sizeof(char)*(strlen(argv[1])+10));
+	temp = (char *)malloc(sizeof(char)*(strlen(argv[1])+20));
 	fscanf(fp, "%s", temp);	
 	
 	if (fscanf(fp, "%d", &origsize) != 1) {
@@ -169,7 +169,7 @@ int main (int argc, char **argv) {
 		fprintf(stderr, "Parameters are not correct\n");
 		exit(0);
 	}
-	c_tech = (char *)malloc(sizeof(char)*(strlen(argv[1])+10));
+	c_tech = (char *)malloc(sizeof(char)*(strlen(argv[1])+20));
 	fscanf(fp, "%s", c_tech);
 	fscanf(fp, "%d", &tech);
 	method = tech;
@@ -374,8 +374,8 @@ int main (int argc, char **argv) {
 	tsec /= 1000000.0;
 	tsec += t2.tv_sec;
 	tsec -= t1.tv_sec;
-	printf("Decoding (MB/sec): %0.10f\n", (origsize/1024/1024)/totalsec);
-	printf("De_Total (MB/sec): %0.10f\n\n", (origsize/1024/1024)/tsec);
+	printf("Decoding (MB/sec): %0.10f\n", (((double) origsize)/1024.0/1024.0)/totalsec);
+	printf("De_Total (MB/sec): %0.10f\n\n", (((double) origsize)/1024.0/1024.0)/tsec);
 }	
 
 void ctrl_bs_handler(int dummy) {

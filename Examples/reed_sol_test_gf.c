@@ -42,6 +42,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gf_complete.h>
+#include <gf_method.h>
+#include <stdint.h>
 #include "jerasure.h"
 #include "reed_sol.h"
 
@@ -62,7 +64,7 @@ static void free16(void *ptr) {
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_test_gf k m w [additional GF args]- Tests Reed-Solomon in GF(2^w).\n");
+  fprintf(stderr, "usage: reed_sol_test_gf k m w seed [additional GF args]- Tests Reed-Solomon in GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.\n");
   fprintf(stderr, "       See the README for information on the additional GF args.\n");
@@ -88,17 +90,6 @@ gf_t* get_gf(int w, int argc, char **argv, int starting)
   return gf;
 }
 
-static void fill_buffer(unsigned char *buf, int size)
-{
-  int i;
-
-  buf[0] = (char)(lrand48() % 256);
-
-  for (i=1; i < size; i++) {
-    buf[i] = ((buf[i-1] + i) % 256);
-  }
-}
-
 int main(int argc, char **argv)
 {
   long l;
@@ -108,16 +99,18 @@ int main(int argc, char **argv)
   int *erasures, *erased;
   int *decoding_matrix, *dm_ids;
   gf_t *gf = NULL;
+  uint32_t seed;
   
-  if (argc < 4) usage(NULL);  
+  if (argc < 6) usage(NULL);  
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
   if (sscanf(argv[2], "%d", &m) == 0 || m <= 0) usage("Bad m");
   if (sscanf(argv[3], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32)) usage("Bad w");
+  if (sscanf(argv[4], "%d", &seed) == 0) usage("Bad seed");
   if (w <= 16 && k + m > (1 << w)) usage("k + m is too big");
 
-  srand48(time(0));
+  MOA_Seed(seed);
 
-  gf = get_gf(w, argc, argv, 4); 
+  gf = get_gf(w, argc, argv, 5); 
 
   if (gf == NULL) {
     usage("Invalid arguments given for GF!\n");
@@ -127,14 +120,22 @@ int main(int argc, char **argv)
 
   matrix = reed_sol_vandermonde_coding_matrix(k, m, w);
 
-  printf("Last m rows of the Distribution Matrix:\n\n");
+  printf("<HTML><TITLE>reed_sol_test_gf");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>reed_sol_test_gf");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
+
+  printf("Last m rows of the generator matrix (G^T):\n\n");
   jerasure_print_matrix(matrix, m, k, w);
   printf("\n");
 
   data = talloc(char *, k);
   for (i = 0; i < k; i++) {
     data[i] = talloc(char, BUFSIZE);
-    fill_buffer(data[i], BUFSIZE);
+    MOA_Fill_Random_Region(data[i], BUFSIZE);
   }
 
   coding = talloc(char *, m);
@@ -151,7 +152,7 @@ int main(int argc, char **argv)
   for (i = 0; i < m+k; i++) erased[i] = 0;
   l = 0;
   for (i = 0; i < m; ) {
-    erasures[i] = ((unsigned int)lrand48())%(k+m);
+    erasures[i] = ((unsigned int)MOA_Random_W(w,1))%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
       memcpy(old_values[i], (erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], BUFSIZE);
@@ -177,5 +178,6 @@ int main(int argc, char **argv)
     }
   }
   
+  printf("Encoding and decoding were both successful.\n");
   return 0;
 }

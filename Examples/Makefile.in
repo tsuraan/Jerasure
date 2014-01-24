@@ -41,7 +41,7 @@ bin_PROGRAMS = jerasure_01$(EXEEXT) jerasure_02$(EXEEXT) \
 	jerasure_06$(EXEEXT) jerasure_07$(EXEEXT) jerasure_08$(EXEEXT) \
 	reed_sol_01$(EXEEXT) reed_sol_02$(EXEEXT) reed_sol_03$(EXEEXT) \
 	reed_sol_04$(EXEEXT) reed_sol_test_gf$(EXEEXT) \
-	reed_sol_time_gf$(EXEEXT) reed_sol_hard_time_gf$(EXEEXT) \
+	reed_sol_time_gf$(EXEEXT) \
 	cauchy_01$(EXEEXT) cauchy_02$(EXEEXT) cauchy_03$(EXEEXT) \
 	cauchy_04$(EXEEXT) liberation_01$(EXEEXT) encoder$(EXEEXT) \
 	decoder$(EXEEXT)
@@ -120,9 +120,6 @@ reed_sol_03_DEPENDENCIES = ../src/libJerasure.la
 am_reed_sol_04_OBJECTS = reed_sol_04.$(OBJEXT)
 reed_sol_04_OBJECTS = $(am_reed_sol_04_OBJECTS)
 reed_sol_04_DEPENDENCIES = ../src/libJerasure.la
-am_reed_sol_hard_time_gf_OBJECTS = reed_sol_hard_time_gf.$(OBJEXT)
-reed_sol_hard_time_gf_OBJECTS = $(am_reed_sol_hard_time_gf_OBJECTS)
-reed_sol_hard_time_gf_DEPENDENCIES = ../src/libJerasure.la
 am_reed_sol_test_gf_OBJECTS = reed_sol_test_gf.$(OBJEXT)
 reed_sol_test_gf_OBJECTS = $(am_reed_sol_test_gf_OBJECTS)
 reed_sol_test_gf_DEPENDENCIES = ../src/libJerasure.la
@@ -150,7 +147,7 @@ SOURCES = $(cauchy_01_SOURCES) $(cauchy_02_SOURCES) \
 	$(jerasure_08_SOURCES) $(liberation_01_SOURCES) \
 	$(reed_sol_01_SOURCES) $(reed_sol_02_SOURCES) \
 	$(reed_sol_03_SOURCES) $(reed_sol_04_SOURCES) \
-	$(reed_sol_hard_time_gf_SOURCES) $(reed_sol_test_gf_SOURCES) \
+	$(reed_sol_test_gf_SOURCES) \
 	$(reed_sol_time_gf_SOURCES)
 DIST_SOURCES = $(cauchy_01_SOURCES) $(cauchy_02_SOURCES) \
 	$(cauchy_03_SOURCES) $(cauchy_04_SOURCES) $(decoder_SOURCES) \
@@ -161,7 +158,7 @@ DIST_SOURCES = $(cauchy_01_SOURCES) $(cauchy_02_SOURCES) \
 	$(jerasure_08_SOURCES) $(liberation_01_SOURCES) \
 	$(reed_sol_01_SOURCES) $(reed_sol_02_SOURCES) \
 	$(reed_sol_03_SOURCES) $(reed_sol_04_SOURCES) \
-	$(reed_sol_hard_time_gf_SOURCES) $(reed_sol_test_gf_SOURCES) \
+	$(reed_sol_test_gf_SOURCES) \
 	$(reed_sol_time_gf_SOURCES)
 ETAGS = etags
 CTAGS = ctags
@@ -306,8 +303,6 @@ reed_sol_test_gf_SOURCES = reed_sol_test_gf.c
 reed_sol_test_gf_LDADD = ../src/libJerasure.la
 reed_sol_time_gf_SOURCES = reed_sol_time_gf.c
 reed_sol_time_gf_LDADD = ../src/libJerasure.la
-reed_sol_hard_time_gf_SOURCES = reed_sol_hard_time_gf.c
-reed_sol_hard_time_gf_LDADD = ../src/libJerasure.la
 cauchy_01_SOURCES = cauchy_01.c
 cauchy_01_LDADD = ../src/libJerasure.la
 cauchy_02_SOURCES = cauchy_02.c
@@ -456,9 +451,6 @@ reed_sol_03$(EXEEXT): $(reed_sol_03_OBJECTS) $(reed_sol_03_DEPENDENCIES) $(EXTRA
 reed_sol_04$(EXEEXT): $(reed_sol_04_OBJECTS) $(reed_sol_04_DEPENDENCIES) $(EXTRA_reed_sol_04_DEPENDENCIES) 
 	@rm -f reed_sol_04$(EXEEXT)
 	$(LINK) $(reed_sol_04_OBJECTS) $(reed_sol_04_LDADD) $(LIBS)
-reed_sol_hard_time_gf$(EXEEXT): $(reed_sol_hard_time_gf_OBJECTS) $(reed_sol_hard_time_gf_DEPENDENCIES) $(EXTRA_reed_sol_hard_time_gf_DEPENDENCIES) 
-	@rm -f reed_sol_hard_time_gf$(EXEEXT)
-	$(LINK) $(reed_sol_hard_time_gf_OBJECTS) $(reed_sol_hard_time_gf_LDADD) $(LIBS)
 reed_sol_test_gf$(EXEEXT): $(reed_sol_test_gf_OBJECTS) $(reed_sol_test_gf_DEPENDENCIES) $(EXTRA_reed_sol_test_gf_DEPENDENCIES) 
 	@rm -f reed_sol_test_gf$(EXEEXT)
 	$(LINK) $(reed_sol_test_gf_OBJECTS) $(reed_sol_test_gf_LDADD) $(LIBS)

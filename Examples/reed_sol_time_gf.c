@@ -41,10 +41,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gf_complete.h>
+#include <gf_rand.h>
+#include <gf_method.h>
+#include <stdint.h>
 #include "jerasure.h"
 #include "reed_sol.h"
-
-#define BUFSIZE 4096
 
 static void *malloc16(int size) {
     void *mem = malloc(size+16+sizeof(void*));
@@ -81,12 +82,12 @@ timer_split (const double *t)
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_time_gf k m w iterations bufsize [additional GF args]- Test and time Reed-Solomon in a particular GF(2^w).\n");
+  fprintf(stderr, "usage: reed_sol_time_gf k m w seed iterations bufsize (additional GF args) - Test and time Reed-Solomon in a particular GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.\n");
   fprintf(stderr, "       See the README for information on the additional GF args.\n");
   fprintf(stderr, "       Set up a Vandermonde-based distribution matrix and encodes k devices of\n");
-  fprintf(stderr, "       %d bytes each with it.  Then it decodes.\n", BUFSIZE);
+  fprintf(stderr, "       bufsize bytes each with it.  Then it decodes.\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "This tests:        jerasure_matrix_encode()\n");
   fprintf(stderr, "                   jerasure_matrix_decode()\n");
@@ -107,17 +108,6 @@ gf_t* get_gf(int w, int argc, char **argv, int starting)
   return gf;
 }
 
-static void fill_buffer(unsigned char *buf, int size)
-{
-  int i;
-
-  buf[0] = (char)(lrand48() % 256);
-
-  for (i=1; i < size; i++) {
-    buf[i] = ((buf[i-1] + i) % 256);
-  }
-}
-
 int main(int argc, char **argv)
 {
   long l;
@@ -126,20 +116,22 @@ int main(int argc, char **argv)
   char **data, **coding, **old_values;
   int *erasures, *erased;
   int *decoding_matrix, *dm_ids;
+  uint32_t seed;
   double t = 0, total_time = 0;
   gf_t *gf = NULL;
   
-  if (argc < 6) usage(NULL);  
+  if (argc < 8) usage(NULL);  
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
   if (sscanf(argv[2], "%d", &m) == 0 || m <= 0) usage("Bad m");
   if (sscanf(argv[3], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32)) usage("Bad w");
-  if (sscanf(argv[4], "%d", &iterations) == 0) usage("Bad iterations");
-  if (sscanf(argv[5], "%d", &bufsize) == 0) usage("Bad bufsize");
+  if (sscanf(argv[4], "%d", &seed) == 0) usage("Bad seed");
+  if (sscanf(argv[5], "%d", &iterations) == 0) usage("Bad iterations");
+  if (sscanf(argv[6], "%d", &bufsize) == 0) usage("Bad bufsize");
   if (w <= 16 && k + m > (1 << w)) usage("k + m is too big");
 
-  srand48(time(0));
+  MOA_Seed(seed);
 
-  gf = get_gf(w, argc, argv, 6); 
+  gf = get_gf(w, argc, argv, 7); 
 
   if (gf == NULL) {
     usage("Invalid arguments given for GF!\n");
@@ -149,14 +141,22 @@ int main(int argc, char **argv)
 
   matrix = reed_sol_vandermonde_coding_matrix(k, m, w);
 
-  printf("Last m rows of the Distribution Matrix:\n\n");
+  printf("<HTML><TITLE>reed_sol_time_gf");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>reed_sol_time_gf");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
+
+  printf("Last m rows of the generator matrix (G^T):\n\n");
   jerasure_print_matrix(matrix, m, k, w);
   printf("\n");
 
   data = talloc(char *, k);
   for (i = 0; i < k; i++) {
     data[i] = talloc(char, bufsize);
-    fill_buffer(data[i], bufsize);
+    MOA_Fill_Random_Region(data[i], bufsize);
   }
 
   coding = talloc(char *, m);
@@ -172,14 +172,14 @@ int main(int argc, char **argv)
     total_time += timer_split(&t);
   }
 
-  fprintf(stderr, "Encode thput for %d iterations: %.2f MB/s (%.2f sec)\n", iterations, (double)(k*iterations*bufsize/1024/1024) / total_time, total_time);
+  printf("Encode throughput for %d iterations: %.2f MB/s (%.2f sec)\n", iterations, (double)(k*iterations*bufsize/1024/1024) / total_time, total_time);
   
   erasures = talloc(int, (m+1));
   erased = talloc(int, (k+m));
   for (i = 0; i < m+k; i++) erased[i] = 0;
   l = 0;
   for (i = 0; i < m; ) {
-    erasures[i] = ((unsigned int)lrand48())%(k+m);
+    erasures[i] = ((unsigned int)MOA_Random_W(w, 1))%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
       memcpy(old_values[i], (erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], bufsize);
@@ -195,7 +195,7 @@ int main(int argc, char **argv)
     total_time += timer_split(&t);
   }
   
-  fprintf(stderr, "Decode thput for %d iterations: %.2f MB/s (%.2f sec)\n", iterations, (double)(m*iterations*bufsize/1024/1024) / total_time, total_time);
+  printf("Decode throughput for %d iterations: %.2f MB/s (%.2f sec)\n", iterations, (double)(k*iterations*bufsize/1024/1024) / total_time, total_time);
 
   for (i = 0; i < m; i++) {
     if (erasures[i] < k) {

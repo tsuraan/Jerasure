@@ -50,7 +50,7 @@ usage(char *s)
   fprintf(stderr, "usage: reed_sol_02 k m w - Vandermonde matrices in GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       k+m must be <= 2^w.  This simply prints out the \n");
-  fprintf(stderr, "       Vandermonde matrix in GF(2^w), and then the distribution\n");
+  fprintf(stderr, "       Vandermonde matrix in GF(2^w), and then the generator\n");
   fprintf(stderr, "       matrix that is constructed from it.  See [Plank-Ding-05] for\n");
   fprintf(stderr, "       information on how this construction proceeds\n");
   fprintf(stderr, "       \n");
@@ -75,12 +75,16 @@ int main(int argc, char **argv)
   if (w <= 30 && k + m > (1 << w)) usage("k + m is too big");
 
   matrix = reed_sol_extended_vandermonde_matrix(k+m, k, w);
+
+  printf("<HTML><TITLE>reed_sol_02 %d %d %d</title>\n", k, m, w);
+  printf("<h3>reed_sol_02 %d %d %d</h3>\n", k, m, w);
+  printf("<pre>\n");
   printf("Extended Vandermonde Matrix:\n\n");
   jerasure_print_matrix(matrix, k+m, k, w);
   printf("\n");
 
   matrix = reed_sol_big_vandermonde_distribution_matrix(k+m, k, w);
-  printf("Vandermonde Distribution Matrix:\n\n");
+  printf("Vandermonde Generator Matrix (G^T):\n\n");
   jerasure_print_matrix(matrix, k+m, k, w);
   printf("\n");
 

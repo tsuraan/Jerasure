@@ -73,6 +73,15 @@ int main(int argc, char **argv)
   }
 
   bitmatrix = jerasure_matrix_to_bitmatrix(c, r, w, matrix);
+
+  printf("<HTML><TITLE>jerasure_02");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>jerasure_02");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
+
   jerasure_print_bitmatrix(bitmatrix, r*w, c*w, w);
   return 0;
 }

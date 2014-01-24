@@ -40,7 +40,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
+#include <gf_rand.h>
 #include "jerasure.h"
 #include "reed_sol.h"
 
@@ -48,7 +50,7 @@
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_04 w - Shows reed_sol_galois_wXX_region_multby_2\n");
+  fprintf(stderr, "usage: reed_sol_04 w seed - Shows reed_sol_galois_wXX_region_multby_2\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  Sets up an array of 4 random words in\n");
   fprintf(stderr, "       GF(2^w) and multiplies them by two.  \n");
@@ -65,18 +67,24 @@ int main(int argc, char **argv)
   unsigned char *x, *y;
   unsigned short *xs, *ys;
   unsigned int *xi, *yi;
+  uint32_t seed;
   int *a32, *copy;
   int i;
   int w;
   
-  if (argc != 2) usage(NULL);
+  if (argc != 3) usage(NULL);
   if (sscanf(argv[1], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32)) usage("Bad w");
+  if (sscanf(argv[2], "%d", &seed) == 0) usage("Bad seed");
 
-  srand48(time(0));
+  printf("<HTML><TITLE>reed_sol_04 %d %d</title>\n", w, seed);
+  printf("<h3>reed_sol_04 %d %d</h3>\n", w, seed);
+  printf("<pre>\n");
+
+  MOA_Seed(seed);
   a32 = talloc(int, 4);
   copy = talloc(int, 4);
   y = (unsigned char *) a32;
-  for (i = 0; i < 4*sizeof(int); i++) y[i] = lrand48()%255;
+  for (i = 0; i < 4*sizeof(int); i++) y[i] = MOA_Random_W(8, 1);
   memcpy(copy, a32, sizeof(int)*4);
 
   if (w == 8) {

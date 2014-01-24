@@ -85,6 +85,14 @@ int main(int argc, char **argv)
   }
   bitmatrix = jerasure_matrix_to_bitmatrix(k, k, w, matrix);
 
+  printf("<HTML><TITLE>jerasure_04");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>jerasure_04");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
+
   printf("The Cauchy Bit-Matrix:\n");
   jerasure_print_bitmatrix(bitmatrix, k*w, k*w, w);
   memcpy(bitmatrix_copy, bitmatrix, sizeof(int)*k*w*k*w);

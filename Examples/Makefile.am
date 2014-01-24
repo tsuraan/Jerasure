@@ -17,7 +17,6 @@ bin_PROGRAMS = jerasure_01 \
                reed_sol_04 \
                reed_sol_test_gf \
                reed_sol_time_gf \
-               reed_sol_hard_time_gf \
                cauchy_01 \
                cauchy_02 \
                cauchy_03 \
@@ -67,9 +66,6 @@ reed_sol_test_gf_LDADD = ../src/libJerasure.la
 
 reed_sol_time_gf_SOURCES = reed_sol_time_gf.c
 reed_sol_time_gf_LDADD = ../src/libJerasure.la
-
-reed_sol_hard_time_gf_SOURCES = reed_sol_hard_time_gf.c
-reed_sol_hard_time_gf_LDADD = ../src/libJerasure.la
 
 cauchy_01_SOURCES = cauchy_01.c
 cauchy_01_LDADD = ../src/libJerasure.la

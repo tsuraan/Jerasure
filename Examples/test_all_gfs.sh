@@ -41,14 +41,15 @@ GF_COMPLETE_DIR=/usr/local/bin
 GF_METHODS=${GF_COMPLETE_DIR}/gf_methods
 k=12
 m=3
+seed=1370
 
 # Test all w=8
-${GF_METHODS} | awk -F: '{ if ($1 == "w=8") print $2; }' |
+${GF_METHODS} 8 -B -L | awk -F: '{ if ($1 == "w=8") print $2; }' |
 while read method; do
-  echo "Testing ${k} ${m} 8 ${method}"
-  ./reed_sol_test_gf ${k} ${m} 8 ${method}
+  echo "Testing ${k} ${m} 8 $seed ${method}"
+  ./reed_sol_test_gf ${k} ${m} 8 $seed ${method} | tail -n 1
   if [[ $? != "0" ]]; then
-    echo "Failed test for ${k} ${m} 8 ${method}"
+    echo "Failed test for ${k} ${m} 8 $seed ${method}"
     exit 1
   fi
 done
@@ -57,33 +58,34 @@ if [[ $? == "1" ]]; then
   exit 1
 fi
 
+
 # Test all w=16
-${GF_METHODS} | awk -F: '{ if ($1 == "w=16") print $2; }' |
+${GF_METHODS} 16 -B -L | awk -F: '{ if ($1 == "w=16") print $2; }' |
 while read method; do
-  echo "Testing ${k} ${m} 16 ${method}"
-  ./reed_sol_test_gf ${k} ${m} 16 ${method}
+  echo "Testing ${k} ${m} 16 $seed ${method}"
+  ./reed_sol_test_gf ${k} ${m} 16 $seed ${method} | tail -n 1
   if [[ $? != "0" ]]; then
-    echo "Failed test for ${k} ${m} 16 ${method}"
-    FAIL="1"
+    echo "Failed test for ${k} ${m} 16 $seed ${method}"
     exit 1
   fi
 done
+
 
 if [[ $? == "1" ]]; then
   exit 1
 fi
 
 # Test all w=32
-${GF_METHODS} | awk -F: '{ if ($1 == "w=32") print $2; }' |
+${GF_METHODS} 32 -B -L | awk -F: '{ if ($1 == "w=32") print $2; }' |
 while read method; do
-  echo "Testing ${k} ${m} 32 ${method}"
-  ./reed_sol_test_gf ${k} ${m} 32 ${method}
+  echo "Testing ${k} ${m} 32 $seed ${method}"
+  ./reed_sol_test_gf ${k} ${m} 32 $seed ${method} | tail -n 1
   if [[ $? != "0" ]]; then
-    echo "Failed test for ${k} ${m} 32 ${method}"
-    FAIL="1"
+    echo "Failed test for ${k} ${m} 32 $seed ${method}"
     exit 1
   fi
 done
+
 
 if [[ $? == "1" ]]; then
   exit 1

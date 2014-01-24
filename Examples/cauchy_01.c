@@ -1,5 +1,5 @@
 /* *
- * Copyright (c) 2013, James S. Plank and Kevin Greenan
+ * Copyright (c) 2014, James S. Plank and Kevin Greenan
  * All rights reserved.
  *
  * Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure
@@ -39,6 +39,7 @@
 
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include "jerasure.h"
@@ -48,36 +49,56 @@
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: cauchy_01 n w - Prints the number of ones in the bitmatrix representation of n in GF(2^w).\n");
+  fprintf(stderr, "usage: cauchy_01 n w - Converts the value n to a bitmatrix using GF(2^w).\n");
   fprintf(stderr, "       \n");
-  fprintf(stderr, "       It also prints out the bit-matrix and confirms that the number of ones is correct.\n");
+  fprintf(stderr, "       It prints the bitmatrix, and reports on the numberof ones.\n");
+  fprintf(stderr, "       Use 0x to input n in hexadecimal.\n");
+  fprintf(stderr, "       W must be <= 32.\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "This demonstrates: cauchy_n_ones()\n");
   fprintf(stderr, "                   jerasure_matrix_to_bitmatrix()\n");
   fprintf(stderr, "                   jerasure_print_bitmatrix()\n");
-  if (s != NULL) fprintf(stderr, "%s\n", s);
+  if (s != NULL) fprintf(stderr, "\n%s\n", s);
   exit(1);
 }
 
 int main(int argc, char **argv)
 {
-  int n, i, no, w;
+  uint32_t n;
+  int i, no, w;
   int *bitmatrix;
   
   if (argc != 3) usage(NULL);
-  if (sscanf(argv[1], "%d", &n) == 0 || n <= 0) usage("Bad n");
+  if (sscanf(argv[1], "0x%x", &n) == 0) {
+    if (sscanf(argv[1], "%d", &n) == 0) usage("Bad n");
+  }
   if (sscanf(argv[2], "%d", &w) == 0 || w <= 0 || w > 32) usage("Bad w");
-  if (w < 30 && n >= (1 << w)) usage("n is too big");
+  if (w == 31) {
+    if (n & 0x80000000L) usage("Bad n/w combination (n not between 0 and 2^w-1)\n");
+  } else if (w < 31) {
+    if (n >= (1 << w)) usage("Bad n/w combination (n not between 0 and 2^w-1)\n");
+  }
 
   bitmatrix = jerasure_matrix_to_bitmatrix(1, 1, w, &n);
+  printf("<HTML><title>cauchy_01 %u %d</title>\n", w, n);
+  printf("<HTML><h3>cauchy_01 %u %d</h3>\n", w, n);
+  printf("<pre>\n");
+  if (w == 32) {
+    printf("Converted the value 0x%x to the following bitmatrix:\n\n", n);
+  } else {
+    printf("Converted the value %d (0x%x) to the following bitmatrix:\n\n", n, n);
+  }
+  jerasure_print_bitmatrix(bitmatrix, w, w, w);
+  printf("\n");
+
   no = 0;
   for (i = 0; i < w*w; i++) no += bitmatrix[i];
+  if (no != cauchy_n_ones(n, w)) { 
+    fprintf(stderr, "Jerasure error: # ones in the bitmatrix (%d) doesn't match cauchy_n_ones() (%d).\n",
+       no, cauchy_n_ones(n, w));
+    exit(1);
+  }
 
   printf("# Ones: %d\n", cauchy_n_ones(n, w));
-  printf("\n");
-  printf("Bitmatrix has %d ones\n", no);
-  printf("\n");
-  jerasure_print_bitmatrix(bitmatrix, w, w, w);
-
   return 0;
 }
