@@ -1,5 +1,5 @@
 /* *
- * Copyright (c) 2013, James S. Plank and Kevin Greenan
+ * Copyright (c) 2014, James S. Plank and Kevin Greenan
  * All rights reserved.
  *
  * Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure
@@ -37,7 +37,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-    
+/* Jerasure's authors:
+
+   Revision 2.x - 2014: James S. Plank and Kevin M. Greenan.
+   Revision 1.2 - 2008: James S. Plank, Scott Simmerman and Catherine D. Schuman.
+   Revision 1.0 - 2007: James S. Plank.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

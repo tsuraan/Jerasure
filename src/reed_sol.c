@@ -1,5 +1,5 @@
 /* *
- * Copyright (c) 2013, James S. Plank and Kevin Greenan
+ * Copyright (c) 2014, James S. Plank and Kevin Greenan
  * All rights reserved.
  *
  * Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure
@@ -37,11 +37,18 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* Jerasure's authors:
+
+   Revision 2.x - 2014: James S. Plank and Kevin M. Greenan
+   Revision 1.2 - 2008: James S. Plank, Scott Simmerman and Catherine D. Schuman.
+   Revision 1.0 - 2007: James S. Plank
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include <gf_complete.h>
 #include "galois.h"
 #include "jerasure.h"
 #include "reed_sol.h"
@@ -91,118 +98,52 @@ int *reed_sol_vandermonde_coding_matrix(int k, int m, int w)
   return dist;
 }
 
-static int prim32 = -1;
-
-#define rgw32_mask(v) ((v) & 0x80000000)
-
-void reed_sol_galois_w32_region_multby_2(char *region, int nbytes) 
-{
-  int *l1;
-  int *ltop;
-  char *ctop;
-
-  if (prim32 == -1) prim32 = galois_single_multiply((1 << 31), 2, 32);
-
-  ctop = region + nbytes;
-  ltop = (int *) ctop;
-  l1 = (int *) region;
-
-  while (l1 < ltop) {
-    *l1 = ((*l1) << 1) ^ ((*l1 & 0x80000000) ? prim32 : 0);
-    l1++;
-  }
-}
-
 static int prim08 = -1;
-static int mask08_1 = -1;
-static int mask08_2 = -1;
+static gf_t GF08;
 
 void reed_sol_galois_w08_region_multby_2(char *region, int nbytes)
 {
-  unsigned int *l1;
-  unsigned int *ltop;
-  char *ctop;
-  unsigned int tmp, tmp2;
-  
-
   if (prim08 == -1) {
-    tmp = galois_single_multiply((1 << 7), 2, 8);
-    prim08 = 0;
-    while (tmp != 0) {
-      prim08 |= tmp;
-      tmp = (tmp << 8);
-    }
-    tmp = (1 << 8) - 2;
-    mask08_1 = 0;
-    while (tmp != 0) {
-      mask08_1 |= tmp;
-      tmp = (tmp << 8);
-    }
-    tmp = (1 << 7);
-    mask08_2 = 0;
-    while (tmp != 0) {
-      mask08_2 |= tmp;
-      tmp = (tmp << 8);
+    prim08 = galois_single_multiply((1 << 7), 2, 8);
+    if (!gf_init_hard(&GF08, 8, GF_MULT_BYTWO_b, GF_REGION_DEFAULT, GF_DIVIDE_DEFAULT,
+                      prim08, 0, 0, NULL, NULL)) {
+      fprintf(stderr, "Error: Can't initialize the GF for reed_sol_galois_w08_region_multby_2\n");
+      exit(1);
     }
   }
-
-  ctop = region + nbytes;
-  ltop = (unsigned int *) ctop;
-  l1 = (unsigned int *) region;
-
-  while (l1 < ltop) {
-    tmp = ((*l1) << 1) & mask08_1;
-    tmp2 = (*l1) & mask08_2;
-    tmp2 = ((tmp2 << 1) - (tmp2 >> 7));
-    *l1 = (tmp ^ (tmp2 & prim08));
-    l1++;
-  }
+  GF08.multiply_region.w32(&GF08, region, region, 2, nbytes, 0);
 }
 
 static int prim16 = -1;
-static int mask16_1 = -1;
-static int mask16_2 = -1;
+static gf_t GF16;
 
 void reed_sol_galois_w16_region_multby_2(char *region, int nbytes)
 {
-  unsigned int *l1;
-  unsigned int *ltop;
-  char *ctop;
-  unsigned int tmp, tmp2;
-  
-
   if (prim16 == -1) {
-    tmp = galois_single_multiply((1 << 15), 2, 16);
-    prim16 = 0;
-    while (tmp != 0) {
-      prim16 |= tmp;
-      tmp = (tmp << 16);
-    }
-    tmp = (1 << 16) - 2;
-    mask16_1 = 0;
-    while (tmp != 0) {
-      mask16_1 |= tmp;
-      tmp = (tmp << 16);
-    }
-    tmp = (1 << 15);
-    mask16_2 = 0;
-    while (tmp != 0) {
-      mask16_2 |= tmp;
-      tmp = (tmp << 16);
+    prim16 = galois_single_multiply((1 << 15), 2, 16);
+    if (!gf_init_hard(&GF16, 16, GF_MULT_BYTWO_b, GF_REGION_DEFAULT, GF_DIVIDE_DEFAULT,
+                      prim16, 0, 0, NULL, NULL)) {
+      fprintf(stderr, "Error: Can't initialize the GF for reed_sol_galois_w16_region_multby_2\n");
+      exit(1);
     }
   }
+  GF16.multiply_region.w32(&GF16, region, region, 2, nbytes, 0);
+}
 
-  ctop = region + nbytes;
-  ltop = (unsigned int *) ctop;
-  l1 = (unsigned int *) region;
+static int prim32 = -1;
+static gf_t GF32;
 
-  while (l1 < ltop) {
-    tmp = ((*l1) << 1) & mask16_1;
-    tmp2 = (*l1) & mask16_2;
-    tmp2 = ((tmp2 << 1) - (tmp2 >> 15));
-    *l1 = (tmp ^ (tmp2 & prim16));
-    l1++;
+void reed_sol_galois_w32_region_multby_2(char *region, int nbytes)
+{
+  if (prim32 == -1) {
+    prim32 = galois_single_multiply((1 << 31), 2, 32);
+    if (!gf_init_hard(&GF32, 32, GF_MULT_BYTWO_b, GF_REGION_DEFAULT, GF_DIVIDE_DEFAULT,
+                      prim32, 0, 0, NULL, NULL)) {
+      fprintf(stderr, "Error: Can't initialize the GF for reed_sol_galois_w32_region_multby_2\n");
+      exit(1);
+    }
   }
+  GF32.multiply_region.w32(&GF32, region, region, 2, nbytes, 0);
 }
 
 int reed_sol_r6_encode(int k, int w, char **data_ptrs, char **coding_ptrs, int size)

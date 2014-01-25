@@ -7,12 +7,11 @@ External Documentation:
 
 See technical report CS-08-627 for a description of the main interfaces (Version 1.2)
 
-See http://web.eecs.utk.edu/~plank/plank/papers/CS-13-703.html for information
-on GF-Complete and the tarball needed to install it.
-
-Custom usgae of GF-Complete is explained in this file (see below).
+See https://bitbucket.org/jimplank/gf-complete for GF-Complete.
 
 NOTE: You must have GF-Complete installed in order to use Jerasure 2.0.
+
+Custom usage of GF-Complete is explained in this file (see below).
 
 There are two directories of source code:
 
