@@ -1,68 +1,65 @@
-/* Examples/jerasure_05.c
-Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure Coding Techniques
-
-Revision 1.2A
-May 24, 2011
-
-James S. Plank
-Department of Electrical Engineering and Computer Science
-University of Tennessee
-Knoxville, TN 37996
-plank@cs.utk.edu
-
-Copyright (c) 2011, James S. Plank
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
- - Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-
- - Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in
-   the documentation and/or other materials provided with the
-   distribution.
-
- - Neither the name of the University of Tennessee nor the names of its
-   contributors may be used to endorse or promote products derived
-   from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
-WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-
+/* *
+ * Copyright (c) 2014, James S. Plank and Kevin Greenan
+ * All rights reserved.
+ *
+ * Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure
+ * Coding Techniques
+ *
+ * Revision 2.0: Galois Field backend now links to GF-Complete
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  - Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *  - Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *  - Neither the name of the University of Tennessee nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+ * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+ * WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  */
-    
 
-/*
-	revised by S. Simmerman
-	2/25/08  
-*/
+/* Jerasure's authors:
+
+   Revision 2.x - 2014: James S. Plank and Kevin M. Greenan.
+   Revision 1.2 - 2008: James S. Plank, Scott Simmerman and Catherine D. Schuman.
+   Revision 1.0 - 2007: James S. Plank.
+ */
+
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <gf_rand.h>
 #include "jerasure.h"
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: jerasure_05 k m w size - Does a simple Reed-Solomon coding example in GF(2^w).\n");
+  fprintf(stderr, "usage: jerasure_05 k m w size seed - Does a simple Reed-Solomon coding example in GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       k+m must be <= 2^w.  w can be 8, 16 or 32.\n");
-  fprintf(stderr, "       It sets up a Cauchy distribution matrix and encodes\n");
-  fprintf(stderr, "       k devices of size bytes with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       It sets up a Cauchy generator matrix and encodes\n");
+  fprintf(stderr, "       k devices of size bytes with it.  Then it decodes.\n");
   fprintf(stderr, "       After that, it decodes device 0 by using jerasure_make_decoding_matrix()\n");
   fprintf(stderr, "       and jerasure_matrix_dotprod().\n");
   fprintf(stderr, "       \n");
@@ -122,15 +119,16 @@ int main(int argc, char **argv)
   char **data, **coding;
   int *erasures, *erased;
   int *decoding_matrix, *dm_ids;
+  uint32_t seed;
   
-  if (argc != 5) usage(NULL);
+  if (argc != 6) usage(NULL);
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
   if (sscanf(argv[2], "%d", &m) == 0 || m <= 0) usage("Bad m");
-  if (sscanf(argv[3], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32))
-		  usage("Bad w");
+  if (sscanf(argv[3], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32)) usage("Bad w");
   if (w < 32 && k + m > (1 << w)) usage("k + m must be <= 2 ^ w");
   if (sscanf(argv[4], "%d", &size) == 0 || size % sizeof(long) != 0) 
 		usage("size must be multiple of sizeof(long)");
+  if (sscanf(argv[5], "%d", &seed) == 0) usage("Bad seed");
 
   matrix = talloc(int, m*k);
   for (i = 0; i < m; i++) {
@@ -139,18 +137,23 @@ int main(int argc, char **argv)
     }
   }
 
-  printf("The Coding Matrix (the last m rows of the Distribution Matrix):\n\n");
+  printf("<HTML><TITLE>jerasure_05");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>jerasure_05");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
+  printf("<pre>\n");
+
+  printf("The Coding Matrix (the last m rows of the Generator Matrix G^T):\n\n");
   jerasure_print_matrix(matrix, m, k, w);
   printf("\n");
 
-  srand48(0);
+  MOA_Seed(seed);
   data = talloc(char *, k);
   for (i = 0; i < k; i++) {
     data[i] = talloc(char, size);
-	for(j = 0; j < size; j+=sizeof(long)) {
-		l = lrand48();
-		memcpy(data[i] + j, &l, sizeof(long));
-	}
+    MOA_Fill_Random_Region(data[i], size);
   }
 
   coding = talloc(char *, m);
@@ -168,7 +171,7 @@ int main(int argc, char **argv)
   for (i = 0; i < m+k; i++) erased[i] = 0;
   l = 0;
   for (i = 0; i < m; ) {
-    erasures[i] = lrand48()%(k+m);
+    erasures[i] = (MOA_Random_W(w, 1))%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
 	  

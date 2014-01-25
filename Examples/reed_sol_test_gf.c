@@ -46,66 +46,54 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
-#include <gf_rand.h>
+#include <gf_complete.h>
+#include <gf_method.h>
+#include <stdint.h>
 #include "jerasure.h"
 #include "reed_sol.h"
 
-#define talloc(type, num) (type *) malloc(sizeof(type)*(num))
+#define BUFSIZE 4096
+
+static void *malloc16(int size) {
+    void *mem = malloc(size+16+sizeof(void*));
+    void **ptr = (void**)((long)(mem+16+sizeof(void*)) & ~(15));
+    ptr[-1] = mem;
+    return ptr;
+}
+
+static void free16(void *ptr) {
+    free(((void**)ptr)[-1]);
+}
+
+#define talloc(type, num) (type *) malloc16(sizeof(type)*(num))
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_01 k m w seed - Does a simple Reed-Solomon coding example in GF(2^w).\n");
+  fprintf(stderr, "usage: reed_sol_test_gf k m w seed [additional GF args]- Tests Reed-Solomon in GF(2^w).\n");
   fprintf(stderr, "       \n");
-  fprintf(stderr, "w must be 8, 16 or 32.  k+m must be <= 2^w.  It sets up a classic\n");
-  fprintf(stderr, "Vandermonde-based generator matrix and encodes k devices of\n");
-  fprintf(stderr, "%ld bytes each with it.  Then it decodes.\n", sizeof(long));
+  fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.\n");
+  fprintf(stderr, "       See the README for information on the additional GF args.\n");
+  fprintf(stderr, "       Set up a Vandermonde-based distribution matrix and encodes k devices of\n");
+  fprintf(stderr, "       %d bytes each with it.  Then it decodes.\n", BUFSIZE);
   fprintf(stderr, "       \n");
-  fprintf(stderr, "This demonstrates: jerasure_matrix_encode()\n");
+  fprintf(stderr, "This tests:        jerasure_matrix_encode()\n");
   fprintf(stderr, "                   jerasure_matrix_decode()\n");
   fprintf(stderr, "                   jerasure_print_matrix()\n");
+  fprintf(stderr, "                   galois_change_technique()\n");
   fprintf(stderr, "                   reed_sol_vandermonde_coding_matrix()\n");
   if (s != NULL) fprintf(stderr, "%s\n", s);
   exit(1);
 }
 
-static void print_data_and_coding(int k, int m, int w, int size, 
-		char **data, char **coding) 
+gf_t* get_gf(int w, int argc, char **argv, int starting)
 {
-  int i, j, x;
-  int n, sp;
-  long l;
-
-  if(k > m) n = k;
-  else n = m;
-  sp = size * 2 + size/(w/8) + 8;
-
-  printf("%-*sCoding\n", sp, "Data");
-  for(i = 0; i < n; i++) {
-	  if(i < k) {
-		  printf("D%-2d:", i);
-		  for(j=0;j< size; j+=(w/8)) { 
-			  printf(" ");
-			  for(x=0;x < w/8;x++){
-				printf("%02x", (unsigned char)data[i][j+x]);
-			  }
-		  }
-		  printf("    ");
-	  }
-	  else printf("%*s", sp, "");
-	  if(i < m) {
-		  printf("C%-2d:", i);
-		  for(j=0;j< size; j+=(w/8)) { 
-			  printf(" ");
-			  for(x=0;x < w/8;x++){
-				printf("%02x", (unsigned char)coding[i][j+x]);
-			  }
-		  }
-	  }
-	  printf("\n");
+  gf_t *gf = (gf_t*)malloc(sizeof(gf_t));
+  if (create_gf_from_argv(gf, w, argc, argv, starting) == 0) {
+    free(gf);
+    gf = NULL;
   }
-	printf("\n");
+  return gf;
 }
 
 int main(int argc, char **argv)
@@ -113,85 +101,89 @@ int main(int argc, char **argv)
   long l;
   int k, w, i, j, m;
   int *matrix;
-  char **data, **coding, **dcopy, **ccopy;
-  unsigned char uc;
+  char **data, **coding, **old_values;
   int *erasures, *erased;
   int *decoding_matrix, *dm_ids;
+  gf_t *gf = NULL;
   uint32_t seed;
   
-  if (argc != 5) usage(NULL);
+  if (argc < 6) usage(NULL);  
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
   if (sscanf(argv[2], "%d", &m) == 0 || m <= 0) usage("Bad m");
   if (sscanf(argv[3], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32)) usage("Bad w");
-  if (sscanf(argv[4], "%u", &seed) == 0) usage("Bad seed");
+  if (sscanf(argv[4], "%d", &seed) == 0) usage("Bad seed");
   if (w <= 16 && k + m > (1 << w)) usage("k + m is too big");
+
+  MOA_Seed(seed);
+
+  gf = get_gf(w, argc, argv, 5); 
+
+  if (gf == NULL) {
+    usage("Invalid arguments given for GF!\n");
+  }
+
+  galois_change_technique(gf, w); 
 
   matrix = reed_sol_vandermonde_coding_matrix(k, m, w);
 
-  printf("<HTML><TITLE>reed_sol_01 %d %d %d %d</title>\n", k, m, w, seed);
-  printf("<h3>reed_sol_01 %d %d %d %d</h3>\n", k, m, w, seed);
+  printf("<HTML><TITLE>reed_sol_test_gf");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</TITLE>\n");
+  printf("<h3>reed_sol_test_gf");
+  for (i = 1; i < argc; i++) printf(" %s", argv[i]);
+  printf("</h3>\n");
   printf("<pre>\n");
-  printf("Last m rows of the generator Matrix (G^T):\n\n");
+
+  printf("Last m rows of the generator matrix (G^T):\n\n");
   jerasure_print_matrix(matrix, m, k, w);
   printf("\n");
 
-  MOA_Seed(seed);
   data = talloc(char *, k);
-  dcopy = talloc(char *, k);
   for (i = 0; i < k; i++) {
-    data[i] = talloc(char, sizeof(long));
-    dcopy[i] = talloc(char, sizeof(long));
-    for (j = 0; j < sizeof(long); j++) {
-      uc = MOA_Random_W(8, 1);
-      data[i][j] = (char) uc;
-    }
-    memcpy(dcopy[i], data[i], sizeof(long));
+    data[i] = talloc(char, BUFSIZE);
+    MOA_Fill_Random_Region(data[i], BUFSIZE);
   }
 
   coding = talloc(char *, m);
-  ccopy = talloc(char *, m);
+  old_values = talloc(char *, m);
   for (i = 0; i < m; i++) {
-    coding[i] = talloc(char, sizeof(long));
-    ccopy[i] = talloc(char, sizeof(long));
+    coding[i] = talloc(char, BUFSIZE);
+    old_values[i] = talloc(char, BUFSIZE);
   }
 
-  jerasure_matrix_encode(k, m, w, matrix, data, coding, sizeof(long));
-
-  for (i = 0; i < m; i++) {
-    memcpy(ccopy[i], coding[i], sizeof(long));
-  }
+  jerasure_matrix_encode(k, m, w, matrix, data, coding, BUFSIZE);
   
-  printf("Encoding Complete:\n\n");
-  print_data_and_coding(k, m, w, sizeof(long), data, coding);
-
   erasures = talloc(int, (m+1));
   erased = talloc(int, (k+m));
   for (i = 0; i < m+k; i++) erased[i] = 0;
   l = 0;
   for (i = 0; i < m; ) {
-    erasures[i] = MOA_Random_W(31, 0)%(k+m);
+    erasures[i] = ((unsigned int)MOA_Random_W(w,1))%(k+m);
     if (erased[erasures[i]] == 0) {
       erased[erasures[i]] = 1;
-      memcpy((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], &l, sizeof(long));
+      memcpy(old_values[i], (erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], BUFSIZE);
+      bzero((erasures[i] < k) ? data[erasures[i]] : coding[erasures[i]-k], BUFSIZE);
       i++;
     }
   }
   erasures[i] = -1;
 
-  printf("Erased %d random devices:\n\n", m);
-  print_data_and_coding(k, m, w, sizeof(long), data, coding);
-  
-  i = jerasure_matrix_decode(k, m, w, matrix, 1, erasures, data, coding, sizeof(long));
+  i = jerasure_matrix_decode(k, m, w, matrix, 1, erasures, data, coding, BUFSIZE);
 
-  printf("State of the system after decoding:\n\n");
-  print_data_and_coding(k, m, w, sizeof(long), data, coding);
+  for (i = 0; i < m; i++) {
+    if (erasures[i] < k) {
+      if (memcmp(data[erasures[i]], old_values[i], BUFSIZE)) {
+        fprintf(stderr, "Decoding failed for %d!\n", erasures[i]);
+        exit(1);
+      }
+    } else {
+      if (memcmp(coding[erasures[i]-k], old_values[i], BUFSIZE)) {
+        fprintf(stderr, "Decoding failed for %d!\n", erasures[i]);
+        exit(1);
+      }
+    }
+  }
   
-  for (i = 0; i < k; i++) if (memcmp(data[i], dcopy[i], sizeof(long)) != 0) {
-    printf("ERROR: D%x after decoding does not match its state before decoding!<br>\n", i);
-  }
-  for (i = 0; i < m; i++) if (memcmp(coding[i], ccopy[i], sizeof(long)) != 0) {
-    printf("ERROR: C%x after decoding does not match its state before decoding!<br>\n", i);
-  }
-
+  printf("Encoding and decoding were both successful.\n");
   return 0;
 }

@@ -1,51 +1,48 @@
-/* Examples/decoder.c
- * Catherine D. Schuman, James S. Plank
+/* *
+ * Copyright (c) 2014, James S. Plank and Kevin Greenan
+ * All rights reserved.
+ *
+ * Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure
+ * Coding Techniques
+ *
+ * Revision 2.0: Galois Field backend now links to GF-Complete
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  - Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *  - Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *  - Neither the name of the University of Tennessee nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+ * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+ * WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
 
-Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure Coding Techniques
+/* Jerasure's authors:
 
-Revision 1.2A
-May 24, 2011
-
-James S. Plank
-Department of Electrical Engineering and Computer Science
-University of Tennessee
-Knoxville, TN 37996
-plank@cs.utk.edu
-
-Copyright (c) 2011, James S. Plank
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
- - Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-
- - Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in
-   the documentation and/or other materials provided with the
-   distribution.
-
- - Neither the name of the University of Tennessee nor the names of its
-   contributors may be used to endorse or promote products derived
-   from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
-WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-
-
-*/
+   Revision 2.x - 2014: James S. Plank and Kevin M. Greenan.
+   Revision 1.2 - 2008: James S. Plank, Scott Simmerman and Catherine D. Schuman.
+   Revision 1.0 - 2007: James S. Plank.
+ */
 
 /* 
 This program takes as input an inputfile, k, m, a coding
@@ -99,7 +96,7 @@ int main (int argc, char **argv) {
 	
 	/* Parameters */
 	int k, m, w, packetsize, buffersize;
-	enum Coding_Technique tech;
+	int tech;
 	char *c_tech;
 	
 	int i, j;				// loop control variables
@@ -157,7 +154,7 @@ int main (int argc, char **argv) {
 	} else {
            extension = strdup("");
         }	
-	fname = (char *)malloc(sizeof(char*)*(100+strlen(argv[1])+10));
+	fname = (char *)malloc(sizeof(char*)*(100+strlen(argv[1])+20));
 
 	/* Read in parameters from metadata file */
 	sprintf(fname, "%s/Coding/%s_meta.txt", curdir, cs1);
@@ -167,7 +164,7 @@ int main (int argc, char **argv) {
           fprintf(stderr, "Error: no metadata file %s\n", fname);
           exit(1);
         }
-	temp = (char *)malloc(sizeof(char)*(strlen(argv[1])+10));
+	temp = (char *)malloc(sizeof(char)*(strlen(argv[1])+20));
 	fscanf(fp, "%s", temp);	
 	
 	if (fscanf(fp, "%d", &origsize) != 1) {
@@ -178,7 +175,7 @@ int main (int argc, char **argv) {
 		fprintf(stderr, "Parameters are not correct\n");
 		exit(0);
 	}
-	c_tech = (char *)malloc(sizeof(char)*(strlen(argv[1])+10));
+	c_tech = (char *)malloc(sizeof(char)*(strlen(argv[1])+20));
 	fscanf(fp, "%s", c_tech);
 	fscanf(fp, "%d", &tech);
 	method = tech;
@@ -383,8 +380,8 @@ int main (int argc, char **argv) {
 	tsec /= 1000000.0;
 	tsec += t2.tv_sec;
 	tsec -= t1.tv_sec;
-	printf("Decoding (MB/sec): %0.10f\n", (origsize/1024/1024)/totalsec);
-	printf("De_Total (MB/sec): %0.10f\n\n", (origsize/1024/1024)/tsec);
+	printf("Decoding (MB/sec): %0.10f\n", (((double) origsize)/1024.0/1024.0)/totalsec);
+	printf("De_Total (MB/sec): %0.10f\n\n", (((double) origsize)/1024.0/1024.0)/tsec);
 }	
 
 void ctrl_bs_handler(int dummy) {

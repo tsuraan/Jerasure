@@ -1,49 +1,47 @@
-/* jerasure.c
- * James S. Plank
+/* *
+ * Copyright (c) 2014, James S. Plank and Kevin Greenan
+ * All rights reserved.
+ *
+ * Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure
+ * Coding Techniques
+ *
+ * Revision 2.0: Galois Field backend now links to GF-Complete
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  - Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *  - Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *  - Neither the name of the University of Tennessee nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+ * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+ * WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
 
-Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure Coding Techniques
+/* Jerasure's authors:
 
-Revision 1.2A
-May 24, 2011
-
-James S. Plank
-Department of Electrical Engineering and Computer Science
-University of Tennessee
-Knoxville, TN 37996
-plank@cs.utk.edu
-
-Copyright (c) 2011, James S. Plank
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
- - Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-
- - Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in
-   the documentation and/or other materials provided with the
-   distribution.
-
- - Neither the name of the University of Tennessee nor the names of its
-   contributors may be used to endorse or promote products derived
-   from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
-WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-
+   Revision 2.x - 2014: James S. Plank and Kevin M. Greenan
+   Revision 1.2 - 2008: James S. Plank, Scott Simmerman and Catherine D. Schuman.
+   Revision 1.0 - 2007: James S. Plank
  */
 
 #include <stdio.h>
@@ -349,7 +347,7 @@ void jerasure_bitmatrix_dotprod(int k, int w, int *bitmatrix_row,
               jerasure_total_memcpy_bytes += packetsize;
               pstarted = 1;
             } else {
-              galois_region_xor(pptr, dptr, pptr, packetsize);
+              galois_region_xor(dptr, pptr, packetsize);
               jerasure_total_xor_bytes += packetsize;
             }
           }
@@ -368,7 +366,7 @@ void jerasure_do_parity(int k, char **data_ptrs, char *parity_ptr, int size)
   jerasure_total_memcpy_bytes += size;
   
   for (i = 1; i < k; i++) {
-    galois_region_xor(data_ptrs[i], parity_ptr, parity_ptr, size);
+    galois_region_xor(data_ptrs[i], parity_ptr, size);
     jerasure_total_xor_bytes += size;
   }
 }
@@ -607,7 +605,7 @@ void jerasure_matrix_dotprod(int k, int w, int *matrix_row,
         jerasure_total_memcpy_bytes += size;
         init = 1;
       } else {
-        galois_region_xor(sptr, dptr, dptr, size);
+        galois_region_xor(sptr, dptr, size);
         jerasure_total_xor_bytes += size;
       }
     }
@@ -1181,7 +1179,7 @@ void jerasure_do_scheduled_operations(char **ptrs, int **operations, int packets
       operations[op][2], 
       operations[op][3]); 
       printf("xor(0x%x, 0x%x -> 0x%x, %d)\n", sptr, dptr, dptr, packetsize); */
-      galois_region_xor(sptr, dptr, dptr, packetsize);
+      galois_region_xor(sptr, dptr, packetsize);
       jerasure_total_xor_bytes += packetsize;
     } else {
 /*      printf("memcpy(0x%x <- 0x%x)\n", dptr, sptr); */
@@ -1378,5 +1376,18 @@ void jerasure_bitmatrix_encode(int k, int m, int w, int *bitmatrix,
   for (i = 0; i < m; i++) {
     jerasure_bitmatrix_dotprod(k, w, bitmatrix+i*k*w*w, NULL, k+i, data_ptrs, coding_ptrs, size, packetsize);
   }
+}
+
+/*
+ * Exported function for use by autoconf to perform quick 
+ * spot-check.
+ */
+int jerasure_autoconf_test()
+{
+  int x = galois_single_multiply(1, 2, 8);
+  if (x != 2) {
+    return -1;
+  }
+  return 0;
 }
 

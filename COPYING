@@ -1,19 +1,10 @@
-/* cauchy.h
- * James S. Plank
+
+Copyright (c) 2013, James S. Plank and Kevin Greenan
+All rights reserved.
 
 Jerasure - A C/C++ Library for a Variety of Reed-Solomon and RAID-6 Erasure Coding Techniques
 
-Revision 1.2A
-May 24, 2011
-
-James S. Plank
-Department of Electrical Engineering and Computer Science
-University of Tennessee
-Knoxville, TN 37996
-plank@cs.utk.edu
-
-Copyright (c) 2011, James S. Plank
-All rights reserved.
+Revision 2.0: Galois Field backend now links to GF-Complete
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -44,10 +35,3 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
-*/
-
-extern int *cauchy_original_coding_matrix(int k, int m, int w);
-extern int *cauchy_xy_coding_matrix(int k, int m, int w, int *x, int *y);
-extern void cauchy_improve_coding_matrix(int k, int m, int w, int *matrix);
-extern int *cauchy_good_general_coding_matrix(int k, int m, int w);
-extern int cauchy_n_ones(int n, int w);
