@@ -152,7 +152,7 @@ int main(int argc, char **argv)
 
   /* Print out the matrix and the bitmatrix */
   printf("<hr>\n");
-  printf("Here is the matrix, which was created with <b>cauchy_xy_coding_matrix()</b>.\n");
+  printf("Here is the matrix, which was created with <b>cauchy_good_general_coding_matrix()</b>.\n");
 
   printf("<pre>\n");
   jerasure_print_matrix(matrix, m, k, w);

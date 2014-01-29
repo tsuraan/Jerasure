@@ -5,7 +5,8 @@ instructions.
 
 External Documentation:
 
-See technical report CS-08-627 for a description of the main interfaces (Version 1.2)
+See the file Manual.pdf for the programmer's manual and tutorial.  This manual
+is also available at http://web.eecs.utk.edu/~plank/plank/papers/UT-EECS-14-721.html.
 
 See https://bitbucket.org/jimplank/gf-complete for GF-Complete.
 

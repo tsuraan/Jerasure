@@ -70,7 +70,7 @@ static void free16(void *ptr) {
 
 usage(char *s)
 {
-  fprintf(stderr, "usage: reed_sol_test_gf k m w seed [additional GF args]- Tests Reed-Solomon in GF(2^w).\n");
+  fprintf(stderr, "usage: reed_sol_test_gf k m w seed (additional GF args) - Tests Reed-Solomon in GF(2^w).\n");
   fprintf(stderr, "       \n");
   fprintf(stderr, "       w must be 8, 16 or 32.  k+m must be <= 2^w.\n");
   fprintf(stderr, "       See the README for information on the additional GF args.\n");
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
   gf_t *gf = NULL;
   uint32_t seed;
   
-  if (argc < 6) usage(NULL);  
+  if (argc < 6) usage("Not enough command line arguments");  
   if (sscanf(argv[1], "%d", &k) == 0 || k <= 0) usage("Bad k");
   if (sscanf(argv[2], "%d", &m) == 0 || m <= 0) usage("Bad m");
   if (sscanf(argv[3], "%d", &w) == 0 || (w != 8 && w != 16 && w != 32)) usage("Bad w");
