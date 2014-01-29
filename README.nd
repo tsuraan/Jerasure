@@ -3,6 +3,9 @@ original Galois Field backend.  Version 2.0 links directly to GF-Complete, which
 is more flexible than the original, and *much* faster, because it leverages SIMD
 instructions.
 
+Authors: James S. Plank (University of Tennessee)
+         Kevin M. Greenan (Box)
+
 External Documentation:
 
 See the file Manual.pdf for the programmer's manual and tutorial.  This manual
