@@ -55,6 +55,7 @@ is the file name with "_k#" or "_m#" and then the extension.
 (For example, inputfile test.txt would yield file "test_k1.txt".)
 */
 
+#include <time.h>
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <string.h>

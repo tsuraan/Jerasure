@@ -61,6 +61,7 @@ same arguments, and encoder.c does error check.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <signal.h>
@@ -99,12 +100,13 @@ int main (int argc, char **argv) {
 	int tech;
 	char *c_tech;
 	
-	int i, j;				// loop control variables
+	int i, j;				// loop control variable, s
 	int blocksize;			// size of individual files
 	int origsize;			// size of file before padding
 	int total;				// used to write data, not padding to file
 	struct stat status;		// used to find size of individual files
 	int numerased;			// number of erased files
+        int dummy;
 		
 	/* Used to recreate file names */
 	char *temp;
@@ -165,7 +167,10 @@ int main (int argc, char **argv) {
           exit(1);
         }
 	temp = (char *)malloc(sizeof(char)*(strlen(argv[1])+20));
-	fscanf(fp, "%s", temp);	
+	if (fscanf(fp, "%s", temp) != 1) {
+		fprintf(stderr, "Metadata file - bad format\n");
+		exit(0);
+	}
 	
 	if (fscanf(fp, "%d", &origsize) != 1) {
 		fprintf(stderr, "Original size is not valid\n");
@@ -176,10 +181,19 @@ int main (int argc, char **argv) {
 		exit(0);
 	}
 	c_tech = (char *)malloc(sizeof(char)*(strlen(argv[1])+20));
-	fscanf(fp, "%s", c_tech);
-	fscanf(fp, "%d", &tech);
+	if (fscanf(fp, "%s", c_tech) != 1) {
+		fprintf(stderr, "Metadata file - bad format\n");
+		exit(0);
+	}
+	if (fscanf(fp, "%d", &tech) != 1) {
+		fprintf(stderr, "Metadata file - bad format\n");
+		exit(0);
+	}
 	method = tech;
-	fscanf(fp, "%d", &readins);
+	if (fscanf(fp, "%d", &readins) != 1) {
+		fprintf(stderr, "Metadata file - bad format\n");
+		exit(0);
+	}
 	fclose(fp);	
 
 	/* Allocate memory */
@@ -260,11 +274,11 @@ int main (int argc, char **argv) {
 					stat(fname, &status);
 					blocksize = status.st_size;
 					data[i-1] = (char *)malloc(sizeof(char)*blocksize);
-					fread(data[i-1], sizeof(char), blocksize, fp);
+					dummy = fread(data[i-1], sizeof(char), blocksize, fp);
 				}
 				else {
 					fseek(fp, blocksize*(n-1), SEEK_SET); 
-					fread(data[i-1], sizeof(char), buffersize/k, fp);
+					dummy = fread(data[i-1], sizeof(char), buffersize/k, fp);
 				}
 				fclose(fp);
 			}
@@ -283,11 +297,11 @@ int main (int argc, char **argv) {
 					stat(fname, &status);
 					blocksize = status.st_size;
 					coding[i-1] = (char *)malloc(sizeof(char)*blocksize);
-					fread(coding[i-1], sizeof(char), blocksize, fp);
+					dummy = fread(coding[i-1], sizeof(char), blocksize, fp);
 				}
 				else {
 					fseek(fp, blocksize*(n-1), SEEK_SET);
-					fread(coding[i-1], sizeof(char), blocksize, fp);
+					dummy = fread(coding[i-1], sizeof(char), blocksize, fp);
 				}	
 				fclose(fp);
 			}
