@@ -250,6 +250,7 @@ int galois_single_multiply(int x, int y, int w)
     return gfp_array[w]->multiply.w32(gfp_array[w], x, y);
   } else {
     fprintf(stderr, "ERROR -- Galois field not implemented for w=%d\n", w);
+    return 0;
   }
 }
 
@@ -266,6 +267,7 @@ int galois_single_divide(int x, int y, int w)
     return gfp_array[w]->divide.w32(gfp_array[w], x, y);
   } else {
     fprintf(stderr, "ERROR -- Galois field not implemented for w=%d\n", w);
+    return 0;
   }
 }
 
