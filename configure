@@ -12158,10 +12158,6 @@ $as_echo "$as_me: WARNING: Your processor supports mmx instructions but not your
         fi
       fi
 
-      if test "$ac_cv_sizeof_long" -eq 8; then
-          SIMD_FLAGS="$SIMD_FLAGS -DARCH_64"
-      fi
-
       if test "$ax_cv_have_sse_ext" = yes; then
         { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether C compiler accepts -msse" >&5
 $as_echo_n "checking whether C compiler accepts -msse... " >&6; }

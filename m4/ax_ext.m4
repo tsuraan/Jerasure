@@ -164,10 +164,6 @@ AC_DEFUN([AX_EXT],
         fi
       fi
 
-      if test "$ac_cv_sizeof_long" -eq 8; then
-          SIMD_FLAGS="$SIMD_FLAGS -DARCH_64"
-      fi
-
       if test "$ax_cv_have_sse_ext" = yes; then
         AX_CHECK_COMPILE_FLAG(-msse, ax_cv_support_sse_ext=yes, [])
         if test x"$ax_cv_support_sse_ext" = x"yes"; then
