@@ -53,7 +53,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_08 k w seed - Example schedule cache usage with RAID-6\n");
   fprintf(stderr, "       \n");
@@ -75,7 +75,7 @@ usage(char *s)
   exit(1);
 }
 
-static print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
+static void print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
 {
   int i, j, x;
   unsigned char *up;
@@ -104,10 +104,9 @@ static print_array(char **ptrs, int ndevices, int size, int packetsize, char *la
 
 int main(int argc, char **argv)
 {
-  long l;
   int k, w, i, j, m;
   int *matrix, *bitmatrix;
-  char **data, **coding, **ptrs;
+  char **data, **coding;
   int **smart, ***cache;
   int *erasures, *erased;
   double stats[3];
@@ -208,7 +207,7 @@ int main(int argc, char **argv)
   printf("<hr>\n");
   
   bzero(coding[0], sizeof(long)*w);
-  printf("Erased the first coding device:\n\n", m);
+  printf("Erased the first coding device:\n\n");
   printf("<p>\n");
   print_array(data, k, sizeof(long)*w, sizeof(long), "D");
   printf("<p>\n");

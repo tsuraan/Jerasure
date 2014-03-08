@@ -51,7 +51,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_04 k w - Performs the analogous bit-matrix operations to jerasure_03.\n\n");
   fprintf(stderr, "       It converts the matrix to a kw*kw bit matrix and does the same operations.\n");

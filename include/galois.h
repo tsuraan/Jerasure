@@ -37,13 +37,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#pragma once
 
-#ifndef _GALOIS_H
-#define _GALOIS_H
-
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdint.h>
 #include <gf_complete.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern void galois_change_technique(gf_t *gf, int w);
 
@@ -95,5 +96,6 @@ gf_t* galois_init_composite_field(int w,
 
 gf_t * galois_get_field_ptr(int w);
 
-
+#ifdef __cplusplus
+}
 #endif

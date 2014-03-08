@@ -54,7 +54,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: liberation_01 k w seed - Liberation RAID-6 coding/decoding example in GF(2^w).\n");
   fprintf(stderr, "       \n");
@@ -73,7 +73,7 @@ usage(char *s)
   exit(1);
 }
 
-static print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
+static void print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
 {
   int i, j, x;
   unsigned char *up;
@@ -102,10 +102,9 @@ static print_array(char **ptrs, int ndevices, int size, int packetsize, char *la
 
 int main(int argc, char **argv)
 {
-  long l;
-  int k, w, i, j, m;
+  int k, w, i, m;
   int *bitmatrix;
-  char **data, **coding, **ptrs;
+  char **data, **coding;
   int **dumb;
   int *erasures, *erased;
   double stats[3];

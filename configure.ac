@@ -1,32 +1,46 @@
 # Jerasure autoconf template
 
-# FIXME - add project url as the last argument
-AC_INIT(Jerasure, 2.0)
+AC_PREREQ([2.65])
+AC_INIT([Jerasure], [2.0], [], [],
+        [https://bitbucket.org/jimplank/jerasure])
+AC_CONFIG_SRCDIR([src/jerasure.c])
+AC_CONFIG_HEADERS([include/config.h])
 
-AC_PREREQ([2.61])
-
-AM_INIT_AUTOMAKE([no-dependencies], [foreign])
-LT_INIT # libtool
-
-AC_CONFIG_HEADER(include/config.h)
-
-dnl Needed when reconfiguring with 'autoreconf -i -s'
+AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-dnl Compiling with per-target flags requires AM_PROG_CC_C_O.
+AM_INIT_AUTOMAKE([1.13 -Wall -Wno-extra-portability])
+
+# Package default C compiler flags.
+dnl This must be before LT_INIT and AC_PROG_CC.
+: ${CFLAGS='-g -O3 -Wall'}
+
+LT_INIT([disable-static])
+
+# Checks for programs.
 AC_PROG_CC
 
-# Check for gf_complete headers
-AC_CHECK_HEADERS(gf_complete.h gf_general.h gf_int.h gf_method.h gf_rand.h)
-
+# Checks for libraries.
 AC_CHECK_LIB([gf_complete], [gf_init_easy], [],
-             [
-              echo "Error! You need to have gf_complete installed."
-              echo "gf_complete is available from http://web.eecs.utk.edu/~plank/plank/papers/CS-13-703.html"
-              exit -1
+             [AC_MSG_FAILURE(
+               [You need to have gf_complete installed.
+                  gf_complete is available from http://web.eecs.utk.edu/~plank/plank/papers/CS-13-703.html])
              ])
 
-AX_EXT()
+# Checks for header files.
+AC_CHECK_HEADERS([stddef.h stdint.h stdlib.h string.h sys/time.h unistd.h])
+AC_CHECK_HEADERS([gf_complete.h gf_general.h gf_method.h gf_rand.h])
 
-AC_CONFIG_FILES([Makefile Examples/Makefile src/Makefile])
+# Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AX_EXT
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([bzero getcwd gettimeofday mkdir strchr strdup strrchr])
+
+AC_CONFIG_FILES([Examples/Makefile
+                 Makefile
+                 src/Makefile])
 AC_OUTPUT

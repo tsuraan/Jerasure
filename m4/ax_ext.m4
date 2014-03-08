@@ -1,5 +1,6 @@
 #
-# Updated by KMG to support -DINTEL_SSE for GF-Complete
+# Modified from autoconf-archive to replace AC_REQUIRE([AX_GCC_X86_*]) with
+# AX_REQUIRE_DEFINED(...).
 #
 # ===========================================================================
 #          http://www.gnu.org/software/autoconf-archive/ax_ext.html
@@ -34,7 +35,7 @@
 #   and this notice are preserved. This file is offered as-is, without any
 #   warranty.
 
-#serial 12
+#serial 13.1
 
 AC_DEFUN([AX_EXT],
 [
@@ -60,12 +61,17 @@ AC_DEFUN([AX_EXT],
 
     i[[3456]]86*|x86_64*|amd64*)
 
-      AC_REQUIRE([AX_GCC_X86_CPUID])
-      AC_REQUIRE([AX_GCC_X86_AVX_XGETBV])
+      AX_REQUIRE_DEFINED([AX_GCC_X86_CPUID])
+      AX_REQUIRE_DEFINED([AX_GCC_X86_AVX_XGETBV])
 
       AX_GCC_X86_CPUID(0x00000001)
-      ecx=`echo $ax_cv_gcc_x86_cpuid_0x00000001 | cut -d ":" -f 3`
-      edx=`echo $ax_cv_gcc_x86_cpuid_0x00000001 | cut -d ":" -f 4`
+      ecx=0
+      edx=0
+      if test "$ax_cv_gcc_x86_cpuid_0x00000001" != "unknown";
+      then
+        ecx=`echo $ax_cv_gcc_x86_cpuid_0x00000001 | cut -d ":" -f 3`
+        edx=`echo $ax_cv_gcc_x86_cpuid_0x00000001 | cut -d ":" -f 4`
+      fi
 
       AC_CACHE_CHECK([whether mmx is supported], [ax_cv_have_mmx_ext],
       [
@@ -167,7 +173,7 @@ AC_DEFUN([AX_EXT],
       if test "$ax_cv_have_sse_ext" = yes; then
         AX_CHECK_COMPILE_FLAG(-msse, ax_cv_support_sse_ext=yes, [])
         if test x"$ax_cv_support_sse_ext" = x"yes"; then
-          SIMD_FLAGS="$SIMD_FLAGS -msse -DINTEL_SSE"
+          SIMD_FLAGS="$SIMD_FLAGS -msse"
           AC_DEFINE(HAVE_SSE,,[Support SSE (Streaming SIMD Extensions) instructions])
         else
           AC_MSG_WARN([Your processor supports sse instructions but not your compiler, can you try another compiler?])
@@ -177,7 +183,7 @@ AC_DEFUN([AX_EXT],
       if test "$ax_cv_have_sse2_ext" = yes; then
         AX_CHECK_COMPILE_FLAG(-msse2, ax_cv_support_sse2_ext=yes, [])
         if test x"$ax_cv_support_sse2_ext" = x"yes"; then
-          SIMD_FLAGS="$SIMD_FLAGS -msse2 -DINTEL_SSE2"
+          SIMD_FLAGS="$SIMD_FLAGS -msse2"
           AC_DEFINE(HAVE_SSE2,,[Support SSE2 (Streaming SIMD Extensions 2) instructions])
         else
           AC_MSG_WARN([Your processor supports sse2 instructions but not your compiler, can you try another compiler?])
@@ -187,7 +193,7 @@ AC_DEFUN([AX_EXT],
       if test "$ax_cv_have_sse3_ext" = yes; then
         AX_CHECK_COMPILE_FLAG(-msse3, ax_cv_support_sse3_ext=yes, [])
         if test x"$ax_cv_support_sse3_ext" = x"yes"; then
-          SIMD_FLAGS="$SIMD_FLAGS -msse3 -DINTEL_SSE3"
+          SIMD_FLAGS="$SIMD_FLAGS -msse3"
           AC_DEFINE(HAVE_SSE3,,[Support SSE3 (Streaming SIMD Extensions 3) instructions])
         else
           AC_MSG_WARN([Your processor supports sse3 instructions but not your compiler, can you try another compiler?])
@@ -207,7 +213,7 @@ AC_DEFUN([AX_EXT],
       if test "$ax_cv_have_sse41_ext" = yes; then
         AX_CHECK_COMPILE_FLAG(-msse4.1, ax_cv_support_sse41_ext=yes, [])
         if test x"$ax_cv_support_sse41_ext" = x"yes"; then
-          SIMD_FLAGS="$SIMD_FLAGS -msse4.1 -DINTEL_SSE4"
+          SIMD_FLAGS="$SIMD_FLAGS -msse4.1"
           AC_DEFINE(HAVE_SSE4_1,,[Support SSSE4.1 (Streaming SIMD Extensions 4.1) instructions])
         else
           AC_MSG_WARN([Your processor supports sse4.1 instructions but not your compiler, can you try another compiler?])
@@ -217,7 +223,7 @@ AC_DEFUN([AX_EXT],
       if test "$ax_cv_have_sse42_ext" = yes; then
         AX_CHECK_COMPILE_FLAG(-msse4.2, ax_cv_support_sse42_ext=yes, [])
         if test x"$ax_cv_support_sse42_ext" = x"yes"; then
-          SIMD_FLAGS="$SIMD_FLAGS -msse4.2 -DINTEL_SSE4"
+          SIMD_FLAGS="$SIMD_FLAGS -msse4.2"
           AC_DEFINE(HAVE_SSE4_2,,[Support SSSE4.2 (Streaming SIMD Extensions 4.2) instructions])
         else
           AC_MSG_WARN([Your processor supports sse4.2 instructions but not your compiler, can you try another compiler?])

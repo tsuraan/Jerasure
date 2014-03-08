@@ -54,7 +54,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: cauchy_02 k m w seed - CRS coding example using Bloemer's original matrix.\n");
   fprintf(stderr, "       \n");
@@ -84,7 +84,7 @@ usage(char *s)
   exit(1);
 }
 
-static print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
+static void print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
 {
   int i, j, x;
   unsigned char *up;
@@ -113,9 +113,9 @@ static print_array(char **ptrs, int ndevices, int size, int packetsize, char *la
 
 int main(int argc, char **argv)
 {
-  int k, w, i, j, m;
+  int k, w, i, m;
   int *matrix, *bitmatrix, **schedule;
-  char **data, **coding, **ptrs, **dcopy, **ccopy;
+  char **data, **coding, **dcopy, **ccopy;
   int no;
   int *erasures, *erased;
   double mstats[3], sstats[3];
@@ -267,4 +267,6 @@ int main(int argc, char **argv)
   printf("<p>\n");
   print_array(coding, m, sizeof(long)*w, sizeof(long), "C");
   printf("<hr>\n");
+
+  return 0;
 }

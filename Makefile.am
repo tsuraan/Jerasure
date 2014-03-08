@@ -1,6 +1,5 @@
-# Jerasure AM file
+# Jerasure Automake file
 
 SUBDIRS = src Examples
 
-ACLOCAL_AMFLAGS = -I m4
-
+EXTRA_DIST = Manual.pdf PERF.txt

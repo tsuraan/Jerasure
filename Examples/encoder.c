@@ -55,6 +55,7 @@ is the file name with "_k#" or "_m#" and then the extension.
 (For example, inputfile test.txt would yield file "test_k1.txt".)
 */
 
+#include <assert.h>
 #include <time.h>
 #include <sys/time.h>
 #include <sys/stat.h>
@@ -64,10 +65,12 @@ is the file name with "_k#" or "_m#" and then the extension.
 #include <errno.h>
 #include <signal.h>
 #include <gf_rand.h>
+#include <unistd.h>
 #include "jerasure.h"
 #include "reed_sol.h"
 #include "cauchy.h"
 #include "liberation.h"
+#include "timing.h"
 
 #define N 10
 
@@ -85,8 +88,6 @@ void ctrl_bs_handler(int dummy);
 
 int jfread(void *ptr, int size, int nmembers, FILE *stream)
 {
-  int nd;
-  int *li, i;
   if (stream != NULL) return fread(ptr, size, nmembers, stream);
 
   MOA_Fill_Random_Region(ptr, size);
@@ -96,7 +97,6 @@ int jfread(void *ptr, int size, int nmembers, FILE *stream)
 
 int main (int argc, char **argv) {
 	FILE *fp, *fp2;				// file pointers
-	char *memblock;				// reading in file
 	char *block;				// padding file
 	int size, newsize;			// size of file and temp size 
 	struct stat status;			// finding file size
@@ -105,7 +105,7 @@ int main (int argc, char **argv) {
 	enum Coding_Technique tech;		// coding technique (parameter)
 	int k, m, w, packetsize;		// parameters
 	int buffersize;					// paramter
-	int i, j;						// loop control variables
+	int i;						// loop control variables
 	int blocksize;					// size of k+m files
 	int total;
 	int extra;
@@ -116,8 +116,6 @@ int main (int argc, char **argv) {
 	int *matrix;
 	int *bitmatrix;
 	int **schedule;
-	int *erasure;
-	int *erased;
 	
 	/* Creation of file name variables */
 	char temp[5];
@@ -127,11 +125,10 @@ int main (int argc, char **argv) {
 	char *curdir;
 	
 	/* Timing variables */
-	struct timeval t1, t2, t3, t4;
-	struct timezone tz;
+	struct timing t1, t2, t3, t4;
 	double tsec;
 	double totalsec;
-	struct timeval start, stop;
+	struct timing start;
 
 	/* Find buffersize */
 	int up, down;
@@ -140,7 +137,7 @@ int main (int argc, char **argv) {
 	signal(SIGQUIT, ctrl_bs_handler);
 
 	/* Start timing */
-	gettimeofday(&t1, &tz);
+	timing_set(&t1);
 	totalsec = 0.0;
 	matrix = NULL;
 	bitmatrix = NULL;
@@ -435,12 +432,14 @@ int main (int argc, char **argv) {
 	
 
 	/* Create coding matrix or bitmatrix and schedule */
-	gettimeofday(&t3, &tz);
+	timing_set(&t3);
 	switch(tech) {
 		case No_Coding:
 			break;
 		case Reed_Sol_Van:
 			matrix = reed_sol_vandermonde_coding_matrix(k, m, w);
+			break;
+		case Reed_Sol_R6_Op:
 			break;
 		case Cauchy_Orig:
 			matrix = cauchy_original_coding_matrix(k, m, w);
@@ -464,16 +463,13 @@ int main (int argc, char **argv) {
 			bitmatrix = liber8tion_coding_bitmatrix(k);
 			schedule = jerasure_smart_bitmatrix_to_schedule(k, m, w, bitmatrix);
 			break;
+		case RDP:
+		case EVENODD:
+			assert(0);
 	}
-	gettimeofday(&start, &tz);	
-	gettimeofday(&t4, &tz);
-	tsec = 0.0;
-	tsec += t4.tv_usec;
-	tsec -= t3.tv_usec;
-	tsec /= 1000000.0;
-	tsec += t4.tv_sec;
-	tsec -= t3.tv_sec;
-	totalsec += tsec;
+	timing_set(&start);
+	timing_set(&t4);
+	totalsec += timing_delta(&t3, &t4);
 
 	
 
@@ -504,7 +500,7 @@ int main (int argc, char **argv) {
 			data[i] = block+(i*blocksize);
 		}
 
- 	 	gettimeofday(&t3, &tz);
+		timing_set(&t3);
 		/* Encode according to coding method */
 		switch(tech) {	
 			case No_Coding:
@@ -530,8 +526,11 @@ int main (int argc, char **argv) {
 			case Liber8tion:
 				jerasure_schedule_encode(k, m, w, schedule, data, coding, blocksize, packetsize);
 				break;
+			case RDP:
+			case EVENODD:
+				assert(0);
 		}
-		gettimeofday(&t4, &tz);
+		timing_set(&t4);
 	
 		/* Write data and encoded data to k+m files */
 		for	(i = 1; i <= k; i++) {
@@ -567,13 +566,7 @@ int main (int argc, char **argv) {
 		}
 		n++;
 		/* Calculate encoding time */
-		tsec = 0.0;
-		tsec += t4.tv_usec;
-		tsec -= t3.tv_usec;
-		tsec /= 1000000.0;
-		tsec += t4.tv_sec;
-		tsec -= t3.tv_sec;
-		totalsec += tsec;
+		totalsec += timing_delta(&t3, &t4);
 	}
 
 	/* Create metadata file */
@@ -597,15 +590,12 @@ int main (int argc, char **argv) {
 	free(curdir);
 	
 	/* Calculate rate in MB/sec and print */
-	gettimeofday(&t2, &tz);
-	tsec = 0.0;
-	tsec += t2.tv_usec;
-	tsec -= t1.tv_usec;
-	tsec /= 1000000.0;
-	tsec += t2.tv_sec;
-	tsec -= t1.tv_sec;
+	timing_set(&t2);
+	tsec = timing_delta(&t1, &t2);
 	printf("Encoding (MB/sec): %0.10f\n", (((double) size)/1024.0/1024.0)/totalsec);
 	printf("En_Total (MB/sec): %0.10f\n", (((double) size)/1024.0/1024.0)/tsec);
+
+	return 0;
 }
 
 /* is_prime returns 1 if number if prime, 0 if not prime */
@@ -620,6 +610,7 @@ int is_prime(int w) {
 			else { return 0; }
 		}
 	}
+	assert(0);
 }
 
 /* Handles ctrl-\ event */

@@ -48,12 +48,13 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include "cauchy.h"
 #include "jerasure.h"
 #include "reed_sol.h"
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: cauchy_01 n w - Converts the value n to a bitmatrix using GF(2^w).\n");
   fprintf(stderr, "       \n");
@@ -70,7 +71,7 @@ usage(char *s)
 
 int main(int argc, char **argv)
 {
-  uint32_t n;
+  int n;
   int i, no, w;
   int *bitmatrix;
   
@@ -106,5 +107,6 @@ int main(int argc, char **argv)
   }
 
   printf("# Ones: %d\n", cauchy_n_ones(n, w));
+
   return 0;
 }

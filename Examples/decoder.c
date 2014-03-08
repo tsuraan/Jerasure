@@ -65,11 +65,13 @@ same arguments, and encoder.c does error check.
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <signal.h>
+#include <unistd.h>
 #include "jerasure.h"
 #include "reed_sol.h"
 #include "galois.h"
 #include "cauchy.h"
 #include "liberation.h"
+#include "timing.h"
 
 #define N 10
 
@@ -116,8 +118,7 @@ int main (int argc, char **argv) {
 	char *curdir;
 
 	/* Used to time decoding */
-	struct timeval t1, t2, t3, t4;
-	struct timezone tz;
+	struct timing t1, t2, t3, t4;
 	double tsec;
 	double totalsec;
 
@@ -129,7 +130,7 @@ int main (int argc, char **argv) {
 	totalsec = 0.0;
 	
 	/* Start timing */
-	gettimeofday(&t1, &tz);
+	timing_set(&t1);
 
 	/* Error checking parameters */
 	if (argc != 2) {
@@ -216,7 +217,7 @@ int main (int argc, char **argv) {
 
 	sprintf(temp, "%d", k);
 	md = strlen(temp);
-	gettimeofday(&t3, &tz);
+	timing_set(&t3);
 
 	/* Create coding matrix or bitmatrix */
 	switch(tech) {
@@ -245,14 +246,8 @@ int main (int argc, char **argv) {
 		case Liber8tion:
 			bitmatrix = liber8tion_coding_bitmatrix(k);
 	}
-	gettimeofday(&t4, &tz);
-	tsec = 0.0;
-	tsec += t4.tv_usec;
-	tsec -= t3.tv_usec;
-	tsec /= 1000000.0;
-	tsec += t4.tv_sec;
-	tsec -= t3.tv_sec;
-	totalsec += tsec;
+	timing_set(&t4);
+	totalsec += timing_delta(&t3, &t4);
 	
 	/* Begin decoding process */
 	total = 0;
@@ -319,7 +314,7 @@ int main (int argc, char **argv) {
 		}
 		
 		erasures[numerased] = -1;
-		gettimeofday(&t3, &tz);
+		timing_set(&t3);
 	
 		/* Choose proper decoding method */
 		if (tech == Reed_Sol_Van || tech == Reed_Sol_R6_Op) {
@@ -332,7 +327,7 @@ int main (int argc, char **argv) {
 			fprintf(stderr, "Not a valid coding technique.\n");
 			exit(0);
 		}
-		gettimeofday(&t4, &tz);
+		timing_set(&t4);
 	
 		/* Exit if decoding was unsuccessful */
 		if (i == -1) {
@@ -368,13 +363,7 @@ int main (int argc, char **argv) {
 		}
 		n++;
 		fclose(fp);
-		tsec = 0.0;
-		tsec += t4.tv_usec;
-		tsec -= t3.tv_usec;
-		tsec /= 1000000.0;
-		tsec += t4.tv_sec;
-		tsec -= t3.tv_sec;
-		totalsec += tsec;
+		totalsec += timing_delta(&t3, &t4);
 	}
 	
 	/* Free allocated memory */
@@ -387,15 +376,12 @@ int main (int argc, char **argv) {
 	free(erased);
 	
 	/* Stop timing and print time */
-	gettimeofday(&t2, &tz);
-	tsec = 0;
-	tsec += t2.tv_usec;
-	tsec -= t1.tv_usec;
-	tsec /= 1000000.0;
-	tsec += t2.tv_sec;
-	tsec -= t1.tv_sec;
+	timing_set(&t2);
+	tsec = timing_delta(&t1, &t2);
 	printf("Decoding (MB/sec): %0.10f\n", (((double) origsize)/1024.0/1024.0)/totalsec);
 	printf("De_Total (MB/sec): %0.10f\n\n", (((double) origsize)/1024.0/1024.0)/tsec);
+
+	return 0;
 }	
 
 void ctrl_bs_handler(int dummy) {

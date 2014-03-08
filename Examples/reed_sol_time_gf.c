@@ -53,6 +53,7 @@
 #include <stdint.h>
 #include "jerasure.h"
 #include "reed_sol.h"
+#include "timing.h"
 
 static void *malloc16(int size) {
     void *mem = malloc(size+16+sizeof(void*));
@@ -61,33 +62,16 @@ static void *malloc16(int size) {
     return ptr;
 }
 
+#if 0
+// Unused for now.
 static void free16(void *ptr) {
     free(((void**)ptr)[-1]);
 }
+#endif
 
 #define talloc(type, num) (type *) malloc16(sizeof(type)*(num))
 
-void
-timer_start (double *t)
-{
-    struct timeval  tv;
-
-    gettimeofday (&tv, NULL);
-    *t = (double)tv.tv_sec + (double)tv.tv_usec * 1e-6;
-}
-
-double
-timer_split (const double *t)
-{
-    struct timeval  tv;
-    double  cur_t;
-
-    gettimeofday (&tv, NULL);
-    cur_t = (double)tv.tv_sec + (double)tv.tv_usec * 1e-6;
-    return (cur_t - *t);
-}
-
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: reed_sol_time_gf k m w seed iterations bufsize (additional GF args) - Test and time Reed-Solomon in a particular GF(2^w).\n");
   fprintf(stderr, "       \n");
@@ -117,12 +101,10 @@ gf_t* get_gf(int w, int argc, char **argv, int starting)
 
 int main(int argc, char **argv)
 {
-  long l;
-  int k, w, i, j, m, iterations, bufsize;
+  int k, w, i, m, iterations, bufsize;
   int *matrix;
   char **data, **coding, **old_values;
   int *erasures, *erased;
-  int *decoding_matrix, *dm_ids;
   uint32_t seed;
   double t = 0, total_time = 0;
   gf_t *gf = NULL;
@@ -174,9 +156,9 @@ int main(int argc, char **argv)
   }
 
   for (i = 0; i < iterations; i++) {
-    timer_start(&t);
+    t = timing_now();
     jerasure_matrix_encode(k, m, w, matrix, data, coding, bufsize);
-    total_time += timer_split(&t);
+    total_time += timing_now() - t;
   }
 
   printf("Encode throughput for %d iterations: %.2f MB/s (%.2f sec)\n", iterations, (double)(k*iterations*bufsize/1024/1024) / total_time, total_time);
@@ -184,7 +166,6 @@ int main(int argc, char **argv)
   erasures = talloc(int, (m+1));
   erased = talloc(int, (k+m));
   for (i = 0; i < m+k; i++) erased[i] = 0;
-  l = 0;
   for (i = 0; i < m; ) {
     erasures[i] = ((unsigned int)MOA_Random_W(w, 1))%(k+m);
     if (erased[erasures[i]] == 0) {
@@ -197,9 +178,9 @@ int main(int argc, char **argv)
   erasures[i] = -1;
 
   for (i = 0; i < iterations; i++) {
-    timer_start(&t);
+    t = timing_now();
     jerasure_matrix_decode(k, m, w, matrix, 1, erasures, data, coding, bufsize);
-    total_time += timer_split(&t);
+    total_time += timing_now() - t;
   }
   
   printf("Decode throughput for %d iterations: %.2f MB/s (%.2f sec)\n", iterations, (double)(k*iterations*bufsize/1024/1024) / total_time, total_time);

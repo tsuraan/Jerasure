@@ -50,7 +50,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_01 r c w - creates and prints out a matrix in GF(2^w).\n\n");
   fprintf(stderr, "       Element i,j is equal to 2^(i*c+j)\n");

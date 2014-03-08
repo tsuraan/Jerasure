@@ -37,6 +37,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#pragma once
 
 #ifndef _JERASURE_H
 #define _JERASURE_H
@@ -44,6 +45,10 @@
 /* This uses procedures from the Galois Field arithmetic library */
 
 #include "galois.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* ------------------------------------------------------------ */
 /* In all of the routines below:
@@ -291,4 +296,7 @@ void jerasure_get_stats(double *fill_in);
 
 int jerasure_autoconf_test();
 
+#ifdef __cplusplus
+}
+#endif
 #endif

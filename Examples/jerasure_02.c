@@ -50,7 +50,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_02 r c w - Converts the matrix of jerasure_01 to a bit matrix.\n");
   fprintf(stderr, "       \n");

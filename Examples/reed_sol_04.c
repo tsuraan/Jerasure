@@ -54,7 +54,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: reed_sol_04 w seed - Shows reed_sol_galois_wXX_region_multby_2\n");
   fprintf(stderr, "       \n");
@@ -115,4 +115,6 @@ int main(int argc, char **argv)
        printf("Int %2d: %10u *2 = %10u\n", i, xi[i], yi[i]);
     }
   } 
+
+  return 0;
 }

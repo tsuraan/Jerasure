@@ -37,6 +37,11 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern int *reed_sol_vandermonde_coding_matrix(int k, int m, int w);
 extern int *reed_sol_extended_vandermonde_matrix(int rows, int cols, int w);
@@ -48,3 +53,7 @@ extern int *reed_sol_r6_coding_matrix(int k, int w);
 extern void reed_sol_galois_w08_region_multby_2(char *region, int nbytes);
 extern void reed_sol_galois_w16_region_multby_2(char *region, int nbytes);
 extern void reed_sol_galois_w32_region_multby_2(char *region, int nbytes);
+
+#ifdef __cplusplus
+}
+#endif

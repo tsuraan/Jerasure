@@ -49,7 +49,9 @@
 #include <string.h>
 #include <gf_complete.h>
 #include <gf_method.h>
+#include <gf_rand.h>
 #include <stdint.h>
+#include <sys/time.h>
 #include "jerasure.h"
 #include "reed_sol.h"
 
@@ -62,13 +64,16 @@ static void *malloc16(int size) {
     return ptr;
 }
 
+#if 0
+// Unused for now.
 static void free16(void *ptr) {
     free(((void**)ptr)[-1]);
 }
+#endif
 
 #define talloc(type, num) (type *) malloc16(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: reed_sol_test_gf k m w seed (additional GF args) - Tests Reed-Solomon in GF(2^w).\n");
   fprintf(stderr, "       \n");
@@ -98,12 +103,10 @@ gf_t* get_gf(int w, int argc, char **argv, int starting)
 
 int main(int argc, char **argv)
 {
-  long l;
-  int k, w, i, j, m;
+  int k, w, i, m;
   int *matrix;
   char **data, **coding, **old_values;
   int *erasures, *erased;
-  int *decoding_matrix, *dm_ids;
   gf_t *gf = NULL;
   uint32_t seed;
   
@@ -156,7 +159,6 @@ int main(int argc, char **argv)
   erasures = talloc(int, (m+1));
   erased = talloc(int, (k+m));
   for (i = 0; i < m+k; i++) erased[i] = 0;
-  l = 0;
   for (i = 0; i < m; ) {
     erasures[i] = ((unsigned int)MOA_Random_W(w,1))%(k+m);
     if (erased[erasures[i]] == 0) {

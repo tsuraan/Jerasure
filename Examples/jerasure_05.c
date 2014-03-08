@@ -53,7 +53,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_05 k m w size seed - Does a simple Reed-Solomon coding example in GF(2^w).\n");
   fprintf(stderr, "       \n");
@@ -77,7 +77,6 @@ static void print_data_and_coding(int k, int m, int w, int size,
 {
   int i, j, x;
   int n, sp;
-  long l;
 
   if(k > m) n = k;
   else n = m;

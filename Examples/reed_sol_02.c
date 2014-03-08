@@ -52,7 +52,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: reed_sol_02 k m w - Vandermonde matrices in GF(2^w).\n");
   fprintf(stderr, "       \n");
@@ -71,8 +71,7 @@ usage(char *s)
 
 int main(int argc, char **argv)
 {
-  long l;
-  int k, w, i, j, m;
+  int k, w, m;
   int *matrix;
   
   if (argc != 4) usage(NULL);

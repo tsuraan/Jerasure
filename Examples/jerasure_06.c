@@ -53,7 +53,7 @@
 
 #define talloc(type, num) (type *) malloc(sizeof(type)*(num))
 
-usage(char *s)
+static void usage(char *s)
 {
   fprintf(stderr, "usage: jerasure_06 k m w packetsize seed\n");
   fprintf(stderr, "Does a simple Cauchy Reed-Solomon coding example in GF(2^w).\n");
@@ -72,7 +72,7 @@ usage(char *s)
   exit(1);
 }
 
-static print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
+static void print_array(char **ptrs, int ndevices, int size, int packetsize, char *label)
 {
   int i, j, x;
   unsigned char *up;
@@ -101,7 +101,6 @@ static print_array(char **ptrs, int ndevices, int size, int packetsize, char *la
 
 int main(int argc, char **argv)
 {
-  long l;
   int k, w, i, j, m, psize, x;
   int *matrix, *bitmatrix;
   char **data, **coding;
