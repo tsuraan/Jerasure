@@ -59,6 +59,7 @@ is the file name with "_k#" or "_m#" and then the extension.
 #include <time.h>
 #include <sys/time.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
