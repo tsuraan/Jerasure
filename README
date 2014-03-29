@@ -70,3 +70,17 @@ determine the default field to use, if one is not specified.
 
 If you would like to explore a using a different Galois Field implementation,
 please see the manual.
+
+------------------------------------------------------------
+
+Testing GF-Complete
+
+If the GF-Complete tools are installed in /usr/local/bin
+
+cd Examples
+./test_all_gfs.sh 
+
+If the GF-Complete tools are installed elsewhere
+
+cd Examples
+GF_COMPLETE_DIR=../../gf-complete/tools ./test_all_gfs.sh 
