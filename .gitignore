@@ -24,3 +24,5 @@ Makefile.in
 *.[ao]
 *~
 .dirstamp
+*.log
+*.trs

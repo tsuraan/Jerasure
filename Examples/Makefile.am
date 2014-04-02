@@ -25,6 +25,8 @@ bin_PROGRAMS = jerasure_01 \
                encoder \
                decoder
 
+TESTS=test_all_gfs.sh
+
 dist_noinst_SCRIPTS = test_all_gfs.sh time_all_gfs_argv_init.sh
 
 jerasure_01_SOURCES = jerasure_01.c
