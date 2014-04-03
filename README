@@ -77,10 +77,14 @@ Testing GF-Complete
 
 If the GF-Complete tools are installed in /usr/local/bin
 
-cd Examples
-./test_all_gfs.sh 
+  make check
 
 If the GF-Complete tools are installed elsewhere
 
-cd Examples
-GF_COMPLETE_DIR=../../gf-complete/tools ./test_all_gfs.sh 
+  make GF_COMPLETE_DIR=$(pwd)/../gf-complete/tools check
+
+To run some tests with valgrind
+
+  make VALGRIND='valgrind --tool=memcheck --quiet' \
+       GF_COMPLETE_DIR=$(pwd)/../gf-complete/tools \
+       check

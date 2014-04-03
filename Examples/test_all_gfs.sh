@@ -46,7 +46,7 @@ seed=1370
 ${GF_METHODS} 8 -B -L | awk -F: '{ if ($1 == "w=8") print $2; }' |
 while read method; do
   echo "Testing ${k} ${m} 8 $seed ${method}"
-  ./reed_sol_test_gf ${k} ${m} 8 $seed ${method} | tail -n 1
+  $VALGRIND ./reed_sol_test_gf ${k} ${m} 8 $seed ${method} | tail -n 1
   if [[ $? != "0" ]]; then
     echo "Failed test for ${k} ${m} 8 $seed ${method}"
     exit 1
@@ -62,7 +62,7 @@ fi
 ${GF_METHODS} 16 -B -L | awk -F: '{ if ($1 == "w=16") print $2; }' |
 while read method; do
   echo "Testing ${k} ${m} 16 $seed ${method}"
-  ./reed_sol_test_gf ${k} ${m} 16 $seed ${method} | tail -n 1
+  $VALGRIND ./reed_sol_test_gf ${k} ${m} 16 $seed ${method} | tail -n 1
   if [[ $? != "0" ]]; then
     echo "Failed test for ${k} ${m} 16 $seed ${method}"
     exit 1
@@ -78,7 +78,7 @@ fi
 ${GF_METHODS} 32 -B -L | awk -F: '{ if ($1 == "w=32") print $2; }' |
 while read method; do
   echo "Testing ${k} ${m} 32 $seed ${method}"
-  ./reed_sol_test_gf ${k} ${m} 32 $seed ${method} | tail -n 1
+  $VALGRIND ./reed_sol_test_gf ${k} ${m} 32 $seed ${method} | tail -n 1
   if [[ $? != "0" ]]; then
     echo "Failed test for ${k} ${m} 32 $seed ${method}"
     exit 1
