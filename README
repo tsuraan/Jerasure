@@ -23,7 +23,7 @@ The Examples directory contains the example programs.
 
 ------------------------------------------------------------
 
-If you do have Autoconf 2.65 or later installed, you can simply build
+If you do not have Autoconf 2.65 or later installed, you can simply build
 from the tarball distribution:
 
 http://www.kaymgee.com/Kevin_Greenan/Software_files/jerasure.tar.gz
