@@ -168,7 +168,7 @@ gf_t* galois_init_composite_field(int w,
   return gfp;
 }
 
-static void galois_init_default_field(int w)
+void galois_init_default_field(int w)
 {
   if (w <= 0 || w > 32) {
     fprintf(stderr, "ERROR -- cannot init default Galois field for w=%d\n", w);
