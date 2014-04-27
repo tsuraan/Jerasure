@@ -276,6 +276,7 @@ int *jerasure_matrix_to_bitmatrix(int k, int m, int w, int *matrix)
   if (matrix == NULL) { return NULL; }
 
   bitmatrix = talloc(int, k*m*w*w);
+  if (!bitmatrix) return NULL;
 
   rowelts = k * w;
   rowindex = 0;
