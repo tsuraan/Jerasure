@@ -45,7 +45,7 @@
 #include <stdlib.h>
 #include <gf_complete.h>
 
-extern void galois_init_default_field(int w);
+extern int galois_init_default_field(int w);
 extern void galois_change_technique(gf_t *gf, int w);
 
 extern int galois_single_multiply(int a, int b, int w);
