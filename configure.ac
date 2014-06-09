@@ -36,6 +36,14 @@ AC_TYPE_UINT32_T
 AC_TYPE_UINT64_T
 AX_EXT
 
+AC_ARG_ENABLE([sse],
+              AS_HELP_STRING([--disable-sse], [Build without SSE optimizations]),
+              [if   test "x$enableval" = "xno" ; then
+                SIMD_FLAGS=""
+                echo "DISABLED SSE!!!"
+              fi]
+)
+
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([bzero getcwd gettimeofday mkdir strchr strdup strrchr])
