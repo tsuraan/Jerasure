@@ -181,6 +181,18 @@ int galois_init_default_field(int w)
   return 0;
 }
 
+int galois_uninit_field(int w)
+{
+  int ret = 0;
+  if (gfp_array[w] != NULL) {
+    int recursive = 1;
+    ret = gf_free(gfp_array[w], recursive);
+    free(gfp_array[w]);
+    gfp_array[w] = NULL;
+  }
+  return ret;
+}
+
 static void galois_init(int w)
 {
   if (w <= 0 || w > 32) {
