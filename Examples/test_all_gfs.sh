@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 #
 # Copyright (c) 2013, James S. Plank and Kevin Greenan
 # All rights reserved.
@@ -41,6 +41,11 @@ GF_METHODS=${GF_COMPLETE_DIR:-/usr/local/bin}/gf_methods
 k=12
 m=3
 seed=1370
+
+if ! test -x ${GF_METHODS} ; then
+    ${GF_METHODS}
+    exit 1
+fi
 
 # Test all w=8
 ${GF_METHODS} 8 -B -L | awk -F: '{ if ($1 == "w=8") print $2; }' |
