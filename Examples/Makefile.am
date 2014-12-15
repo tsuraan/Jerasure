@@ -27,7 +27,7 @@ bin_PROGRAMS = jerasure_01 \
 
 check_PROGRAMS = 
 
-TESTS=test_all_gfs.sh $(check_PROGRAMS)
+TESTS=test_all_gfs.sh encode_decode.sh $(check_PROGRAMS)
 
 dist_noinst_SCRIPTS = test_all_gfs.sh time_all_gfs_argv_init.sh
 
