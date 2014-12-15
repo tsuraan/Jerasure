@@ -138,8 +138,8 @@ int main (int argc, char **argv) {
 		fprintf(stderr, "usage: inputfile\n");
 		exit(0);
 	}
-	curdir = (char *)malloc(sizeof(char)*100);
-	getcwd(curdir, 100);
+	curdir = (char *)malloc(sizeof(char)*1000);
+	assert(curdir == getcwd(curdir, 1000));
 	
 	/* Begin recreation of file names */
 	cs1 = (char*)malloc(sizeof(char)*strlen(argv[1]));
