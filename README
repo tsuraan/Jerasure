@@ -9,10 +9,9 @@ Authors: James S. Plank (University of Tennessee)
 
 External Documentation:
 
-See the file Manual.pdf for the programmer's manual and tutorial.  This manual
-is also available at http://web.eecs.utk.edu/~plank/plank/papers/UT-EECS-14-721.html.
+See the file Manual.pdf for the programmer's manual and tutorial.
 
-See https://bitbucket.org/jimplank/gf-complete for GF-Complete.
+See https://jerasure.org/jerasure/gf-complete for GF-Complete.
 
 NOTE: You must have GF-Complete installed (or compiled) in order to use Jerasure 2.0.
 

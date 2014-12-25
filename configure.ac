@@ -2,7 +2,7 @@
 
 AC_PREREQ([2.65])
 AC_INIT([Jerasure], [2.0], [], [],
-        [https://bitbucket.org/jimplank/jerasure])
+        [https://jerasure.org/jerasure/jerasure])
 AC_CONFIG_SRCDIR([src/jerasure.c])
 AC_CONFIG_HEADERS([include/config.h])
 
@@ -24,7 +24,7 @@ AC_PROG_CC
 AC_CHECK_LIB([gf_complete], [gf_init_easy], [],
              [AC_MSG_FAILURE(
                [You need to have gf_complete installed.
-                  gf_complete is available from http://web.eecs.utk.edu/~plank/plank/papers/CS-13-703.html])
+                  gf_complete is available from http://jerasure.org/jerasure/gf-complete])
              ])
 
 # Checks for header files.
