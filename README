@@ -7,11 +7,17 @@ Authors: James S. Plank (University of Tennessee)
 
 ------------------------------------------------------------
 
+The online home for jerasure is:
+
+  - http://jerasure.org/jerasure/jerasure
+
+------------------------------------------------------------
+
 External Documentation:
 
 See the file Manual.pdf for the programmer's manual and tutorial.
 
-See https://jerasure.org/jerasure/gf-complete for GF-Complete.
+See http://jerasure.org/jerasure/gf-complete for GF-Complete.
 
 NOTE: You must have GF-Complete installed (or compiled) in order to use Jerasure 2.0.
 
